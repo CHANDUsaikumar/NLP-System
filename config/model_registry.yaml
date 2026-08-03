@@ -1,0 +1,59 @@
+models:
+  summarization:
+    model_name: "sshleifer/distilbart-cnn-12-6"
+    fallback_model: "t5-small"
+    task_type: "summarization"
+    description: "DistilBART CNN model fine-tuned for abstractive text summarization."
+    max_input_length: 1024
+    max_output_length: 150
+    min_output_length: 30
+
+  sentiment:
+    model_name: "cardiffnlp/twitter-roberta-base-sentiment-latest"
+    fallback_model: "distilbert-base-uncased-finetuned-sst-2-english"
+    task_type: "sentiment-analysis"
+    description: "RoBERTa fine-tuned for multi-class sentiment classification (Negative, Neutral, Positive)."
+    max_input_length: 512
+
+  question_answering:
+    model_name: "google/flan-t5-base"
+    fallback_model: "google/flan-t5-small"
+    task_type: "text2text-generation"
+    description: "FLAN-T5 model for instruction-following, zero-shot Q&A, and general reasoning."
+    max_input_length: 512
+    max_output_length: 256
+
+  text_generation:
+    model_name: "gpt2-medium"
+    fallback_model: "gpt2"
+    task_type: "text-generation"
+    description: "GPT-2 causal LM for creative text generation and story completion."
+    max_input_length: 512
+    max_output_length: 200
+
+  named_entity_recognition:
+    model_name: "dslim/bert-base-NER"
+    fallback_model: "elastic/distilbert-base-uncased-finetuned-conll03-english"
+    task_type: "token-classification"
+    description: "BERT-base fine-tuned on CoNLL-2003 for PER, ORG, LOC, and MISC extraction."
+    max_input_length: 512
+
+  translation:
+    model_name: "Helsinki-NLP/opus-mt-en-fr"
+    fallback_model: "Helsinki-NLP/opus-mt-en-es"
+    task_type: "translation"
+    description: "Helsinki-NLP MarianMT sequence-to-sequence neural translation."
+    max_input_length: 512
+    max_output_length: 256
+
+router:
+  zero_shot_model: "valhalla/distilbart-mnli-12-3"
+  confidence_threshold: 0.55
+  fallback_task: "question_answering"
+  candidate_labels:
+    - "summarization"
+    - "sentiment analysis"
+    - "question answering"
+    - "creative text generation"
+    - "named entity recognition"
+    - "language translation"
