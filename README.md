@@ -69,6 +69,8 @@ The **LLM Model Evaluation & Scoring System** provides a standardized, scientifi
 
 ## 🛠️ Fair Head-to-Head Candidate Evaluation Scores Matrix
 
+![LLM Model Evaluation & Scoring Benchmark Results](/Users/saikumarchandu/.gemini/antigravity-ide/brain/41546c6f-5ac9-4e78-8e02-12fd457fa2b5/llm_evaluation_dashboard_1786383559331.png)
+
 All candidate models for each task category are evaluated on the **exact same test dataset**, producing head-to-head performance scores:
 
 | Task Category | Candidate Role | Model Checkpoint | HF Architecture | Avg Latency (ms) | Throughput (t/s) | ROUGE-1 | ROUGE-2 | ROUGE-L | RAM (MB) |

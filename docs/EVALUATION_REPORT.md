@@ -2,6 +2,8 @@
 
 ## Executive Summary
 
+![LLM Model Evaluation & Scoring Benchmark Results](/Users/saikumarchandu/.gemini/antigravity-ide/brain/41546c6f-5ac9-4e78-8e02-12fd457fa2b5/llm_evaluation_dashboard_1786383559331.png)
+
 This document presents the quantitative evaluation report for candidate Hugging Face transformer models evaluated on a **60-sample custom dataset** across six core Natural Language Processing (NLP) task categories: **Summarization**, **Sentiment Analysis**, **Question Answering**, **Text Generation**, **Named Entity Recognition (NER)**, and **Translation**.
 
 To ensure **100% evaluation fairness**, both the **Primary** and **Fallback** model candidates for each task were evaluated on the **exact same standardized 10-sample task test dataset**, measuring output similarity against ground-truth references (ROUGE-1, ROUGE-2, ROUGE-L F1 scores), average inference latency, token throughput, and process memory (RAM) consumption.
