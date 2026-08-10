@@ -16,8 +16,6 @@ except ImportError:
 
 LOGS_DIR = Path(__file__).resolve().parent.parent.parent / "logs"
 LOGS_DIR.mkdir(parents=True, exist_ok=True)
-PREDICTION_LOG_FILE = LOGS_DIR / "predictions.log"
-REQUEST_LOG_FILE = LOGS_DIR / "requests.jsonl"
 
 
 def get_memory_usage_mb() -> float:
@@ -45,12 +43,6 @@ def get_logger(name: str = "nlp_system", level: str = "INFO") -> logging.Logger:
         )
         console_handler.setFormatter(formatter)
         logger.addHandler(console_handler)
-
-        # File Handler for logs/predictions.log
-        file_handler = logging.FileHandler(PREDICTION_LOG_FILE, encoding="utf-8")
-        file_handler.setLevel(getattr(logging, level.upper(), logging.INFO))
-        file_handler.setFormatter(formatter)
-        logger.addHandler(file_handler)
         
     return logger
 

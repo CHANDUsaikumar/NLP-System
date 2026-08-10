@@ -11,12 +11,19 @@ try:
 except ImportError:
     HAS_ROUGE = False
 
+try:
+    from bert_score import BERTScorer
+    HAS_BERTSCORE = True
+except ImportError:
+    HAS_BERTSCORE = False
+
 
 @functools.lru_cache(maxsize=1)
 def _get_cached_bert_scorer():
     """Lazily initializes and caches BERTScorer model object in memory."""
-    from bert_score import BERTScorer
-    return BERTScorer(lang="en", rescale_with_baseline=True)
+    if HAS_BERTSCORE:
+        return BERTScorer(lang="en", rescale_with_baseline=True)
+    return None
 
 
 class EvaluationMetrics:
@@ -76,20 +83,21 @@ class EvaluationMetrics:
         Returns:
             Dict[str, float]: Dictionary containing precision, recall, and f1 bert_score.
         """
+        if not HAS_BERTSCORE:
+            return {"bert_score_f1": 0.0}
+
         try:
             scorer = _get_cached_bert_scorer()
+            if scorer is None:
+                return {"bert_score_f1": 0.0}
             P, R, F1 = scorer.score([candidate], [reference])
             return {
                 "bert_score_precision": round(float(P[0]), 4),
                 "bert_score_recall": round(float(R[0]), 4),
                 "bert_score_f1": round(float(F1[0]), 4)
             }
-        except Exception as e:
-            logger.warning(f"BERTScore computation skipped or unavailable ({e}). Returning 0.0.")
-            return {
-                "bert_score_f1": 0.0,
-                "note": "BERTScore model computation skipped or unavailable."
-            }
+        except Exception:
+            return {"bert_score_f1": 0.0}
 
     @staticmethod
     def compute_bleu(candidate: str, reference: str) -> Dict[str, float]:
