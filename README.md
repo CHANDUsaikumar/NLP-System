@@ -53,11 +53,17 @@ The system is streamlined to support **3 core NLP tasks**, comparing a **Primary
 
 ## 🚀 Quick Start & Usage
 
-### 1. Launch the Chatbot Web Application
+### 1. Launch FastAPI Web Server
 ```bash
 python server.py
 ```
-> Opens the interactive Web App at **`http://localhost:8000`**.
+> Starts the FastAPI + Uvicorn server locally at **`http://localhost:8000`**. The ASGI application instance (`app`) is directly importable from `server.py` for serverless or Vercel deployments.
+
+### 2. Verify API Health Endpoint
+```bash
+curl http://localhost:8000/health
+# Output: {"status": "ok"}
+```
 
 ### 2. Run CLI Benchmark Evaluation
 ```bash

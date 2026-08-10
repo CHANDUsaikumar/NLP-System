@@ -1,4 +1,4 @@
-"""Pydantic payload validators for router API user requests and responses."""
+"""Pydantic payload validators for FastAPI router endpoints."""
 
 from typing import Optional
 from pydantic import BaseModel, Field, field_validator
@@ -6,7 +6,7 @@ from src.utils.exceptions import InputValidationError
 
 
 class UserRequestPayload(BaseModel):
-    prompt: str = Field(..., description="The input text prompt provided by user.")
+    prompt: str = Field(..., description="The input text prompt provided by the user.")
 
     @field_validator("prompt")
     @classmethod
@@ -22,9 +22,10 @@ class UserRequestPayload(BaseModel):
 class RouterResponsePayload(BaseModel):
     prompt: str
     intent_detected: bool
-    detected_task: Optional[str]
-    selected_model: Optional[str]
-    model_type: str  # "Primary" or "Fallback"
+    detected_task: Optional[str] = None
+    selected_model: Optional[str] = None
+    model_type: str  # "Primary", "Fallback", or "N/A"
     fallback_reason: Optional[str] = None
     latency_ms: float
     response_text: str
+    response: str  # Alias field for API response text compatibility
