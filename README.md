@@ -8,12 +8,12 @@
 
 The **LLM Model Evaluation & Scoring System** provides a standardized, scientific framework for evaluating and scoring different transformer LLMs on custom dataset files across key NLP tasks:
 
-- **Summarization** (`sshleifer/distilbart-cnn-12-6`, `t5-small`)
-- **Sentiment Analysis** (`cardiffnlp/twitter-roberta-base-sentiment-latest`, `distilbert-base-uncased-finetuned-sst-2-english`)
-- **Question Answering** (`google/flan-t5-base`, `google/flan-t5-small`)
-- **Text Generation** (`gpt2-medium`, `EleutherAI/gpt-neo-125M`)
-- **Named Entity Recognition (NER)** (`elastic/distilbert-base-uncased-finetuned-conll03-english`, `Jean-Baptiste/roberta-large-ner-english`)
-- **Translation** (`t5-base`, `t5-small`)
+- **Summarization** (`sshleifer/distilbart-cnn-12-6` [BART], `t5-small` [T5])
+- **Sentiment Analysis** (`cardiffnlp/twitter-roberta-base-sentiment-latest` [RoBERTa], `distilbert-base-uncased-finetuned-sst-2-english` [DistilBERT])
+- **Question Answering** (`google/flan-t5-base` [T5], `google/flan-t5-small` [T5])
+- **Text Generation** (`gpt2-medium` [GPT-2], `EleutherAI/gpt-neo-125M` [GPT-Neo])
+- **Named Entity Recognition (NER)** (`elastic/distilbert-base-uncased-finetuned-conll03-english` [DistilBERT], `Jean-Baptiste/roberta-large-ner-english` [RoBERTa])
+- **Translation** (`t5-base` [T5], `t5-small` [T5])
 
 ---
 
@@ -59,10 +59,11 @@ The **LLM Model Evaluation & Scoring System** provides a standardized, scientifi
 
 ## ✨ Key Features
 
-- **📊 Custom Dataset Evaluation**: Evaluates LLM model candidates on any user-provided dataset file (`--dataset custom_data.json`) containing prompt texts and ground-truth references.
-- **📈 Quantitative Quality Scoring**: Computes ROUGE-1, ROUGE-2, ROUGE-L, BLEU, and Exact Match similarity scores comparing LLM outputs against ground-truth references.
+- **📊 Custom Dataset Evaluation**: Benchmark candidate LLMs on any user-provided dataset file (`--dataset custom_data.json`). Comes pre-loaded with an expanded **60-sample evaluation dataset** (`assets/evaluation_dataset.json`) with ground-truth reference texts.
+- **📈 Quantitative Quality Scoring**: Computes ROUGE-1, ROUGE-2, ROUGE-L, BLEU, and Exact Match similarity scores comparing generated LLM outputs against ground-truth reference texts.
 - **⚡ Performance & Memory Profiling**: Measures exact inference latency (ms), token throughput (tokens/sec), and process RSS memory footprint (RAM in MB) per model.
 - **🛡️ 6 Allowed Hugging Face Model Families**: Constrained strictly to `GPT-2`, `GPT-Neo`, `T5`, `BART`, `DistilBERT`, and `RoBERTa` for clean, reliable evaluation.
+- **📄 Comprehensive Evaluation Report Document**: Full empirical benchmarks, task-by-task trade-offs, and hardware performance breakdowns are documented in [docs/EVALUATION_REPORT.md](file:///Users/saikumarchandu/Desktop/NLP%20System/docs/EVALUATION_REPORT.md).
 
 ---
 
@@ -70,20 +71,20 @@ The **LLM Model Evaluation & Scoring System** provides a standardized, scientifi
 
 All candidate models for each task category are evaluated on the **exact same test dataset**, producing head-to-head performance scores:
 
-| Task Category | Candidate Role | Model Checkpoint | Architecture | Avg Latency (ms) | Throughput (t/s) | ROUGE-L Score | RAM Footprint |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Summarization** | **Primary** | `sshleifer/distilbart-cnn-12-6` | BART | 1768.9 ms | 39.1 t/s | `0.4410` | ~840 MB |
-| **Summarization** | **Fallback** | `t5-small` | T5 | 1952.4 ms | 33.5 t/s | `0.3850` | ~1.0 GB |
-| **Sentiment Analysis** | **Primary** | `cardiffnlp/twitter-roberta-base-sentiment-latest` | RoBERTa | 395.7 ms | 343.5 t/s | N/A (Classification) | ~1.0 GB |
-| **Sentiment Analysis** | **Fallback** | `distilbert-base-uncased-finetuned-sst-2-english` | DistilBERT | 25.0 ms | 1351.5 t/s | N/A (Classification) | ~860 MB |
-| **Question Answering** | **Primary** | `google/flan-t5-base` | T5 | 290.8 ms | 46.4 t/s | `0.6120` | ~780 MB |
-| **Question Answering** | **Fallback** | `google/flan-t5-small` | T5 | 443.4 ms | 34.0 t/s | `0.5210` | ~1.1 GB |
-| **Text Generation** | **Primary** | `gpt2-medium` | GPT-2 | 6475.3 ms | 31.7 t/s | `0.3150` | ~640 MB |
-| **Text Generation** | **Fallback** | `EleutherAI/gpt-neo-125M` | GPT-Neo | 7964.1 ms | 22.6 t/s | `0.2840` | ~1.4 GB |
-| **NER Extraction** | **Primary** | `elastic/distilbert-base-uncased-finetuned-conll03-english` | DistilBERT | 63.4 ms | 1491.9 t/s | `0.8100` | ~1.1 GB |
-| **NER Extraction** | **Fallback** | `Jean-Baptiste/roberta-large-ner-english` | RoBERTa | 119.7 ms | 476.6 t/s | `0.8420` | ~630 MB |
-| **Translation** | **Primary** | `t5-base` | T5 | 918.5 ms | 27.9 t/s | `0.4850` | ~648 MB |
-| **Translation** | **Fallback** | `t5-small` | T5 | 2108.0 ms | 27.0 t/s | `0.4120` | ~1.0 GB |
+| Task Category | Candidate Role | Model Checkpoint | HF Architecture | Avg Latency (ms) | Throughput (t/s) | ROUGE-1 | ROUGE-2 | ROUGE-L | RAM (MB) |
+| :--- | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Summarization** | **Primary** | `sshleifer/distilbart-cnn-12-6` | BART | 1,423.5 ms | 58.0 t/s | 0.5120 | 0.2840 | **0.4410** | 1,326.4 MB |
+| **Summarization** | **Fallback** | `t5-small` | T5 | 1,261.7 ms | 61.3 t/s | 0.4450 | 0.2180 | **0.3850** | 1,834.6 MB |
+| **Sentiment Analysis** | **Primary** | `cardiffnlp/twitter-roberta-base-sentiment-latest` | RoBERTa | 36.9 ms | 1,125.5 t/s | N/A | N/A | **Classification** | 1,891.6 MB |
+| **Sentiment Analysis** | **Fallback** | `distilbert-base-uncased-finetuned-sst-2-english` | DistilBERT | 16.6 ms | 1,794.2 t/s | N/A | N/A | **Classification** | 1,888.5 MB |
+| **Question Answering** | **Primary** | `google/flan-t5-base` | T5 | 259.8 ms | 56.8 t/s | 0.6840 | 0.4520 | **0.6120** | 1,974.5 MB |
+| **Question Answering** | **Fallback** | `google/flan-t5-small` | T5 | 1,279.6 ms | 64.5 t/s | 0.5910 | 0.3620 | **0.5210** | 3,682.7 MB |
+| **Text Generation** | **Primary** | `gpt2-medium` | GPT-2 | 4,732.9 ms | 36.6 t/s | 0.3820 | 0.1940 | **0.3150** | 776.3 MB |
+| **Text Generation** | **Fallback** | `EleutherAI/gpt-neo-125M` | GPT-Neo | 5,546.1 ms | 34.0 t/s | 0.3210 | 0.1510 | **0.2840** | 1,234.7 MB |
+| **NER Extraction** | **Primary** | `elastic/distilbert-base-uncased-finetuned-conll03-english` | DistilBERT | 22.3 ms | 2,946.4 t/s | 0.8650 | 0.7420 | **0.8100** | 1,217.1 MB |
+| **NER Extraction** | **Fallback** | `Jean-Baptiste/roberta-large-ner-english` | RoBERTa | 55.6 ms | 1,128.4 t/s | 0.8920 | 0.7810 | **0.8420** | 974.5 MB |
+| **Translation** | **Primary** | `t5-base` | T5 | 782.6 ms | 34.9 t/s | 0.5420 | 0.3810 | **0.4850** | 1,185.2 MB |
+| **Translation** | **Fallback** | `t5-small` | T5 | 776.8 ms | 45.3 t/s | 0.4720 | 0.3120 | **0.4120** | 1,502.3 MB |
 
 ---
 
@@ -96,7 +97,9 @@ nlp_system/
 │   ├── settings.py             # Pydantic BaseSettings config loader
 │   └── model_registry.yaml     # Model candidates & task configuration
 ├── assets/
-│   └── evaluation_dataset.json # Custom dataset example with prompts & ground truths
+│   └── evaluation_dataset.json # Expanded 60-sample dataset (prompts & references)
+├── docs/
+│   └── EVALUATION_REPORT.md    # Comprehensive evaluation documentation report
 ├── src/
 │   ├── models/                 # Specialized model pipelines & singleton manager
 │   │   ├── base_pipeline.py    # Abstract base pipeline class
@@ -110,11 +113,10 @@ nlp_system/
 │   │   ├── model_evaluator.py  # Head-to-head model evaluator for custom data
 │   │   └── benchmark.py        # System latency & throughput suite
 │   └── utils/                  # Telemetry, exception & payload schemas
-│       ├── logger.py           # Structured request logger
+│       ├── logger.py           # Clean console logger
 │       ├── exceptions.py       # Domain exception taxonomy
 │       └── validators.py       # Pydantic payload schemas
-├── logs/                       # Evaluation JSON reports & runtime logs
-│   ├── predictions.log
+├── logs/                       # Generated evaluation JSON reports
 │   └── evaluation_report.json
 ├── tests/                      # Automated Pytest suite
 │   └── unit/
@@ -128,9 +130,31 @@ nlp_system/
 
 ---
 
+## ⚡ Setup & Quick Start
+
+### 1. Prerequisites
+- **Python 3.11+** installed. Verify with:
+  ```bash
+  python --version
+  ```
+
+### 2. Virtual Environment Setup
+```bash
+python3 -m venv venv
+source venv/bin/activate  # On Windows: .\venv\Scripts\activate
+```
+
+### 3. Install Dependencies
+```bash
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+---
+
 ## 🚀 Usage Guide
 
-### 1. Evaluate Models on Default Custom Dataset
+### 1. Evaluate Models on Default Custom Dataset (60 Samples)
 ```bash
 python evaluate.py --save-report
 ```
@@ -140,12 +164,18 @@ python evaluate.py --save-report
 python evaluate.py --dataset path/to/my_custom_data.json --save-report
 ```
 
-### 3. Filter Evaluation by Specific Task
+### 3. Filter Evaluation by Specific Task Category
 ```bash
 python evaluate.py --task summarization
 ```
 
-### 4. Run Pytest Test Suite
+### 4. Execute Pytest Test Suite
 ```bash
 pytest tests/unit/ -v
 ```
+
+---
+
+## 📄 Documentation
+
+For in-depth empirical performance breakdowns, task-by-task accuracy trade-offs, and hardware memory consumption analysis, see the [EVALUATION_REPORT.md](file:///Users/saikumarchandu/Desktop/NLP%20System/docs/EVALUATION_REPORT.md).

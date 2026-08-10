@@ -1,0 +1,1130 @@
+{
+  "summarization": {
+    "primary": {
+      "model_name": "sshleifer/distilbart-cnn-12-6",
+      "role": "primary",
+      "sample_count": 10,
+      "avg_latency_ms": 1423.52,
+      "avg_throughput_tps": 58.04,
+      "ram_usage_mb": 1326.38,
+      "avg_rouge1": 0.0,
+      "avg_rouge2": 0.0,
+      "avg_rougel": 0.0,
+      "outputs": [
+        {
+          "id": "sum_01",
+          "prompt": "Artificial intelligence has transformed modern sof...",
+          "output": "Artificial intelligence has transformed modern software engineering by introducing dynamic model routing, automated code generation, and intelligent testing workflows . Companies deploy transformer models to optimize compute cost . By leveraging lightweight zero-shot classifiers alongside specialized generation models, organizations significantly reduce inference latency while keeping throughput high .",
+          "latency_ms": 2224.6,
+          "throughput": 45.85,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sum_02",
+          "prompt": "Please summarize the following research paper on d...",
+          "output": "Distributed GPU nodes synchronize model parameters during training across high-bandwidth interconnects . The paper discusses how distributed GPU nodes sync up model parameters .",
+          "latency_ms": 1275.37,
+          "throughput": 43.91,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sum_03",
+          "prompt": "Global renewable energy adoption reached record hi...",
+          "output": "Solar energy generation grew by 22 percent worldwide, while wind power grew by 14 percent . Industry analysts predict that renewable sources will generate over half of global electricity within the next decade .",
+          "latency_ms": 1054.19,
+          "throughput": 86.32,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sum_04",
+          "prompt": "Quantum computing represents a fundamental shift f...",
+          "output": "Quantum computing represents a shift from classical binary computation by utilizing qubits capable of existing in superposition states . This property enables quantum algorithms to perform complex matrix calculations exponentially faster than traditional supercomputers . Key applications include drug discovery, cryptography, materials science, and financial portfolio optimization .",
+          "latency_ms": 1840.52,
+          "throughput": 51.07,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sum_05",
+          "prompt": "Central banks worldwide are continuing their effor...",
+          "output": "Central banks worldwide are continuing their efforts to manage inflation through interest rate adjustments and monetary policy tightening . Consumer prices have shown signs of stabilizing, but housing costs and labor market tightness remain stubborn challenges . Financial advisors recommend maintaining diversified investment portfolios to hedge against persistent market volatility .",
+          "latency_ms": 1581.51,
+          "throughput": 62.6,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sum_06",
+          "prompt": "Space exploration achieved major milestones this d...",
+          "output": "Space exploration achieved major milestones this decade with robotic rovers collecting soil samples on Mars . International space agencies are collaborating on planned human missions to the Moon under the Artemis program, laying groundwork for future deep space travel .",
+          "latency_ms": 1217.78,
+          "throughput": 72.26,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sum_07",
+          "prompt": "Cybersecurity threats have evolved rapidly with at...",
+          "output": "Cybersecurity threats have evolved rapidly with attackers deploying phishing scripts and zero-day exploit techniques against corporate networks . Security teams are adopting Zero Trust architectures, multi-factor authentication, and automated endpoint monitoring to protect sensitive corporate assets .",
+          "latency_ms": 1535.35,
+          "throughput": 47.55,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sum_08",
+          "prompt": "Advances in messenger RNA vaccine technology have ...",
+          "output": "Advances in messenger RNA vaccine technology have opened new avenues for treating cardiovascular diseases, autoimmune disorders, and various forms of cancer . Clinical trials demonstrate promising immune responses with minimal side effects .",
+          "latency_ms": 1181.05,
+          "throughput": 60.12,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sum_09",
+          "prompt": "Modern cloud computing infrastructure relies on mi...",
+          "output": "Modern cloud computing infrastructure relies on microservice containerization, Kubernetes orchestration, and serverless compute paradigms . By decoupling monolithic applications into independent services, engineering teams accelerate deployment velocity .",
+          "latency_ms": 1215.35,
+          "throughput": 48.55,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sum_10",
+          "prompt": "Autonomous mobile robots are increasingly deployed...",
+          "output": "Autonomous mobile robots are increasingly deployed across logistics warehouses and manufacturing plants . Equipped with LiDAR sensors and computer vision models, these robots safely navigate complex indoor environments alongside human workers .",
+          "latency_ms": 1109.52,
+          "throughput": 62.19,
+          "rougeL": 0.0
+        }
+      ]
+    },
+    "fallback": {
+      "model_name": "t5-small",
+      "role": "fallback",
+      "sample_count": 10,
+      "avg_latency_ms": 1261.68,
+      "avg_throughput_tps": 61.33,
+      "ram_usage_mb": 1834.62,
+      "avg_rouge1": 0.0,
+      "avg_rouge2": 0.0,
+      "avg_rougel": 0.0,
+      "outputs": [
+        {
+          "id": "sum_01",
+          "prompt": "Artificial intelligence has transformed modern sof...",
+          "output": "companies deploy transformer models to optimize compute cost . companies significantly reduce inference latency while keeping throughput high . recent advances in hardware acceleration further streamline enterprise deployments .",
+          "latency_ms": 1753.94,
+          "throughput": 47.32,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sum_02",
+          "prompt": "Please summarize the following research paper on d...",
+          "output": "the paper discusses how distributed GPU nodes synchronize model parameters during training across high-bandwidth interconnects . the paper also discusses the use of distributed GPUs in multi-node clusters.",
+          "latency_ms": 1601.01,
+          "throughput": 37.48,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sum_03",
+          "prompt": "Global renewable energy adoption reached record hi...",
+          "output": "global renewable energy adoption reached record high levels last year . solar energy generation expanded by 22 percent worldwide, while wind power grew by 14 percent . industry analysts predict renewable sources will generate half of global electricity within the next decade .",
+          "latency_ms": 1333.0,
+          "throughput": 75.02,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sum_04",
+          "prompt": "Quantum computing represents a fundamental shift f...",
+          "output": "quantum algorithms perform complex matrix calculations exponentially faster than traditional supercomputers . key applications include drug discovery, cryptography, materials science, and financial portfolio optimization .",
+          "latency_ms": 902.49,
+          "throughput": 78.67,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sum_05",
+          "prompt": "Central banks worldwide are continuing their effor...",
+          "output": "central banks are continuing their efforts to manage inflation through interest rate adjustments and monetary policy tightening . consumer prices have shown signs of stabilizing, but housing costs and labor market tightness remain stubborn challenges .",
+          "latency_ms": 1263.75,
+          "throughput": 66.47,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sum_06",
+          "prompt": "Space exploration achieved major milestones this d...",
+          "output": "international space agencies are collaborating on planned human missions to the moon under the Artemis program . rovers collect soil samples on mars and space telescopes capturing unprecedented infrared images of distant galaxies .",
+          "latency_ms": 1429.56,
+          "throughput": 57.36,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sum_07",
+          "prompt": "Cybersecurity threats have evolved rapidly with at...",
+          "output": "cybersecurity threats have evolved rapidly with attackers deploying automated phishing scripts and zero-day exploit techniques . security teams are adopting Zero Trust architectures, multi-factor authentication, and automated endpoint monitoring to protect sensitive corporate assets .",
+          "latency_ms": 1347.9,
+          "throughput": 52.67,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sum_08",
+          "prompt": "Advances in messenger RNA vaccine technology have ...",
+          "output": "advances in messenger RNA vaccine technology have opened new avenues for treating cardiovascular diseases, autoimmune disorders, and cancer . clinical trials demonstrate promising immune responses with minimal side effects, paving the way for personalized genomic medicine.",
+          "latency_ms": 1187.58,
+          "throughput": 62.31,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sum_09",
+          "prompt": "Modern cloud computing infrastructure relies on mi...",
+          "output": "cloud computing infrastructure relies on microservice containerization, Kubernetes orchestration and serverless compute paradigms . engineers accelerate deployment velocity and scale individual components dynamically .",
+          "latency_ms": 956.94,
+          "throughput": 57.47,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sum_10",
+          "prompt": "Autonomous mobile robots are increasingly deployed...",
+          "output": "autonomous mobile robots are deployed across logistics warehouses and manufacturing plants . equipped with sensors and computer vision models, they safely navigate complex indoor environments alongside human workers .",
+          "latency_ms": 840.66,
+          "throughput": 78.51,
+          "rougeL": 0.0
+        }
+      ]
+    }
+  },
+  "sentiment": {
+    "primary": {
+      "model_name": "cardiffnlp/twitter-roberta-base-sentiment-latest",
+      "role": "primary",
+      "sample_count": 10,
+      "avg_latency_ms": 36.9,
+      "avg_throughput_tps": 1125.49,
+      "ram_usage_mb": 1891.64,
+      "avg_rouge1": 0.0,
+      "avg_rouge2": 0.0,
+      "avg_rougel": 0.0,
+      "outputs": [
+        {
+          "id": "sent_01",
+          "prompt": "This new smartphone has an amazing camera and exce...",
+          "output": "Sentiment: **negative** (Confidence: 78.45%)\n\nBreakdown:\n- negative: 78.45%\n- neutral: 11.79%\n- positive: 9.76%",
+          "latency_ms": 36.99,
+          "throughput": 892.06,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sent_02",
+          "prompt": "I love the customer service at this store! They we...",
+          "output": "Sentiment: **positive** (Confidence: 98.05%)\n\nBreakdown:\n- positive: 98.05%\n- neutral: 1.21%\n- negative: 0.73%",
+          "latency_ms": 27.82,
+          "throughput": 1185.99,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sent_03",
+          "prompt": "The flight was delayed by four hours without any e...",
+          "output": "Sentiment: **negative** (Confidence: 94.08%)\n\nBreakdown:\n- negative: 94.08%\n- neutral: 5.5%\n- positive: 0.42%",
+          "latency_ms": 27.94,
+          "throughput": 1288.58,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sent_04",
+          "prompt": "The package arrived on time in perfect condition. ...",
+          "output": "Sentiment: **positive** (Confidence: 97.74%)\n\nBreakdown:\n- positive: 97.74%\n- neutral: 1.91%\n- negative: 0.35%",
+          "latency_ms": 75.08,
+          "throughput": 412.91,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sent_05",
+          "prompt": "The movie started with great potential, but the se...",
+          "output": "Sentiment: **negative** (Confidence: 91.51%)\n\nBreakdown:\n- negative: 91.51%\n- neutral: 7.27%\n- positive: 1.22%",
+          "latency_ms": 36.5,
+          "throughput": 849.32,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sent_06",
+          "prompt": "Food was decent, service was average, nothing spec...",
+          "output": "Sentiment: **positive** (Confidence: 57.09%)\n\nBreakdown:\n- positive: 57.09%\n- neutral: 28.56%\n- negative: 14.34%",
+          "latency_ms": 73.96,
+          "throughput": 351.56,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sent_07",
+          "prompt": "Extremely frustrated with the latest software upda...",
+          "output": "Sentiment: **negative** (Confidence: 94.81%)\n\nBreakdown:\n- negative: 94.81%\n- neutral: 4.46%\n- positive: 0.73%",
+          "latency_ms": 16.88,
+          "throughput": 1895.74,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sent_08",
+          "prompt": "Outstanding dining experience! The chef's tasting ...",
+          "output": "Sentiment: **positive** (Confidence: 98.77%)\n\nBreakdown:\n- positive: 98.77%\n- neutral: 0.88%\n- negative: 0.35%",
+          "latency_ms": 15.49,
+          "throughput": 1872.33,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sent_09",
+          "prompt": "The laptop keyboard feels stiff and the screen bri...",
+          "output": "Sentiment: **negative** (Confidence: 89.4%)\n\nBreakdown:\n- negative: 89.4%\n- neutral: 9.41%\n- positive: 1.19%",
+          "latency_ms": 18.86,
+          "throughput": 1696.34,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sent_10",
+          "prompt": "The customer support agent listened attentively, g...",
+          "output": "Sentiment: **positive** (Confidence: 65.18%)\n\nBreakdown:\n- positive: 65.18%\n- neutral: 31.95%\n- negative: 2.87%",
+          "latency_ms": 39.5,
+          "throughput": 810.03,
+          "rougeL": 0.0
+        }
+      ]
+    },
+    "fallback": {
+      "model_name": "distilbert-base-uncased-finetuned-sst-2-english",
+      "role": "fallback",
+      "sample_count": 10,
+      "avg_latency_ms": 16.62,
+      "avg_throughput_tps": 1794.24,
+      "ram_usage_mb": 1888.52,
+      "avg_rouge1": 0.0,
+      "avg_rouge2": 0.0,
+      "avg_rougel": 0.0,
+      "outputs": [
+        {
+          "id": "sent_01",
+          "prompt": "This new smartphone has an amazing camera and exce...",
+          "output": "Sentiment: **NEGATIVE** (Confidence: 99.9%)\n\nBreakdown:\n- NEGATIVE: 99.9%\n- POSITIVE: 0.1%",
+          "latency_ms": 16.68,
+          "throughput": 1798.93,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sent_02",
+          "prompt": "I love the customer service at this store! They we...",
+          "output": "Sentiment: **POSITIVE** (Confidence: 99.99%)\n\nBreakdown:\n- POSITIVE: 99.99%\n- NEGATIVE: 0.01%",
+          "latency_ms": 15.54,
+          "throughput": 1930.94,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sent_03",
+          "prompt": "The flight was delayed by four hours without any e...",
+          "output": "Sentiment: **NEGATIVE** (Confidence: 99.98%)\n\nBreakdown:\n- NEGATIVE: 99.98%\n- POSITIVE: 0.02%",
+          "latency_ms": 15.44,
+          "throughput": 2137.48,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sent_04",
+          "prompt": "The package arrived on time in perfect condition. ...",
+          "output": "Sentiment: **POSITIVE** (Confidence: 99.93%)\n\nBreakdown:\n- POSITIVE: 99.93%\n- NEGATIVE: 0.07%",
+          "latency_ms": 15.31,
+          "throughput": 1829.37,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sent_05",
+          "prompt": "The movie started with great potential, but the se...",
+          "output": "Sentiment: **NEGATIVE** (Confidence: 99.96%)\n\nBreakdown:\n- NEGATIVE: 99.96%\n- POSITIVE: 0.04%",
+          "latency_ms": 22.93,
+          "throughput": 1220.97,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sent_06",
+          "prompt": "Food was decent, service was average, nothing spec...",
+          "output": "Sentiment: **NEGATIVE** (Confidence: 98.08%)\n\nBreakdown:\n- NEGATIVE: 98.08%\n- POSITIVE: 1.92%",
+          "latency_ms": 15.64,
+          "throughput": 1470.87,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sent_07",
+          "prompt": "Extremely frustrated with the latest software upda...",
+          "output": "Sentiment: **NEGATIVE** (Confidence: 99.98%)\n\nBreakdown:\n- NEGATIVE: 99.98%\n- POSITIVE: 0.02%",
+          "latency_ms": 15.79,
+          "throughput": 1836.96,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sent_08",
+          "prompt": "Outstanding dining experience! The chef's tasting ...",
+          "output": "Sentiment: **POSITIVE** (Confidence: 99.99%)\n\nBreakdown:\n- POSITIVE: 99.99%\n- NEGATIVE: 0.01%",
+          "latency_ms": 11.8,
+          "throughput": 2203.55,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sent_09",
+          "prompt": "The laptop keyboard feels stiff and the screen bri...",
+          "output": "Sentiment: **NEGATIVE** (Confidence: 99.94%)\n\nBreakdown:\n- NEGATIVE: 99.94%\n- POSITIVE: 0.06%",
+          "latency_ms": 12.42,
+          "throughput": 2334.59,
+          "rougeL": 0.0
+        },
+        {
+          "id": "sent_10",
+          "prompt": "The customer support agent listened attentively, g...",
+          "output": "Sentiment: **NEGATIVE** (Confidence: 96.89%)\n\nBreakdown:\n- NEGATIVE: 96.89%\n- POSITIVE: 3.11%",
+          "latency_ms": 24.6,
+          "throughput": 1178.76,
+          "rougeL": 0.0
+        }
+      ]
+    }
+  },
+  "question_answering": {
+    "primary": {
+      "model_name": "google/flan-t5-base",
+      "role": "primary",
+      "sample_count": 10,
+      "avg_latency_ms": 259.8,
+      "avg_throughput_tps": 56.84,
+      "ram_usage_mb": 1974.52,
+      "avg_rouge1": 0.0,
+      "avg_rouge2": 0.0,
+      "avg_rougel": 0.0,
+      "outputs": [
+        {
+          "id": "qa_01",
+          "prompt": "What is the capital of France and what is its popu...",
+          "output": "Paris",
+          "latency_ms": 210.67,
+          "throughput": 56.96,
+          "rougeL": 0.0
+        },
+        {
+          "id": "qa_02",
+          "prompt": "Why do leaves change color in autumn?...",
+          "output": "they are exposed to sunlight",
+          "latency_ms": 199.75,
+          "throughput": 60.08,
+          "rougeL": 0.0
+        },
+        {
+          "id": "qa_03",
+          "prompt": "How does a transformer neural network handle atten...",
+          "output": "focuses it on the task at hand",
+          "latency_ms": 245.71,
+          "throughput": 61.05,
+          "rougeL": 0.0
+        },
+        {
+          "id": "qa_04",
+          "prompt": "Who discovered penicillin and in what year was it ...",
+          "output": "Alfred Wegener",
+          "latency_ms": 114.24,
+          "throughput": 105.05,
+          "rougeL": 0.0
+        },
+        {
+          "id": "qa_05",
+          "prompt": "What is the distance between the Earth and the Moo...",
+          "output": "365 km",
+          "latency_ms": 177.48,
+          "throughput": 67.61,
+          "rougeL": 0.0
+        },
+        {
+          "id": "qa_06",
+          "prompt": "How does photosynthesis convert sunlight into chem...",
+          "output": "cellular respiration",
+          "latency_ms": 191.71,
+          "throughput": 52.16,
+          "rougeL": 0.0
+        },
+        {
+          "id": "qa_07",
+          "prompt": "What is the difference between supervised and unsu...",
+          "output": "Unsupervised machine learning is a type of machine learning that is not supervised.",
+          "latency_ms": 652.82,
+          "throughput": 35.23,
+          "rougeL": 0.0
+        },
+        {
+          "id": "qa_08",
+          "prompt": "Where is the Great Barrier Reef located?...",
+          "output": "Australia",
+          "latency_ms": 126.68,
+          "throughput": 63.15,
+          "rougeL": 0.0
+        },
+        {
+          "id": "qa_09",
+          "prompt": "What causes ocean tides on Earth?...",
+          "output": "ocean tides are caused by the tides of the ocean.",
+          "latency_ms": 348.57,
+          "throughput": 45.9,
+          "rougeL": 0.0
+        },
+        {
+          "id": "qa_10",
+          "prompt": "Who wrote the play Hamlet?...",
+          "output": "samuel harrison",
+          "latency_ms": 330.4,
+          "throughput": 21.19,
+          "rougeL": 0.0
+        }
+      ]
+    },
+    "fallback": {
+      "model_name": "google/flan-t5-small",
+      "role": "fallback",
+      "sample_count": 10,
+      "avg_latency_ms": 1279.58,
+      "avg_throughput_tps": 64.5,
+      "ram_usage_mb": 3682.69,
+      "avg_rouge1": 0.0,
+      "avg_rouge2": 0.0,
+      "avg_rougel": 0.0,
+      "outputs": [
+        {
+          "id": "qa_01",
+          "prompt": "What is the capital of France and what is its popu...",
+          "output": "london",
+          "latency_ms": 204.68,
+          "throughput": 58.63,
+          "rougeL": 0.0
+        },
+        {
+          "id": "qa_02",
+          "prompt": "Why do leaves change color in autumn?...",
+          "output": "Leaves have a darker color.",
+          "latency_ms": 352.82,
+          "throughput": 34.01,
+          "rougeL": 0.0
+        },
+        {
+          "id": "qa_03",
+          "prompt": "How does a transformer neural network handle atten...",
+          "output": "Using a neural network, a transformer neural network is able to handle attention.",
+          "latency_ms": 570.52,
+          "throughput": 36.81,
+          "rougeL": 0.0
+        },
+        {
+          "id": "qa_04",
+          "prompt": "Who discovered penicillin and in what year was it ...",
+          "output": "1903",
+          "latency_ms": 63.48,
+          "throughput": 173.29,
+          "rougeL": 0.0
+        },
+        {
+          "id": "qa_05",
+          "prompt": "What is the distance between the Earth and the Moo...",
+          "output": "270 km",
+          "latency_ms": 77.9,
+          "throughput": 154.05,
+          "rougeL": 0.0
+        },
+        {
+          "id": "qa_06",
+          "prompt": "How does photosynthesis convert sunlight into chem...",
+          "output": "Photosynthesis is a process that converts sunlight into chemical energy.",
+          "latency_ms": 347.3,
+          "throughput": 51.83,
+          "rougeL": 0.0
+        },
+        {
+          "id": "qa_07",
+          "prompt": "What is the difference between supervised and unsu...",
+          "output": "supervised and unsupervised machine learning",
+          "latency_ms": 274.93,
+          "throughput": 54.56,
+          "rougeL": 0.0
+        },
+        {
+          "id": "qa_08",
+          "prompt": "Where is the Great Barrier Reef located?...",
+          "output": "southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern southeastern",
+          "latency_ms": 10362.03,
+          "throughput": 8.88,
+          "rougeL": 0.0
+        },
+        {
+          "id": "qa_09",
+          "prompt": "What causes ocean tides on Earth?...",
+          "output": "ocean tides",
+          "latency_ms": 152.56,
+          "throughput": 52.44,
+          "rougeL": 0.0
+        },
+        {
+          "id": "qa_10",
+          "prompt": "Who wrote the play Hamlet?...",
+          "output": "george w. bush",
+          "latency_ms": 389.55,
+          "throughput": 20.54,
+          "rougeL": 0.0
+        }
+      ]
+    }
+  },
+  "text_generation": {
+    "primary": {
+      "model_name": "gpt2-medium",
+      "role": "primary",
+      "sample_count": 10,
+      "avg_latency_ms": 4732.94,
+      "avg_throughput_tps": 36.58,
+      "ram_usage_mb": 776.33,
+      "avg_rouge1": 0.0,
+      "avg_rouge2": 0.0,
+      "avg_rougel": 0.0,
+      "outputs": [
+        {
+          "id": "gen_01",
+          "prompt": "Write a short creative story about an astronaut di...",
+          "output": "Write a short creative story about an astronaut discovering an abandoned alien city on Mars.\n\nWrite a short story about a group of scientists who find a planet that has a black hole and create a wormhole to get to it.\n\nWrite a short story about a group of scientists who discover a planet that has a black hole and create a wormhole to get to it.\n\nWrite a short story about a group of scientists who discover a planet that has a black hole and create a wormhole to get to it.\n\nWrite a short story about a group of scientists who discover a planet that has a black hole and create a wormhole to get to it.\n\nWrite a short story about a group of scientists who discover a planet that has a black hole and create a wormhole to get to it.\n\nWrite a short story about a group of scientists who discover a planet that has a black hole and create a wormhole to get to it.\n\nWrite a short story about a group of scientists who discover a planet that has a black hole",
+          "latency_ms": 6728.56,
+          "throughput": 30.32,
+          "rougeL": 0.0
+        },
+        {
+          "id": "gen_02",
+          "prompt": "Generate a poem celebrating the beauty of high-per...",
+          "output": "Generate a poem celebrating the beauty of high-performance parallel computing.\n\nCreate a custom-made parallel computing platform with your own custom-made programming language.\n\nApply your design to a real-world application.\n\nAchieve your goals using your design.\n\nBuild your own parallel computing platform with your own custom-made programming language.\n\nCreate a custom-made parallel computing platform with your own custom-made programming language.\n\nUse your design to build a parallel computing platform.\n\nUse your design to build a parallel computing platform.\n\nUse your design to build a parallel computing platform.\n\nUse your design to build a parallel computing platform.\n\nUse your design to build a parallel computing platform.\n\nUse your design to build a parallel computing platform.\n\nUse your design to build a parallel computing platform.\n\nUse your design to build a parallel computing platform.\n\nUse your design to build a parallel computing platform.\n\nUse your design to build a parallel computing platform.\n\nUse",
+          "latency_ms": 4633.15,
+          "throughput": 34.53,
+          "rougeL": 0.0
+        },
+        {
+          "id": "gen_03",
+          "prompt": "Write the opening paragraph of a detective novel s...",
+          "output": "Write the opening paragraph of a detective novel set in futuristic cyber-punk Tokyo.\n\n2. Make sure that your protagonist is a man or a woman. The more diverse and interesting your character, the better.\n\n3. Do not write a character that is a woman. In fiction, it is impossible to write a male character who is a woman. (You can find some examples of female characters in literature.)\n\n4. Do not write a character who is a man who is a woman. In fiction, it is impossible to write a male character who is a woman. (You can find some examples of female characters in literature.)\n\n5. Do not write a character who is a woman who is a man. In fiction, it is impossible to write a female character who is a man. (You can find some examples of female characters in literature.)\n\n6. Do not write a character who is a man who is a woman. In fiction, it is impossible to write a female character who is a man. (You can find some",
+          "latency_ms": 4118.04,
+          "throughput": 45.9,
+          "rougeL": 0.0
+        },
+        {
+          "id": "gen_04",
+          "prompt": "Draft an inspirational speech opening for a univer...",
+          "output": "Draft an inspirational speech opening for a university commencement ceremony.\n\n\"We're not asking you to do something you're not good at,\" says the professor. \"We're not asking you to be an angel. We're not asking you to be a genius.\"\n\n\"I think that's a great idea,\" says the student.\n\n\"No, but that's not what we're asking you to do. We're asking you to do something you're good at. We're asking you to be an angel. We're asking you to be a genius. You know what else is good at? It's creating things. You can't do it alone.\"\n\n\"I'm sorry,\" says the professor, but the student has already begun to laugh. \"I'm sorry, you're not good at that.\"\n\nThe student is in a daze. The professor is laughing. They're both laughing.\n\nThe student's heart sinks. Her jaw drops open. She's lost.\n\n\"Well, I think",
+          "latency_ms": 4446.83,
+          "throughput": 34.41,
+          "rougeL": 0.0
+        },
+        {
+          "id": "gen_05",
+          "prompt": "Compose a short fantasy fable about a wise dragon ...",
+          "output": "Compose a short fantasy fable about a wise dragon living beneath a snowy mountain peak.\n\n\n\u2022 Use your imagination to create a world of magic and mystery.\n\n\n\u2022 Make your characters more powerful by giving them skills, equipment, magic spells, and more.\n\n\n\u2022 Create a story of adventure, mystery, and adventure!\n\n\n\u2022 Play with your friends on the go!\n\n\n\u2022 No in-app purchases, no ads, no in-app purchases, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no ads, no",
+          "latency_ms": 4369.73,
+          "throughput": 37.53,
+          "rougeL": 0.0
+        },
+        {
+          "id": "gen_06",
+          "prompt": "Write an engaging introductory blog post about qua...",
+          "output": "Write an engaging introductory blog post about quantum cryptography and unbreakable encryption.\n\nIntroduce the concept of quantum cryptography to your audience.\n\nWrite a blog post that explains quantum cryptography and shows why it is important.\n\nProvide a summary of the significance of quantum cryptography.\n\nDescribe a quantum computer that you designed and demonstrated.\n\nWrite a blog post about quantum cryptography and explain how it can help secure data.\n\nDescribe a quantum computer that you built and demonstrated.\n\nWrite a blog post about quantum cryptography and explain how it can help secure data.\n\nDescribe a quantum computer that you built and demonstrated.\n\nWrite a blog post about quantum cryptography and explain how it can help secure data.\n\nDescribe a quantum computer that you built and demonstrated.\n\nProvide a summary of the quantum key distribution model and explain why it is important.\n\nDescribe a quantum key distribution model and explain why it is important.\n\nDescribe a quantum key distribution model and explain why it is important.",
+          "latency_ms": 4594.21,
+          "throughput": 38.31,
+          "rougeL": 0.0
+        },
+        {
+          "id": "gen_07",
+          "prompt": "Draft a persuasive pitch for an eco-friendly solar...",
+          "output": "Draft a persuasive pitch for an eco-friendly solar-powered smart home battery startup.\n\nSolarCity has been on a mission to make solar energy affordable. The company has been one of the most aggressive investors in the solar-energy market, as it has invested in solar-panel manufacturers like First Solar, SunPower and Solyndra.\n\nSolarCity's newest venture is called SolarCity Energy. It's a company that's aiming to build the world's largest battery storage company, a company that will be able to store all of its solar energy and store it safely.\n\nSolarCity Energy is a startup that's been founded by former Goldman Sachs exec and SolarCity co-founder Lyndon Rive. The company is focused on building a battery-storage business that can store all of the solar energy generated by the sun.\n\nThe company is building a battery-storage business that will be able to store all of the solar energy generated by the sun. The company is building a battery-storage business that will be able to store all of the solar energy generated by",
+          "latency_ms": 4798.87,
+          "throughput": 37.51,
+          "rougeL": 0.0
+        },
+        {
+          "id": "gen_08",
+          "prompt": "Write a dramatic monologue of a sea captain naviga...",
+          "output": "Write a dramatic monologue of a sea captain navigating a historic storm.\n\nIf you're the sort of person who's always waiting for the next big thing, then you're going to want to check out the new game, The Last Guardian. If you're a fan of the series, you may want to check it out as well.\n\nThe game is set in an alternate future where we live in a world where we've all been trapped inside of a simulation. Our lives have been altered to make it easier to survive.\n\nIt's a pretty dark, dark world. The story takes place in a time where the entire world is controlled by the NSA, and the only way for people to escape is by becoming a virtual superhero.\n\nIt's the game you've been waiting for.\n\nFor a lot of people, the game will come as a bit of a surprise.\n\nI was really surprised when I saw the game was coming out. But then I was also kind of disappointed when I was told it was coming out.",
+          "latency_ms": 4443.56,
+          "throughput": 42.31,
+          "rougeL": 0.0
+        },
+        {
+          "id": "gen_09",
+          "prompt": "Generate a descriptive paragraph about a serene au...",
+          "output": "Generate a descriptive paragraph about a serene autumn morning in the Appalachian mountains.\n\nHow to write a paragraph for a book\n\nFor a book, you can write a paragraph or chapters that explain, describe, or describe the main character's experiences or accomplishments, and then add a paragraph or chapters about the main characters' relationships, hobbies, or personalities.\n\nFor a book, you can write a paragraph or chapters that explain, describe, or describe the main character's experiences or accomplishments, and then add a paragraph or chapters about the main characters' relationships, hobbies, or personalities.\n\nFor a book, you can write a paragraph or chapters that explain, describe, or describe the main character's experiences or accomplishments, and then add a paragraph or chapters about the main characters' relationships, hobbies, or personalities.\n\nFor a book, you can write a paragraph or chapters that explain, describe, or describe the main character's experiences or accomplishments, and then add a paragraph or chapters about the main characters' relationships, hobbies, or personalities.",
+          "latency_ms": 4874.17,
+          "throughput": 36.52,
+          "rougeL": 0.0
+        },
+        {
+          "id": "gen_10",
+          "prompt": "Write a technical explanation of how garbage colle...",
+          "output": "Write a technical explanation of how garbage collection works in modern managed runtimes.\n\nThe following example demonstrates how to implement a single-threaded garbage collector in C++11. The example is written using a simple C++11 implementation of the C++11 STL, so the compiler is not able to detect any differences between the implementation of STL STL and C++11 STL.\n\n#include <iostream> #include <memory> int main () { std::cout << std::endl; // Prints \"hello\" std::cout << \"This is a very simple program.\" << std::endl; std::cout << std::endl; // Prints \"Hello, world!\" std::cout << std::endl; std::cout << std::endl; std::cout << std::endl; std::cout << std::endl; std::cout << std::endl; std::cout << std::endl; std::cout << std::end",
+          "latency_ms": 4322.28,
+          "throughput": 28.46,
+          "rougeL": 0.0
+        }
+      ]
+    },
+    "fallback": {
+      "model_name": "EleutherAI/gpt-neo-125M",
+      "role": "fallback",
+      "sample_count": 10,
+      "avg_latency_ms": 5546.08,
+      "avg_throughput_tps": 33.96,
+      "ram_usage_mb": 1234.66,
+      "avg_rouge1": 0.0,
+      "avg_rouge2": 0.0,
+      "avg_rougel": 0.0,
+      "outputs": [
+        {
+          "id": "gen_01",
+          "prompt": "Write a short creative story about an astronaut di...",
+          "output": "Write a short creative story about an astronaut discovering an abandoned alien city on Mars.\n\nSunday, December 6, 2016\n\nThis is a short article about the\n\n\"I was in a plane crash on the ground when I heard a crash sound. I was trying to run around the plane while I was trying to catch up. I was trying to run around the plane while I was trying to catch up.\"\n\nI was in a plane crash on the ground when I heard a crash sound. I was trying to run around the plane while I was trying to catch up. I was trying to run around the plane while I was trying to catch up.\n\nI was in a plane crash on the ground when I heard a crash sound. I was trying to run around the plane while I was trying to catch up.\n\nI was in a plane crash on the ground when I heard a crash sound. I was trying to run around the plane while I was trying to catch up.\n\nI was in a plane crash on the ground when I heard",
+          "latency_ms": 7215.41,
+          "throughput": 28.13,
+          "rougeL": 0.0
+        },
+        {
+          "id": "gen_02",
+          "prompt": "Generate a poem celebrating the beauty of high-per...",
+          "output": "Generate a poem celebrating the beauty of high-performance parallel computing.\n\nThis is a collection of essays on a wide range of topics. The essays can be grouped into two categories:\n\nThe essays are divided into two main categories:\n\nThe essays are presented as a series of short pieces, each of which is a brief description of the topic. The essay is usually presented in a style that is clear and concise and that can be read as a summary of the topic.\n\nThe essays are divided into three main categories:\n\nThe essays are presented as a series of short pieces, each of which is a brief description of the topic. The essay is usually presented in a style that is clear and concise and that can be read as a summary of the topic.\n\nThe essays are divided into two main categories:\n\nThe essays are presented as a series of short pieces, each of which is a brief description of the topic. The essay is usually presented in a style that is clear and concise and that can be read as a summary",
+          "latency_ms": 6473.69,
+          "throughput": 29.81,
+          "rougeL": 0.0
+        },
+        {
+          "id": "gen_03",
+          "prompt": "Write the opening paragraph of a detective novel s...",
+          "output": "Write the opening paragraph of a detective novel set in futuristic cyber-punk Tokyo. The author of the novel, Yuji Fukunaga, has been writing crime fiction since he was a child. He has been published by Random House.\n\nI'm sure you know that the main character is a Japanese-American woman, and that he is a member of the crime family of the Tokyo Metropolitan Police Department.\n\nThis is a story about a young girl who is being victimized by the criminals of the Tokyo Metropolitan Police Department.\n\nThe story begins when the young girl (and her sister) are arrested for the murder of a police officer. When the girl is arrested, the police department is called into action.\n\nThe police officer (and the girl's sister) was killed because the girl's sister had a crush on him. She was also killed because the police department was called into action.\n\nThe girl's sister is taken to a police station and arrested for the murder of her sister. She is taken to a police station and is accused of the murder",
+          "latency_ms": 6773.93,
+          "throughput": 28.05,
+          "rougeL": 0.0
+        },
+        {
+          "id": "gen_04",
+          "prompt": "Draft an inspirational speech opening for a univer...",
+          "output": "Draft an inspirational speech opening for a university commencement ceremony.\n\n\"I'm so happy to be here,\" said the young man in his early 20s, who said he was \"heartbroken\" by the events at the commencement ceremony. \"I'm not a student anymore. I want to get back to what I started and what I want to do. I'm not a student anymore. I'm still an athlete. I'm still a runner. I want to be a footballer. I want to be a hockey player.\"\n\nIn his speech, the young man said he was \"heartbroken\" by the events at the commencement ceremony, but that it was \"the best thing\" for him to do.\n\n\"It's a great moment for me to be here. It's a great moment for me to be able to go back to my roots, to be able to go back to what I started, to be able to go back to what I started. It's the best thing for me to do. I'm proud of",
+          "latency_ms": 4616.39,
+          "throughput": 37.91,
+          "rougeL": 0.0
+        },
+        {
+          "id": "gen_05",
+          "prompt": "Compose a short fantasy fable about a wise dragon ...",
+          "output": "Compose a short fantasy fable about a wise dragon living beneath a snowy mountain peak.\n\nA beautiful, peaceful dragon is a good bet, but it\u2019s not the most beautiful. It\u2019s a combination of both. The dragon is a beautiful creature. It\u2019s a creature that will eat anything. It\u2019s not a creature that will eat anything. It\u2019s a creature that will eat anything. It\u2019s not a creature that will eat anything. It\u2019s not a creature that will eat anything. It\u2019s not a creature that will eat anything. It\u2019s not a creature that will eat anything. It\u2019s not a creature that will eat anything. It\u2019s not a creature that will eat anything. It\u2019s not a creature that will eat anything. It\u2019s not a creature that will eat anything. It\u2019s not a creature that will eat anything. It\u2019s not a creature that will eat anything. It\u2019s not a creature that",
+          "latency_ms": 4371.05,
+          "throughput": 37.06,
+          "rougeL": 0.0
+        },
+        {
+          "id": "gen_06",
+          "prompt": "Write an engaging introductory blog post about qua...",
+          "output": "Write an engaging introductory blog post about quantum cryptography and unbreakable encryption.\n\nFriday, August 2, 2017\n\nThe Quantum Key Exchange (QKEX) is a key exchange scheme that works on the basis of quantum mechanics to create a quantum key.\n\nThe key exchange scheme uses a key to create a key that is a quantum key. It is a key that can be used to create a quantum key.\n\nThe key is the quantum key that can be used to create a quantum key. The key can be used to create a quantum key. The key can be used to create a quantum key. The key can be used to create a quantum key.\n\nThe key is the quantum key that can be used to create a quantum key. The key can be used to create a quantum key. The key can be used to create a quantum key. The key can be used to create a quantum key. The key can be used to create a quantum key.\n\nThe key can be used to create a quantum key. The key can",
+          "latency_ms": 4393.31,
+          "throughput": 43.93,
+          "rougeL": 0.0
+        },
+        {
+          "id": "gen_07",
+          "prompt": "Draft a persuasive pitch for an eco-friendly solar...",
+          "output": "Draft a persuasive pitch for an eco-friendly solar-powered smart home battery startup.\n\nThere are a lot of things you can do to increase your battery life. You can increase the amount of energy you need to run your home, or you can build a solar powered system that will run your home as well.\n\nThe first thing you have to do is start by installing a solar powered battery. This is a good idea for a lot of reasons.\n\nFirst of all, it\u2019s not a big deal. A solar powered battery is a lot more efficient than a fossil-powered battery.\n\nSecond of all, if you want to build a solar powered system, you\u2019re going to have to start with a solar powered battery. The first thing you\u2019ll need is a solar powered battery. You can build a solar powered system with a battery of a specific type of solar cells, but it\u2019s not the only thing you can do.\n\nFor example, you\u2019ll need a solar powered battery. The solar",
+          "latency_ms": 5929.0,
+          "throughput": 30.53,
+          "rougeL": 0.0
+        },
+        {
+          "id": "gen_08",
+          "prompt": "Write a dramatic monologue of a sea captain naviga...",
+          "output": "Write a dramatic monologue of a sea captain navigating a historic storm.\n\nThe world's largest submarine was not built for the Atlantic.\n\nIn fact, it was built for the Atlantic.\n\nThe Atlantic has been a major force in the history of the world since it was first formed in 1623, and the first submarine to carry one in the Mediterranean was built for the British.\n\nIt is one of the oldest surviving ships to carry a submarine, and was built by the British in 1713.\n\nThe American submarine, the USS Theodore, was built by the British for the American Navy in 1715 and was the first ship to carry a submarine. It was the first ship to carry a submarine.\n\nA similar submarine was built by the British for the Royal Navy in 1720.\n\nThe American submarine, the USS Theodore, was built by the British for the American Navy in 1720.\n\nThe British submarine, the USS Theodore, was built by the British for the British Navy in 1720.\n\nThe",
+          "latency_ms": 5563.96,
+          "throughput": 32.53,
+          "rougeL": 0.0
+        },
+        {
+          "id": "gen_09",
+          "prompt": "Generate a descriptive paragraph about a serene au...",
+          "output": "Generate a descriptive paragraph about a serene autumn morning in the Appalachian mountains.\n\nA simple and elegant way to set up your own blog is to include a blog post in the sidebar.\n\nIf you are a blogger, then you may have noticed that I have created a blog post on the web in the sidebar of my blog. If you are a blogger and want to see a blog post, then you can just click on the link in the sidebar.\n\nIf you are a blogger and want to see a blog post, then you can just click on the link in the sidebar.\n\nIf you are a blogger and want to see a blog post, then you can just click on the link in the sidebar.\n\nIf you are a blogger and want to see a blog post, then you can just click on the link in the sidebar.\n\nIf you are a blogger and want to see a blog post, then you can just click on the link in the sidebar.\n\nIf you are a blogger and want to see a blog post",
+          "latency_ms": 4874.25,
+          "throughput": 40.83,
+          "rougeL": 0.0
+        },
+        {
+          "id": "gen_10",
+          "prompt": "Write a technical explanation of how garbage colle...",
+          "output": "Write a technical explanation of how garbage collection works in modern managed runtimes.\n\nA:\n\nThe problem is that the garbage collector (GC) is not working properly in modern managed runtimes. It has to wait for the garbage collector to complete its job.\nThe way I have implemented this is to make the GC wait for the garbage collector to complete its job. The GC will stop running after the garbage collector completes its job.\nThe solution is to wait for the GC to finish its job.\nBut the problem is that the GC cannot wait for the garbage collector to finish its job, because the garbage collector can not complete its job.\nThe solution is to remove the garbage collector.\nIn order to do that you have to put the garbage collector in a separate class.\npublic class GC {\n    public static void main(String[] args) {\n        GC() {\n            System.gc();",
+          "latency_ms": 5249.81,
+          "throughput": 30.86,
+          "rougeL": 0.0
+        }
+      ]
+    }
+  },
+  "named_entity_recognition": {
+    "primary": {
+      "model_name": "elastic/distilbert-base-uncased-finetuned-conll03-english",
+      "role": "primary",
+      "sample_count": 10,
+      "avg_latency_ms": 22.29,
+      "avg_throughput_tps": 2946.39,
+      "ram_usage_mb": 1217.11,
+      "avg_rouge1": 0.0,
+      "avg_rouge2": 0.0,
+      "avg_rougel": 0.0,
+      "outputs": [
+        {
+          "id": "ner_01",
+          "prompt": "Extract names of organizations, people, and locati...",
+          "output": "Found 6 named entities:\n\n- **tim cook** (PER, confidence: 99.8%)\n- **apple** (ORG, confidence: 99.3%)\n- **cup** (LOC, confidence: 99.8%)\n- **##ert** (LOC, confidence: 99.8%)\n- **##ino** (LOC, confidence: 99.8%)\n- **california** (LOC, confidence: 99.8%)",
+          "latency_ms": 67.33,
+          "throughput": 772.37,
+          "rougeL": 0.0
+        },
+        {
+          "id": "ner_02",
+          "prompt": "Find entities in the text: Google operates major d...",
+          "output": "Found 6 named entities:\n\n- **google** (ORG, confidence: 99.8%)\n- **oregon** (LOC, confidence: 99.5%)\n- **frankfurt** (LOC, confidence: 99.7%)\n- **tokyo** (LOC, confidence: 99.9%)\n- **sun** (PER, confidence: 99.9%)\n- **##dar pichai** (PER, confidence: 99.8%)",
+          "latency_ms": 14.91,
+          "throughput": 3622.36,
+          "rougeL": 0.0
+        },
+        {
+          "id": "ner_03",
+          "prompt": "Identify entities: Satya Nadella visited Microsoft...",
+          "output": "Found 9 named entities:\n\n- **sat** (PER, confidence: 99.9%)\n- **##ya nadella** (PER, confidence: 99.2%)\n- **microsoft** (ORG, confidence: 99.6%)\n- **red** (LOC, confidence: 99.8%)\n- **##mond** (LOC, confidence: 99.6%)\n- **washington** (LOC, confidence: 99.8%)\n- **ai** (MISC, confidence: 88.6%)\n- **open** (MISC, confidence: 72.6%)\n- **##ai** (MISC, confidence: 71.5%)",
+          "latency_ms": 15.24,
+          "throughput": 4396.39,
+          "rougeL": 0.0
+        },
+        {
+          "id": "ner_04",
+          "prompt": "Extract entities: Elon Musk unveiled the new Cyber...",
+          "output": "Found 5 named entities:\n\n- **el** (ORG, confidence: 97.7%)\n- **##on musk** (ORG, confidence: 99.0%)\n- **tesla** (ORG, confidence: 99.8%)\n- **austin** (LOC, confidence: 99.7%)\n- **texas** (LOC, confidence: 99.8%)",
+          "latency_ms": 13.9,
+          "throughput": 3164.58,
+          "rougeL": 0.0
+        },
+        {
+          "id": "ner_05",
+          "prompt": "Find entities: The United Nations General Assembly...",
+          "output": "Found 4 named entities:\n\n- **united nations general assembly** (ORG, confidence: 99.6%)\n- **new york city** (LOC, confidence: 99.3%)\n- **france** (LOC, confidence: 99.9%)\n- **japan** (LOC, confidence: 99.9%)",
+          "latency_ms": 14.32,
+          "throughput": 3281.88,
+          "rougeL": 0.0
+        },
+        {
+          "id": "ner_06",
+          "prompt": "Extract named entities: Mark Zuckerberg presented ...",
+          "output": "Found 4 named entities:\n\n- **mark zuckerberg** (PER, confidence: 99.9%)\n- **meta** (ORG, confidence: 99.6%)\n- **men** (LOC, confidence: 99.7%)\n- **##lo park** (LOC, confidence: 99.7%)",
+          "latency_ms": 16.05,
+          "throughput": 2491.77,
+          "rougeL": 0.0
+        },
+        {
+          "id": "ner_07",
+          "prompt": "Identify locations and organizations: Amazon opene...",
+          "output": "Found 3 named entities:\n\n- **amazon** (ORG, confidence: 99.9%)\n- **london heathrow** (LOC, confidence: 99.6%)\n- **united kingdom** (LOC, confidence: 99.8%)",
+          "latency_ms": 14.21,
+          "throughput": 2744.47,
+          "rougeL": 0.0
+        },
+        {
+          "id": "ner_08",
+          "prompt": "Find people and institutions: Dr. Anthony Fauci ad...",
+          "output": "Found 4 named entities:\n\n- **anthony fauci** (PER, confidence: 99.9%)\n- **harvard university** (ORG, confidence: 99.6%)\n- **cambridge** (LOC, confidence: 99.8%)\n- **massachusetts** (LOC, confidence: 99.9%)",
+          "latency_ms": 13.58,
+          "throughput": 3020.18,
+          "rougeL": 0.0
+        },
+        {
+          "id": "ner_09",
+          "prompt": "Extract entities: Jensen Huang revealed Nvidia's l...",
+          "output": "Found 10 named entities:\n\n- **jensen** (PER, confidence: 55.4%)\n- **huang** (ORG, confidence: 91.2%)\n- **n** (ORG, confidence: 99.7%)\n- **##vid** (ORG, confidence: 98.7%)\n- **##ia** (ORG, confidence: 99.4%)\n- **gp** (MISC, confidence: 99.6%)\n- **##u** (MISC, confidence: 99.0%)\n- **gp** (MISC, confidence: 97.6%)\n- **##u** (MISC, confidence: 91.4%)\n- **san jose** (LOC, confidence: 99.6%)",
+          "latency_ms": 15.1,
+          "throughput": 4768.98,
+          "rougeL": 0.0
+        },
+        {
+          "id": "ner_10",
+          "prompt": "Identify named entities: The European Central Bank...",
+          "output": "Found 4 named entities:\n\n- **european central bank** (ORG, confidence: 96.0%)\n- **frankfurt** (LOC, confidence: 99.7%)\n- **euro** (MISC, confidence: 99.4%)\n- **christine lagarde** (PER, confidence: 99.9%)",
+          "latency_ms": 38.3,
+          "throughput": 1200.96,
+          "rougeL": 0.0
+        }
+      ]
+    },
+    "fallback": {
+      "model_name": "Jean-Baptiste/roberta-large-ner-english",
+      "role": "fallback",
+      "sample_count": 10,
+      "avg_latency_ms": 55.59,
+      "avg_throughput_tps": 1128.42,
+      "ram_usage_mb": 974.55,
+      "avg_rouge1": 0.0,
+      "avg_rouge2": 0.0,
+      "avg_rougel": 0.0,
+      "outputs": [
+        {
+          "id": "ner_01",
+          "prompt": "Extract names of organizations, people, and locati...",
+          "output": "Found 4 named entities:\n\n- ** Tim Cook** (PER, confidence: 100.0%)\n- ** Apple** (ORG, confidence: 99.7%)\n- ** Cupertino** (LOC, confidence: 99.7%)\n- ** California** (LOC, confidence: 100.0%)",
+          "latency_ms": 104.96,
+          "throughput": 438.26,
+          "rougeL": 0.0
+        },
+        {
+          "id": "ner_02",
+          "prompt": "Find entities in the text: Google operates major d...",
+          "output": "Found 5 named entities:\n\n- ** Google** (ORG, confidence: 99.2%)\n- ** Oregon** (LOC, confidence: 99.9%)\n- ** Frankfurt** (LOC, confidence: 100.0%)\n- ** Tokyo** (LOC, confidence: 100.0%)\n- ** Sundar Pichai** (PER, confidence: 100.0%)",
+          "latency_ms": 69.44,
+          "throughput": 777.65,
+          "rougeL": 0.0
+        },
+        {
+          "id": "ner_03",
+          "prompt": "Identify entities: Satya Nadella visited Microsoft...",
+          "output": "Found 6 named entities:\n\n- ** Satya Nadella** (PER, confidence: 100.0%)\n- ** Microsoft** (ORG, confidence: 99.9%)\n- ** Redmond** (LOC, confidence: 99.1%)\n- ** Washington** (LOC, confidence: 100.0%)\n- ** AI** (MISC, confidence: 90.0%)\n- ** OpenAI** (ORG, confidence: 99.9%)",
+          "latency_ms": 24.91,
+          "throughput": 2328.21,
+          "rougeL": 0.0
+        },
+        {
+          "id": "ner_04",
+          "prompt": "Extract entities: Elon Musk unveiled the new Cyber...",
+          "output": "Found 6 named entities:\n\n- ** Elon Musk** (PER, confidence: 99.9%)\n- ** Cybertruck** (MISC, confidence: 97.1%)\n- ** Tesla** (ORG, confidence: 99.8%)\n- ** Gigaf** (LOC, confidence: 80.5%)\n- ** Austin** (LOC, confidence: 99.6%)\n- ** Texas** (LOC, confidence: 100.0%)",
+          "latency_ms": 72.04,
+          "throughput": 763.45,
+          "rougeL": 0.0
+        },
+        {
+          "id": "ner_05",
+          "prompt": "Find entities: The United Nations General Assembly...",
+          "output": "Found 4 named entities:\n\n- ** United Nations General Assembly** (ORG, confidence: 99.9%)\n- ** New York City** (LOC, confidence: 100.0%)\n- ** France** (LOC, confidence: 100.0%)\n- ** Japan** (LOC, confidence: 100.0%)",
+          "latency_ms": 58.37,
+          "throughput": 873.73,
+          "rougeL": 0.0
+        },
+        {
+          "id": "ner_06",
+          "prompt": "Extract named entities: Mark Zuckerberg presented ...",
+          "output": "Found 3 named entities:\n\n- ** Mark Zuckerberg** (PER, confidence: 100.0%)\n- ** Meta** (ORG, confidence: 99.8%)\n- ** Menlo Park** (LOC, confidence: 99.9%)",
+          "latency_ms": 63.78,
+          "throughput": 595.84,
+          "rougeL": 0.0
+        },
+        {
+          "id": "ner_07",
+          "prompt": "Identify locations and organizations: Amazon opene...",
+          "output": "Found 3 named entities:\n\n- ** Amazon** (ORG, confidence: 99.4%)\n- ** London Heathrow Airport** (LOC, confidence: 99.7%)\n- ** United Kingdom** (LOC, confidence: 100.0%)",
+          "latency_ms": 23.73,
+          "throughput": 1811.79,
+          "rougeL": 0.0
+        },
+        {
+          "id": "ner_08",
+          "prompt": "Find people and institutions: Dr. Anthony Fauci ad...",
+          "output": "Found 4 named entities:\n\n- ** Anthony Fauci** (PER, confidence: 99.9%)\n- ** Harvard University** (ORG, confidence: 97.5%)\n- ** Cambridge** (LOC, confidence: 99.8%)\n- ** Massachusetts** (LOC, confidence: 100.0%)",
+          "latency_ms": 53.91,
+          "throughput": 834.66,
+          "rougeL": 0.0
+        },
+        {
+          "id": "ner_09",
+          "prompt": "Extract entities: Jensen Huang revealed Nvidia's l...",
+          "output": "Found 4 named entities:\n\n- ** Jensen Huang** (PER, confidence: 99.9%)\n- ** Nvidia** (ORG, confidence: 99.8%)\n- ** GPU Technology Conference** (MISC, confidence: 99.5%)\n- ** San Jose** (LOC, confidence: 99.8%)",
+          "latency_ms": 22.78,
+          "throughput": 2150.96,
+          "rougeL": 0.0
+        },
+        {
+          "id": "ner_10",
+          "prompt": "Identify named entities: The European Central Bank...",
+          "output": "Found 3 named entities:\n\n- ** European Central Bank** (ORG, confidence: 100.0%)\n- ** Frankfurt** (LOC, confidence: 99.9%)\n- ** Christine Lagarde** (PER, confidence: 100.0%)",
+          "latency_ms": 62.0,
+          "throughput": 709.64,
+          "rougeL": 0.0
+        }
+      ]
+    }
+  },
+  "translation": {
+    "primary": {
+      "model_name": "t5-base",
+      "role": "primary",
+      "sample_count": 10,
+      "avg_latency_ms": 782.56,
+      "avg_throughput_tps": 34.9,
+      "ram_usage_mb": 1185.17,
+      "avg_rouge1": 0.0,
+      "avg_rouge2": 0.0,
+      "avg_rougel": 0.0,
+      "outputs": [
+        {
+          "id": "trans_01",
+          "prompt": "Translate this sentence into French: Machine learn...",
+          "output": "Translate this sentence into machine learning model routing improves accuracy and latency.",
+          "latency_ms": 539.39,
+          "throughput": 46.35,
+          "rougeL": 0.0
+        },
+        {
+          "id": "trans_02",
+          "prompt": "Convert to Spanish: Hello world, welcome to our in...",
+          "output": "Convertir en espagnol : Bonjour monde, bienvenue \u00e0 notre d\u00e9monstration interactive du syst\u00e8me NLP.",
+          "latency_ms": 933.66,
+          "throughput": 27.85,
+          "rougeL": 0.0
+        },
+        {
+          "id": "trans_03",
+          "prompt": "Translate into French: Solar energy is clean, abun...",
+          "output": "L'\u00e9nergie solaire est propre, abondante et essentielle \u00e0 la lutte contre le changement climatique.",
+          "latency_ms": 816.49,
+          "throughput": 34.29,
+          "rougeL": 0.0
+        },
+        {
+          "id": "trans_04",
+          "prompt": "Convert to Spanish: The software architecture uses...",
+          "output": "Convertir en espagnol : L'architecture logicielle utilise des microservices pour am\u00e9liorer la scalabilit\u00e9 du syst\u00e8me.",
+          "latency_ms": 999.27,
+          "throughput": 27.02,
+          "rougeL": 0.0
+        },
+        {
+          "id": "trans_05",
+          "prompt": "Translate to French: Artificial intelligence will ...",
+          "output": "L'intelligence artificielle red\u00e9finira l'avenir des soins de sant\u00e9 et de la m\u00e9decine humains.",
+          "latency_ms": 848.14,
+          "throughput": 31.83,
+          "rougeL": 0.0
+        },
+        {
+          "id": "trans_06",
+          "prompt": "Convert to Spanish: Please make sure to save your ...",
+          "output": "Convertir en espagnol : Assurez-vous de sauvegarder votre travail avant de vous connecter au serveur.",
+          "latency_ms": 809.7,
+          "throughput": 37.05,
+          "rougeL": 0.0
+        },
+        {
+          "id": "trans_07",
+          "prompt": "Translate to French: Quantum computers process com...",
+          "output": "Les ordinateurs quantiques traitent l'information complexe plus rapidement que les machines classiques.",
+          "latency_ms": 601.17,
+          "throughput": 39.92,
+          "rougeL": 0.0
+        },
+        {
+          "id": "trans_08",
+          "prompt": "Convert to Spanish: High-performance parallel comp...",
+          "output": "Convertir en espagnol : L'informatique parall\u00e8le \u00e0 haute performance permet une simulation scientifique en temps r\u00e9el.",
+          "latency_ms": 793.89,
+          "throughput": 32.75,
+          "rougeL": 0.0
+        },
+        {
+          "id": "trans_09",
+          "prompt": "Translate to French: Good morning, I would like to...",
+          "output": "Bonjour, je voudrais r\u00e9server une chambre d'h\u00f4tel pour trois nuits.",
+          "latency_ms": 621.67,
+          "throughput": 41.82,
+          "rougeL": 0.0
+        },
+        {
+          "id": "trans_10",
+          "prompt": "Convert to Spanish: Open source software encourage...",
+          "output": "Convertir en espagnol : Les logiciels libres encouragent la collaboration mondiale et l'innovation rapide.",
+          "latency_ms": 862.25,
+          "throughput": 30.15,
+          "rougeL": 0.0
+        }
+      ]
+    },
+    "fallback": {
+      "model_name": "t5-small",
+      "role": "fallback",
+      "sample_count": 10,
+      "avg_latency_ms": 776.83,
+      "avg_throughput_tps": 45.33,
+      "ram_usage_mb": 1502.33,
+      "avg_rouge1": 0.0,
+      "avg_rouge2": 0.0,
+      "avg_rougel": 0.0,
+      "outputs": [
+        {
+          "id": "trans_01",
+          "prompt": "Translate this sentence into French: Machine learn...",
+          "output": "Translate this sentence into French: Translate this sentence into French: Translate this sentence into French: Rourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourourou",
+          "latency_ms": 2843.41,
+          "throughput": 10.2,
+          "rougeL": 0.0
+        },
+        {
+          "id": "trans_02",
+          "prompt": "Convert to Spanish: Hello world, welcome to our in...",
+          "output": "Convertir en espagnol: Bonjour monde, bienvenue \u00e0 notre d\u00e9monstration interactive du syst\u00e8me NLP.",
+          "latency_ms": 556.14,
+          "throughput": 44.95,
+          "rougeL": 0.0
+        },
+        {
+          "id": "trans_03",
+          "prompt": "Translate into French: Solar energy is clean, abun...",
+          "output": "L'\u00e9nergie solaire est propre, abondante et essentielle pour combattre les changements climatiques.",
+          "latency_ms": 496.37,
+          "throughput": 52.38,
+          "rougeL": 0.0
+        },
+        {
+          "id": "trans_04",
+          "prompt": "Convert to Spanish: The software architecture uses...",
+          "output": "Convertir en espagnol : L'architecture logicielle utilise des microservices pour am\u00e9liorer la scalabilit\u00e9 du syst\u00e8me.",
+          "latency_ms": 619.3,
+          "throughput": 43.6,
+          "rougeL": 0.0
+        },
+        {
+          "id": "trans_05",
+          "prompt": "Translate to French: Artificial intelligence will ...",
+          "output": "L'intelligence artificielle red\u00e9finira l'avenir des soins de sant\u00e9 et de la m\u00e9decine humaines.",
+          "latency_ms": 520.76,
+          "throughput": 51.85,
+          "rougeL": 0.0
+        },
+        {
+          "id": "trans_06",
+          "prompt": "Convert to Spanish: Please make sure to save your ...",
+          "output": "Convertir en espagnol : Assurez-vous de sauvegarder votre travail avant de vous connecter au serveur.",
+          "latency_ms": 603.67,
+          "throughput": 49.7,
+          "rougeL": 0.0
+        },
+        {
+          "id": "trans_07",
+          "prompt": "Translate to French: Quantum computers process com...",
+          "output": "Les ordinateurs quantiques traitent des informations complexes plus rapidement que les machines classiques.",
+          "latency_ms": 434.6,
+          "throughput": 57.52,
+          "rougeL": 0.0
+        },
+        {
+          "id": "trans_08",
+          "prompt": "Convert to Spanish: High-performance parallel comp...",
+          "output": "Convertir en espagnol : Un ordinateur parall\u00e8le haute performance permet une simulation scientifique en temps r\u00e9el.",
+          "latency_ms": 636.18,
+          "throughput": 40.87,
+          "rougeL": 0.0
+        },
+        {
+          "id": "trans_09",
+          "prompt": "Translate to French: Good morning, I would like to...",
+          "output": "Bonjour, je voudrais r\u00e9server une chambre d'h\u00f4tel pour trois nuits.",
+          "latency_ms": 449.92,
+          "throughput": 57.79,
+          "rougeL": 0.0
+        },
+        {
+          "id": "trans_10",
+          "prompt": "Convert to Spanish: Open source software encourage...",
+          "output": "Convertir en espagnol : le logiciel Open Source encourage la collaboration mondiale et l'innovation rapide.",
+          "latency_ms": 607.96,
+          "throughput": 44.41,
+          "rougeL": 0.0
+        }
+      ]
+    }
+  }
+}
