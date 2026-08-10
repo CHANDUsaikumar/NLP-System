@@ -7,7 +7,7 @@ from src.utils.logger import logger
 
 
 class NERPipeline(BaseNLPPipeline):
-    """Pipeline wrapping Named Entity Recognition (NER) models (BERT-base-NER, DistilBERT-CoNLL)."""
+    """Pipeline wrapping Named Entity Recognition (NER) models (DistilBERT, RoBERTa)."""
 
     def load_pipeline(self) -> None:
         """Loads token classification NER pipeline."""
@@ -43,13 +43,13 @@ class NERPipeline(BaseNLPPipeline):
 
 
 class TranslationPipeline(BaseNLPPipeline):
-    """Pipeline wrapping sequence-to-sequence neural translation models (MarianMT)."""
+    """Pipeline wrapping sequence-to-sequence neural translation models (T5)."""
 
     def load_pipeline(self) -> None:
         """Loads sequence-to-sequence translation pipeline."""
         logger.info(f"Instantiating translation pipeline with model '{self.model_name}' on device '{self.device}'")
         self.pipeline_instance = pipeline(
-            task="translation",
+            task="translation" if "opus" in self.model_name else "text2text-generation",
             model=self.model_name,
             device=self.hf_device_id
         )
@@ -65,10 +65,18 @@ class TranslationPipeline(BaseNLPPipeline):
             str: Translated output text.
         """
         max_len = kwargs.get("max_length", self.config.get("max_output_length", 256))
-        results = self.pipeline_instance(prompt, max_length=max_len, truncation=True)
-        if results and "translation_text" in results[0]:
-            return results[0]["translation_text"]
-        elif results and isinstance(results[0], dict):
+        
+        # Ensure T5 receives appropriate prefix if prompt does not already specify translate directive
+        exec_prompt = prompt
+        if "t5" in self.model_name.lower() and not prompt.lower().startswith("translate"):
+            exec_prompt = f"translate English to French: {prompt}"
+
+        results = self.pipeline_instance(exec_prompt, max_length=max_len, truncation=True)
+        if results and isinstance(results[0], dict):
+            if "translation_text" in results[0]:
+                return results[0]["translation_text"]
+            elif "generated_text" in results[0]:
+                return results[0]["generated_text"].strip()
             val = list(results[0].values())[0]
             return str(val)
         return str(results)

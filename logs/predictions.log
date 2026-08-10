@@ -167,3 +167,19 @@
 [2026-08-03 20:17:00] [INFO] [nlp_system:model_manager.py:77] - Retrieving cached pipeline for question_answering:google/flan-t5-base
 [2026-08-03 20:17:24] [INFO] [nlp_system:logger.py:83] - PREDICTION_EVENT: {"timestamp": "2026-08-03T14:47:24.792376+00:00", "task": "question_answering", "selected_model": "google/flan-t5-base", "execution_time_ms": 26469.96, "status": "SUCCESS"}
 [2026-08-03 20:17:24] [INFO] [nlp_system:logger.py:130] - REQUEST_LOGGED: Task='question_answering' | Strategy='Confidence Fallback' | Model='google/flan-t5-base' | Conf=31.9% | Latency=26470.0ms | RAM=711.5MB
+[2026-08-10 22:38:54] [INFO] [nlp_system:model_manager.py:55] - ModelManager initialized on target device: mps
+[2026-08-10 22:38:54] [INFO] [nlp_system:dynamic_router.py:21] - Processing request with prompt length 39 chars
+[2026-08-10 22:38:54] [INFO] [nlp_system:dynamic_router.py:44] - Routing Decision: Task='question_answering', Strategy='Rule-Based Heuristic', Confidence=0.98, Reason='Rule-Based Heuristic (Weighted Score Match): Weighted Rules: Question Mark [+4], Interrogative Word ('What') [+3] -> Total Score: 7. Selected Question Answering model.'
+[2026-08-10 22:38:54] [INFO] [nlp_system:logger.py:83] - PREDICTION_EVENT: {"timestamp": "2026-08-10T17:08:54.266705+00:00", "task": "question_answering", "selected_model": "google/flan-t5-base", "execution_time_ms": 15.24, "status": "SUCCESS"}
+[2026-08-10 22:38:54] [INFO] [nlp_system:logger.py:130] - REQUEST_LOGGED: Task='question_answering' | Strategy='Rule-Based Heuristic' | Model='google/flan-t5-base' | Conf=98.0% | Latency=15.2ms | RAM=454.4MB
+[2026-08-10 22:40:04] [INFO] [nlp_system:model_manager.py:55] - ModelManager initialized on target device: mps
+[2026-08-10 22:40:04] [INFO] [nlp_system:dynamic_router.py:21] - Processing request with prompt length 39 chars
+[2026-08-10 22:40:04] [INFO] [nlp_system:dynamic_router.py:44] - Routing Decision: Task='question_answering', Strategy='Rule-Based Heuristic', Confidence=0.98, Reason='Rule-Based Heuristic (Weighted Score Match): Weighted Rules: Question Mark [+4], Interrogative Word ('What') [+3] -> Total Score: 7. Selected Question Answering model.'
+[2026-08-10 22:40:04] [INFO] [nlp_system:logger.py:83] - PREDICTION_EVENT: {"timestamp": "2026-08-10T17:10:04.293571+00:00", "task": "question_answering", "selected_model": "google/flan-t5-base", "execution_time_ms": 15.23, "status": "SUCCESS"}
+[2026-08-10 22:40:04] [INFO] [nlp_system:logger.py:130] - REQUEST_LOGGED: Task='question_answering' | Strategy='Rule-Based Heuristic' | Model='google/flan-t5-base' | Conf=98.0% | Latency=15.2ms | RAM=455.3MB
+[2026-08-10 22:42:27] [INFO] [nlp_system:zero_shot_router.py:45] - Loading Zero-Shot Classifier pipeline 'valhalla/distilbart-mnli-12-3' on device 'mps'...
+[2026-08-10 22:42:39] [INFO] [nlp_system:model_manager.py:55] - ModelManager initialized on target device: mps
+[2026-08-10 22:42:39] [INFO] [nlp_system:dynamic_router.py:21] - Processing request with prompt length 39 chars
+[2026-08-10 22:42:39] [INFO] [nlp_system:dynamic_router.py:44] - Routing Decision: Task='question_answering', Strategy='Rule-Based Heuristic', Confidence=0.98, Reason='Rule-Based Heuristic (Weighted Score Match): Weighted Rules: Question Mark [+4], Interrogative Word ('What') [+3] -> Total Score: 7. Selected Question Answering model.'
+[2026-08-10 22:42:39] [INFO] [nlp_system:logger.py:83] - PREDICTION_EVENT: {"timestamp": "2026-08-10T17:12:39.473261+00:00", "task": "question_answering", "selected_model": "google/flan-t5-base", "execution_time_ms": 15.23, "status": "SUCCESS"}
+[2026-08-10 22:42:39] [INFO] [nlp_system:logger.py:130] - REQUEST_LOGGED: Task='question_answering' | Strategy='Rule-Based Heuristic' | Model='google/flan-t5-base' | Conf=98.0% | Latency=15.2ms | RAM=455.8MB

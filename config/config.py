@@ -25,10 +25,13 @@ QA_MODEL: str = os.getenv("QA_MODEL", "google/flan-t5-base")
 QA_FALLBACK: str = "google/flan-t5-small"
 
 GENERATION_MODEL: str = os.getenv("GENERATION_MODEL", "gpt2-medium")
-GENERATION_FALLBACK: str = "gpt2"
+GENERATION_FALLBACK: str = "EleutherAI/gpt-neo-125M"
 
-NER_MODEL: str = os.getenv("NER_MODEL", "dslim/bert-base-NER")
-TRANSLATION_MODEL: str = os.getenv("TRANSLATION_MODEL", "Helsinki-NLP/opus-mt-en-fr")
+NER_MODEL: str = os.getenv("NER_MODEL", "elastic/distilbert-base-uncased-finetuned-conll03-english")
+NER_FALLBACK: str = "Jean-Baptiste/roberta-large-ner-english"
+
+TRANSLATION_MODEL: str = os.getenv("TRANSLATION_MODEL", "t5-base")
+TRANSLATION_FALLBACK: str = "t5-small"
 
 # 4. Generation Hyperparameters & Length Bounds
 DEFAULT_MAX_INPUT_LENGTH: int = 512
@@ -71,10 +74,12 @@ MODEL_CONFIGS: Dict[str, Dict[str, Any]] = {
     },
     "named_entity_recognition": {
         "model_name": NER_MODEL,
+        "fallback_model": NER_FALLBACK,
         "max_input_length": DEFAULT_MAX_INPUT_LENGTH
     },
     "translation": {
         "model_name": TRANSLATION_MODEL,
+        "fallback_model": TRANSLATION_FALLBACK,
         "max_input_length": DEFAULT_MAX_INPUT_LENGTH,
         "max_output_length": 256
     }

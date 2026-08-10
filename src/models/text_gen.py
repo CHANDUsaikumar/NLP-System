@@ -66,6 +66,10 @@ class TextGenerationPipeline(BaseNLPPipeline):
         max_len = kwargs.get("max_length", self.config.get("max_output_length", 200))
         temp = kwargs.get("temperature", 0.7)
 
+        pad_id = GPT2_PAD_TOKEN_ID
+        if hasattr(self.pipeline_instance, "tokenizer") and self.pipeline_instance.tokenizer:
+            pad_id = self.pipeline_instance.tokenizer.pad_token_id or self.pipeline_instance.tokenizer.eos_token_id or GPT2_PAD_TOKEN_ID
+
         result = self.pipeline_instance(
             prompt,
             max_new_tokens=max_len,
@@ -73,7 +77,7 @@ class TextGenerationPipeline(BaseNLPPipeline):
             do_sample=True,
             top_k=50,
             top_p=0.92,
-            pad_token_id=GPT2_PAD_TOKEN_ID,
+            pad_token_id=pad_id,
             truncation=True
         )
         return result[0]["generated_text"].strip()
