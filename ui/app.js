@@ -152,4 +152,34 @@ document.addEventListener("DOMContentLoaded", () => {
   function escapeHtml(str) {
     return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   }
+
+  // Fetch Evaluation Methodology Metadata from backend if available
+  async function loadEvaluationMethodology() {
+    try {
+      const res = await fetch("/api/evaluation-methodology");
+      if (!res.ok) return;
+      const data = await res.json();
+      
+      if (data.visual_pipeline && data.visual_pipeline.length > 0) {
+        const flowContainer = document.getElementById("pipeline-flow");
+        if (flowContainer) {
+          flowContainer.innerHTML = data.visual_pipeline.map((step, idx) => `
+            <div class="pipeline-step">
+              <div class="step-num">${step.step || (idx + 1)}</div>
+              <div class="step-title">${escapeHtml(step.title)}</div>
+            </div>
+            ${idx < data.visual_pipeline.length - 1 ? '<div class="pipeline-arrow">➔</div>' : ''}
+          `).join('');
+        }
+      }
+    } catch (e) {
+      // Retain static pre-rendered HTML baseline if backend is unreachable
+    }
+  }
+
+  const methodologyTabBtn = document.querySelector('[data-tab="methodology-tab"]');
+  if (methodologyTabBtn) {
+    methodologyTabBtn.addEventListener("click", loadEvaluationMethodology);
+  }
 });
+

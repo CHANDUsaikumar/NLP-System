@@ -18,6 +18,7 @@ from src.router.router import DynamicRouter
 from src.evaluation.model_evaluator import ModelEvaluator
 from src.utils.validators import UserRequestPayload, RouterResponsePayload
 from src.utils.logger import logger
+from config.settings import settings
 
 UI_DIR = ROOT_DIR / "ui"
 
@@ -91,9 +92,41 @@ async def get_benchmark() -> List[Dict[str, Any]]:
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.get("/api/evaluation-methodology", response_model=Dict[str, Any])
+async def get_evaluation_methodology() -> Dict[str, Any]:
+    """Returns evaluation methodology metadata, visual pipeline steps, models, and dataset sample counts."""
+    try:
+        metadata = settings.load_evaluation_metadata()
+        registry = settings.load_model_registry().get("models", {})
+        dataset = evaluator.load_dataset()
+        
+        sample_counts = {}
+        for item in dataset:
+            t = item.get("target_task")
+            if t:
+                sample_counts[t] = sample_counts.get(t, 0) + 1
+
+        tasks_meta = metadata.get("tasks", {})
+        for task_key, task_info in tasks_meta.items():
+            reg_info = registry.get(task_key, {})
+            task_info["primary_model"] = reg_info.get("model_name", "N/A")
+            task_info["fallback_model"] = reg_info.get("fallback_model", "N/A")
+            task_info["sample_count"] = sample_counts.get(task_key, 0)
+
+        return {
+            "visual_pipeline": metadata.get("visual_pipeline", []),
+            "tasks": tasks_meta,
+            "total_dataset_samples": len(dataset)
+        }
+    except Exception as e:
+        logger.error(f"Error executing FastAPI evaluation-methodology route: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 # Mount Static UI Files at Root if UI directory exists
 if UI_DIR.exists():
     app.mount("/", StaticFiles(directory=str(UI_DIR), html=True), name="ui")
+
 
 
 if __name__ == "__main__":

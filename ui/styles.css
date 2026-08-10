@@ -269,3 +269,156 @@ code {
   font-weight: 600;
   color: var(--primary-emerald);
 }
+
+/* Evaluation Methodology Section Styles */
+.subsection-title {
+  font-family: var(--font-title);
+  font-size: 1.05rem;
+  color: var(--text-main);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.pipeline-flow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 1rem 0.5rem;
+  margin-bottom: 1.5rem;
+  background-color: #0f172a;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+}
+
+.pipeline-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  min-width: 110px;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.pipeline-step:hover {
+  border-color: var(--primary-cyan);
+  transform: translateY(-2px);
+}
+
+.step-num {
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(135deg, #0284c7, #4f46e5);
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.35rem;
+}
+
+.step-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.pipeline-arrow {
+  color: var(--primary-cyan);
+  font-size: 1rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.methodology-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.methodology-card {
+  background-color: #0f172a;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 1.25rem;
+  border-left: 4px solid var(--primary-cyan);
+}
+
+.methodology-card:nth-child(2) {
+  border-left-color: var(--primary-indigo);
+}
+
+.methodology-card:nth-child(3) {
+  border-left-color: var(--primary-emerald);
+}
+
+.methodology-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.task-badge {
+  background-color: #334155;
+  color: var(--primary-cyan);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.methodology-card-header h3 {
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+  color: var(--text-main);
+}
+
+.methodology-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.detail-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.85rem;
+}
+
+@media (min-width: 640px) {
+  .detail-row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    align-items: baseline;
+  }
+}
+
+.detail-label {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.detail-value {
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+.metric-highlight {
+  color: var(--primary-emerald);
+  font-weight: 700;
+}
+

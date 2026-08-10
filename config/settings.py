@@ -11,6 +11,7 @@ from pydantic import Field
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 MODEL_REGISTRY_PATH = BASE_DIR / "config" / "model_registry.yaml"
+EVALUATION_METADATA_PATH = BASE_DIR / "config" / "evaluation_metadata.yaml"
 
 
 class TaskCategory(str, Enum):
@@ -20,11 +21,11 @@ class TaskCategory(str, Enum):
     TRANSLATION = "translation"
 
 
-@functools.lru_cache(maxsize=1)
+@functools.lru_cache(maxsize=2)
 def _load_yaml_file(file_path: Path) -> Dict[str, Any]:
     """Helper function caching YAML parsing to eliminate file read overhead."""
     if not file_path.exists():
-        raise FileNotFoundError(f"Model registry YAML not found at {file_path}")
+        raise FileNotFoundError(f"YAML file not found at {file_path}")
     
     with open(file_path, "r", encoding="utf-8") as f:
         return yaml.safe_load(f)
@@ -45,6 +46,7 @@ class AppSettings(BaseSettings):
     
     # Model registry configuration dict
     model_registry_file: Path = MODEL_REGISTRY_PATH
+    evaluation_metadata_file: Path = EVALUATION_METADATA_PATH
     
     model_config = SettingsConfigDict(
         env_file=".env",
@@ -60,5 +62,14 @@ class AppSettings(BaseSettings):
         """
         return _load_yaml_file(self.model_registry_file)
 
+    def load_evaluation_metadata(self) -> Dict[str, Any]:
+        """Loads and returns evaluation_metadata.yaml content with cached file reading.
+
+        Returns:
+            Dict[str, Any]: Parsed evaluation metadata configuration dictionary.
+        """
+        return _load_yaml_file(self.evaluation_metadata_file)
+
 
 settings = AppSettings()
+

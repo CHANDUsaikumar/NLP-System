@@ -26,6 +26,7 @@
         <button class="tab-btn active" data-tab="chat-tab">💬 Chatbot</button>
         <button class="tab-btn" data-tab="benchmark-tab">📊 Model Benchmark</button>
         <button class="tab-btn" data-tab="rules-tab">⚙️ Routing Rules</button>
+        <button class="tab-btn" data-tab="methodology-tab">📐 Evaluation Methodology</button>
       </nav>
     </div>
   </header>
@@ -157,9 +158,216 @@
           </table>
         </div>
       </div>
+    <!-- TAB 4: EVALUATION METHODOLOGY -->
+    <section id="methodology-tab" class="tab-content">
+      <div class="section-card">
+        <h2>📐 Evaluation Methodology</h2>
+        <p>Benchmark-driven methodology detailing dataset evaluation isolation, input/reference specs, metrics, and how benchmark results establish the Primary/Fallback model configuration used by the runtime router.</p>
+
+        <!-- Visual Pipeline -->
+        <h3 class="subsection-title">🔄 Evaluation Pipeline Flow</h3>
+        <div class="pipeline-flow" id="pipeline-flow">
+          <div class="pipeline-step">
+            <div class="step-num">1</div>
+            <div class="step-title">Dataset Selection</div>
+          </div>
+          <div class="pipeline-arrow">➔</div>
+          <div class="pipeline-step">
+            <div class="step-num">2</div>
+            <div class="step-title">Data Validation</div>
+          </div>
+          <div class="pipeline-arrow">➔</div>
+          <div class="pipeline-step">
+            <div class="step-num">3</div>
+            <div class="step-title">Preprocessing</div>
+          </div>
+          <div class="pipeline-arrow">➔</div>
+          <div class="pipeline-step">
+            <div class="step-num">4</div>
+            <div class="step-title">Model Inference</div>
+          </div>
+          <div class="pipeline-arrow">➔</div>
+          <div class="pipeline-step">
+            <div class="step-num">5</div>
+            <div class="step-title">Task-specific Metric</div>
+          </div>
+          <div class="pipeline-arrow">➔</div>
+          <div class="pipeline-step">
+            <div class="step-num">6</div>
+            <div class="step-title">Latency Measurement</div>
+          </div>
+          <div class="pipeline-arrow">➔</div>
+          <div class="pipeline-step">
+            <div class="step-num">7</div>
+            <div class="step-title">Model Comparison</div>
+          </div>
+          <div class="pipeline-arrow">➔</div>
+          <div class="pipeline-step">
+            <div class="step-num">8</div>
+            <div class="step-title">Primary/Fallback Selection</div>
+          </div>
+        </div>
+
+        <!-- Task Methodology Details -->
+        <h3 class="subsection-title" style="margin-top: 2rem;">📝 Task Evaluation Specifications</h3>
+        <div class="methodology-grid" id="methodology-grid">
+          
+          <!-- Summarization -->
+          <div class="methodology-card">
+            <div class="methodology-card-header">
+              <span class="task-badge">Task 1</span>
+              <h3>Summarization</h3>
+            </div>
+            <div class="methodology-details">
+              <div class="detail-row">
+                <span class="detail-label">Evaluation Dataset:</span>
+                <span class="detail-value"><code>assets/evaluation_dataset.json</code> (5 held-out examples)</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Input Format:</span>
+                <span class="detail-value">Text prompt string (<code>prompt</code>)</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Ground Truth / Reference:</span>
+                <span class="detail-value">Concise reference summary string (<code>reference_text</code>)</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Preprocessing & Isolation:</span>
+                <span class="detail-value">Whitespace normalization and tokenization on a dedicated offline benchmark dataset isolated from runtime inference prompts.</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Evaluation Data Type:</span>
+                <span class="detail-value">Technical articles, clean energy reports, and research briefs</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Why Data is Suitable:</span>
+                <span class="detail-value">Evaluates text compression and key information retention across technical domain text.</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Primary Metric:</span>
+                <span class="detail-value"><strong class="metric-highlight">ROUGE-L</strong> (F1 score of Longest Common Subsequence)</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Secondary Metric:</span>
+                <span class="detail-value">Latency (ms per prompt inference)</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Candidate Models:</span>
+                <span class="detail-value">Primary: <code>sshleifer/distilbart-cnn-12-6</code> | Fallback: <code>t5-small</code></span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Configuration Decision:</span>
+                <span class="detail-value">Benchmark results are used to establish the Primary/Fallback model configuration. The model with higher average ROUGE-L score designates the Primary model.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sentiment Analysis -->
+          <div class="methodology-card">
+            <div class="methodology-card-header">
+              <span class="task-badge">Task 2</span>
+              <h3>Sentiment Analysis</h3>
+            </div>
+            <div class="methodology-details">
+              <div class="detail-row">
+                <span class="detail-label">Evaluation Dataset:</span>
+                <span class="detail-value"><code>assets/evaluation_dataset.json</code> (5 held-out examples)</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Input Format:</span>
+                <span class="detail-value">Text review string (<code>prompt</code>)</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Ground Truth / Reference:</span>
+                <span class="detail-value">Categorical label string (<code>positive</code>, <code>negative</code>, <code>neutral</code>)</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Preprocessing & Isolation:</span>
+                <span class="detail-value">String cleaning and lowercase label matching on a dedicated offline benchmark dataset isolated from runtime inference prompts.</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Evaluation Data Type:</span>
+                <span class="detail-value">Customer reviews, product feedback, and service experience prompts</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Why Data is Suitable:</span>
+                <span class="detail-value">Evaluates classification accuracy across positive, negative, and neutral feedback.</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Primary Metric:</span>
+                <span class="detail-value"><strong class="metric-highlight">Accuracy</strong> (Exact match percentage against ground truth label)</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Secondary Metric:</span>
+                <span class="detail-value">Latency (ms per prompt inference)</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Candidate Models:</span>
+                <span class="detail-value">Primary: <code>cardiffnlp/twitter-roberta-base-sentiment-latest</code> | Fallback: <code>distilbert-base-uncased-finetuned-sst-2-english</code></span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Configuration Decision:</span>
+                <span class="detail-value">Benchmark results are used to establish the Primary/Fallback model configuration. The candidate achieving highest overall classification accuracy designates the Primary model.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Translation -->
+          <div class="methodology-card">
+            <div class="methodology-card-header">
+              <span class="task-badge">Task 3</span>
+              <h3>Translation</h3>
+            </div>
+            <div class="methodology-details">
+              <div class="detail-row">
+                <span class="detail-label">Evaluation Dataset:</span>
+                <span class="detail-value"><code>assets/evaluation_dataset.json</code> (5 held-out examples)</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Input Format:</span>
+                <span class="detail-value">Multi-lingual translation prompt string (<code>prompt</code>)</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Ground Truth / Reference:</span>
+                <span class="detail-value">Human-translated reference sentence string (<code>reference_text</code>)</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Preprocessing & Isolation:</span>
+                <span class="detail-value">Tokenization and NLTK BLEU sentence smoothing on a dedicated offline benchmark dataset isolated from runtime inference prompts.</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Evaluation Data Type:</span>
+                <span class="detail-value">Multi-lingual translation prompts (English to French, Spanish, German, Hindi)</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Why Data is Suitable:</span>
+                <span class="detail-value">Evaluates translation fluency and n-gram precision across target languages.</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Primary Metric:</span>
+                <span class="detail-value"><strong class="metric-highlight">BLEU</strong> (Sentence-level n-gram precision with smoothing)</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Secondary Metric:</span>
+                <span class="detail-value">Latency (ms per prompt inference)</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Candidate Models:</span>
+                <span class="detail-value">Primary: <code>t5-base</code> | Fallback: <code>t5-small</code></span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Configuration Decision:</span>
+                <span class="detail-value">Benchmark results are used to establish the Primary/Fallback model configuration. The candidate yielding highest average BLEU score designates the Primary model.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </section>
 
   </main>
+
 
   <script src="app.js"></script>
 </body>

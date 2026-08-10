@@ -1,0 +1,65 @@
+visual_pipeline:
+  - step: 1
+    title: "Dataset Selection"
+    description: "Load held-out evaluation dataset from assets/evaluation_dataset.json."
+  - step: 2
+    title: "Data Validation"
+    description: "Validate JSON schema and extract prompt and reference_text fields."
+  - step: 3
+    title: "Preprocessing"
+    description: "Normalize text strings and format task inputs for pipeline inference."
+  - step: 4
+    title: "Model Inference"
+    description: "Execute candidate Primary and Fallback model pipelines on evaluation prompts."
+  - step: 5
+    title: "Task-specific Metric"
+    description: "Compute quantitative score (ROUGE-L for Summarization, Accuracy for Sentiment, BLEU for Translation)."
+  - step: 6
+    title: "Latency Measurement"
+    description: "Measure average per-sample inference latency in milliseconds."
+  - step: 7
+    title: "Model Comparison"
+    description: "Compare average quality score and latency across candidate models."
+  - step: 8
+    title: "Primary/Fallback Selection"
+    description: "Establish pre-configured Primary and Fallback model assignments in registry."
+
+tasks:
+  summarization:
+    task_name: "Summarization"
+    evaluation_dataset: "assets/evaluation_dataset.json"
+    input_format: "Text prompt string (prompt)"
+    ground_truth_reference: "Concise reference summary string (reference_text)"
+    preprocessing: "Prompt extraction, whitespace trimming, and ROUGE tokenization"
+    evaluation_isolation: "Held-out benchmark dataset isolated from runtime inference prompts"
+    evaluation_data_type: "Technical articles, clean energy reports, and domain briefs"
+    why_data_suitable: "Evaluates text compression and key information retention across technical domain text."
+    primary_metric: "ROUGE-L (F1 score of Longest Common Subsequence)"
+    secondary_metric: "Latency (ms per prompt inference)"
+    winner_selection_criteria: "Benchmark results are used to establish the Primary/Fallback model configuration. The candidate with higher average ROUGE-L score designates the Primary model."
+
+  sentiment:
+    task_name: "Sentiment Analysis"
+    evaluation_dataset: "assets/evaluation_dataset.json"
+    input_format: "Text review string (prompt)"
+    ground_truth_reference: "Categorical label string ('positive', 'negative', 'neutral')"
+    preprocessing: "String cleaning and lowercase label matching"
+    evaluation_isolation: "Held-out benchmark dataset isolated from runtime inference prompts"
+    evaluation_data_type: "Customer reviews, product feedback, and service experience prompts"
+    why_data_suitable: "Evaluates classification accuracy across positive, negative, and neutral feedback."
+    primary_metric: "Accuracy (Exact match percentage against ground truth label)"
+    secondary_metric: "Latency (ms per prompt inference)"
+    winner_selection_criteria: "Benchmark results are used to establish the Primary/Fallback model configuration. The candidate achieving highest classification accuracy designates the Primary model."
+
+  translation:
+    task_name: "Translation"
+    evaluation_dataset: "assets/evaluation_dataset.json"
+    input_format: "Multi-lingual translation prompt string (prompt)"
+    ground_truth_reference: "Human-translated reference sentence string (reference_text)"
+    preprocessing: "Tokenization and NLTK BLEU sentence smoothing"
+    evaluation_isolation: "Held-out benchmark dataset isolated from runtime inference prompts"
+    evaluation_data_type: "Multi-lingual prompts (English to French, Spanish, German, Hindi)"
+    why_data_suitable: "Evaluates translation fluency and n-gram precision across target languages."
+    primary_metric: "BLEU (Sentence-level n-gram precision with smoothing)"
+    secondary_metric: "Latency (ms per prompt inference)"
+    winner_selection_criteria: "Benchmark results are used to establish the Primary/Fallback model configuration. The candidate yielding highest average BLEU score designates the Primary model."
