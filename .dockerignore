@@ -1,0 +1,21 @@
+# Byte-compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Git metadata and secrets
+.git/
+.gitignore
+.env
+
+# Cache directories and test outputs
+.pytest_cache/
+.coverage
+.model_cache/
+logs/

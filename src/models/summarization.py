@@ -15,11 +15,19 @@ class SummarizationPipeline(BaseNLPPipeline):
     def load_pipeline(self) -> None:
         """Loads the summarization pipeline onto the configured target device."""
         logger.info(f"Instantiating summarization pipeline with model '{self.model_name}' on device '{self.device}'")
-        self.pipeline_instance = pipeline(
-            task="summarization",
-            model=self.model_name,
-            device=self.hf_device_id
-        )
+        try:
+            self.pipeline_instance = pipeline(
+                "summarization",
+                model=self.model_name,
+                device=self.hf_device_id
+            )
+        except Exception as e:
+            logger.warning(f"Falling back to text2text-generation for summarization: {e}")
+            self.pipeline_instance = pipeline(
+                "text2text-generation",
+                model=self.model_name,
+                device=self.hf_device_id
+            )
 
     def _execute(self, prompt: str, **kwargs) -> str:
         """Executes abstractive text summarization.
@@ -37,7 +45,7 @@ class SummarizationPipeline(BaseNLPPipeline):
 
         max_len = kwargs.get("max_length", self.config.get("max_output_length", 150))
         min_len = self.config.get("min_output_length", 20)
-        
+
         word_count = len(clean_text.split())
         if word_count < 40:
             max_len = min(max_len, max(25, word_count))
@@ -49,7 +57,9 @@ class SummarizationPipeline(BaseNLPPipeline):
             min_length=min_len,
             truncation=True
         )
-        
+
         if isinstance(result, list) and len(result) > 0:
-            return result[0].get("summary_text", "").strip()
+            item = result[0]
+            summary = item.get("summary_text") or item.get("generated_text", "")
+            return summary.strip()
         return ""
