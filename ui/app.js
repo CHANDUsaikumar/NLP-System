@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatThread = document.getElementById("chat-thread");
 
   const samplePresets = {
-    translation: "Translate this to Hindi: My name is Sai Kumar.",
-    french: "Translate this into French: Machine learning model routing improves accuracy.",
+    translation: "Translate 'My name is Sai Kumar' into French.",
+    french: "Translate 'Good morning' into German.",
     sentiment: "This new smartphone has an amazing camera and exceptional battery life, but the software is terrible and constantly crashes.",
     summarization: "Please summarize: Artificial intelligence has transformed modern software engineering by introducing dynamic model routing, automated code generation, and intelligent testing workflows. Companies deploy transformer models to optimize compute cost."
   };

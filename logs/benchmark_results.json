@@ -5,7 +5,7 @@
     "model": "sshleifer/distilbart-cnn-12-6",
     "quality_metric_name": "ROUGE-L",
     "quality_score": 0.4146,
-    "latency_ms": 1649.39
+    "latency_ms": 1326.5
   },
   {
     "task": "summarization",
@@ -13,7 +13,7 @@
     "model": "t5-small",
     "quality_metric_name": "ROUGE-L",
     "quality_score": 0.4054,
-    "latency_ms": 1264.92
+    "latency_ms": 1064.58
   },
   {
     "task": "sentiment",
@@ -21,7 +21,7 @@
     "model": "cardiffnlp/twitter-roberta-base-sentiment-latest",
     "quality_metric_name": "Accuracy",
     "quality_score": 1.0,
-    "latency_ms": 245.95
+    "latency_ms": 39.84
   },
   {
     "task": "sentiment",
@@ -29,22 +29,22 @@
     "model": "distilbert-base-uncased-finetuned-sst-2-english",
     "quality_metric_name": "Accuracy",
     "quality_score": 0.8,
-    "latency_ms": 18.5
+    "latency_ms": 13.42
   },
   {
     "task": "translation",
     "status": "Primary",
     "model": "t5-base",
     "quality_metric_name": "BLEU",
-    "quality_score": 0.4685,
-    "latency_ms": 823.78
+    "quality_score": 0.6264,
+    "latency_ms": 614.13
   },
   {
     "task": "translation",
     "status": "Fallback",
     "model": "t5-small",
     "quality_metric_name": "BLEU",
-    "quality_score": 0.372,
-    "latency_ms": 556.58
+    "quality_score": 0.5638,
+    "latency_ms": 489.13
   }
 ]

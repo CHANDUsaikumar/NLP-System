@@ -94,7 +94,7 @@ If no intent is detected, the router cleanly returns:
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Summarization** | `sshleifer/distilbart-cnn-12-6` | ROUGE-L: `0.4146` | 1,649.4 ms | `t5-small` | ROUGE-L: `0.4054` | 1,264.9 ms |
 | **Sentiment Analysis** | `cardiffnlp/twitter-roberta-base-sentiment-latest` | Accuracy: `100.0%` | 245.9 ms | `distilbert-base-uncased-finetuned-sst-2-english` | Accuracy: `80.0%` | 18.5 ms |
-| **Translation** | `t5-base` | BLEU: `0.4685` | 823.8 ms | `t5-small` | BLEU: `0.3720` | 556.6 ms |
+| **Translation** | `t5-base` | BLEU: `0.6264` | 614.1 ms | `t5-small` | BLEU: `0.5638` | 489.1 ms |
 
 ---
 

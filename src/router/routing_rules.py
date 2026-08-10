@@ -1,15 +1,15 @@
 """Declarative Routing Rules and Keyword Definitions for Supported NLP Tasks."""
 
-from typing import Dict, Any, List
+from typing import Dict, Any
 
 ROUTING_RULES: Dict[str, Dict[str, Any]] = {
     "translation": {
         "task_name": "Translation",
         "keywords": [
             "translate", "translation", "translate to", "translate into",
-            "in hindi", "in french", "in spanish", "in telugu", "in german", "in italian"
+            "in french", "in german", "in romanian"
         ],
-        "pattern": r"(?i)\b(translate|translation|convert to|in french|in spanish|in hindi|in telugu|in german)\b",
+        "pattern": r"(?i)\b(translate|translation|convert to|in french|in german|in romanian)\b",
         "primary_model": "t5-base",
         "fallback_model": "t5-small",
         "quality_metric": "BLEU"

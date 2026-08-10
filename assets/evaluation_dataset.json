@@ -73,17 +73,17 @@
 
   {
     "id": "trans_01",
-    "prompt": "Translate this to French: Machine learning model routing improves accuracy.",
+    "prompt": "Translate this into French: Machine learning model routing improves accuracy.",
     "target_task": "translation",
     "description": "Technical machine learning translation to French",
     "reference_text": "L'orientation des modèles d'apprentissage automatique améliore la précision."
   },
   {
     "id": "trans_02",
-    "prompt": "Translate to Spanish: Hello world, welcome to our dynamic model routing system.",
+    "prompt": "Translate 'My name is Sai Kumar' into French.",
     "target_task": "translation",
-    "description": "Conversational greeting translation to Spanish",
-    "reference_text": "Hola mundo, bienvenido a nuestro sistema de enrutamiento dinámico de modelos."
+    "description": "Name translation to French",
+    "reference_text": "Mon nom est Sai Kumar."
   },
   {
     "id": "trans_03",
@@ -94,16 +94,16 @@
   },
   {
     "id": "trans_04",
-    "prompt": "Translate this to Hindi: My name is Sai Kumar.",
+    "prompt": "Translate 'Good morning' into German.",
     "target_task": "translation",
-    "description": "Personal name translation to Hindi",
-    "reference_text": "मेरा नाम साईं कुमार है।"
+    "description": "Greeting translation to German",
+    "reference_text": "Guten Morgen."
   },
   {
     "id": "trans_05",
-    "prompt": "Translate into French: Solar energy is clean, abundant, and essential for combating climate change.",
+    "prompt": "Translate into Romanian: Solar energy is clean, abundant, and essential for combating climate change.",
     "target_task": "translation",
-    "description": "Clean energy translation to French",
-    "reference_text": "L'énergie solaire est propre, abondante et essentielle pour lutter contre le changement climatique."
+    "description": "Clean energy translation to Romanian",
+    "reference_text": "Energia solară este curată, abundentă și esențială pentru combaterea schimbărilor climatice."
   }
 ]
