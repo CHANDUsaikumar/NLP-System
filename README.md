@@ -1,16 +1,10 @@
----
-title: Dynamic NLP Model Router
-emoji: 🤖
-colorFrom: blue
-colorTo: purple
-sdk: docker
-app_port: 7860
----
 
-# Dynamic NLP Model Router 🤖⚡
 
-A clean, modular **Dynamic NLP Model Router** that classifies task intents and dynamically routes user prompts to specialized Hugging Face transformer models based on empirical benchmark evaluation and primary/fallback availability policies.
+# Dynamic NLP Model Router
 
+![Project diagram](docs/project.png)
+
+A modular, high‑performance **Dynamic NLP Model Router** that automatically classifies user intents and routes prompts to the most suitable Hugging Face transformer model. The system evaluates primary and fallback models for each task using empirically measured quality and latency metrics.
 ---
 
 ## 📌 Supported NLP Tasks & Model Registry
