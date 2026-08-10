@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic LLM Model Router & Chatbot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top App Navigation Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">
+          <h1>Dynamic LLM Model Router</h1>
+          <p>Rule-Based Intent Classification & Benchmark-Driven Model Selection</p>
+        </div>
+      </div>
+      
+      <div class="header-actions">
+        <span class="status-badge live">
+          <span class="pulse-dot"></span> Router Online
+        </span>
+        
+        <nav class="nav-tabs">
+          <button class="tab-btn active" data-tab="chat-tab">
+            <span class="tab-icon">💬</span> Chatbot Router
+          </button>
+          <button class="tab-btn" data-tab="rules-tab">
+            <span class="tab-icon">⚙️</span> Rule Inspector
+          </button>
+          <button class="tab-btn" data-tab="matrix-tab">
+            <span class="tab-icon">📊</span> Benchmark Matrix
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main App Layout Container -->
+  <main class="main-container">
+
+    <!-- TAB 1: DYNAMIC CHATBOT INTERFACE -->
+    <section id="chat-tab" class="tab-content active">
+      
+      <!-- Preset Quick Selection Bar -->
+      <div class="preset-bar">
+        <span class="preset-label">Test Sample Prompts:</span>
+        <div class="preset-buttons">
+          <button class="preset-btn" data-task="summarization">
+            <span>📝</span> Summarize Article
+          </button>
+          <button class="preset-btn" data-task="sentiment">
+            <span>😃</span> Sentiment Review
+          </button>
+          <button class="preset-btn" data-task="qa">
+            <span>❓</span> Question Answering
+          </button>
+          <button class="preset-btn" data-task="generation">
+            <span>🎨</span> Creative Text Gen
+          </button>
+          <button class="preset-btn" data-task="ner">
+            <span>🔍</span> Extract Entities
+          </button>
+          <button class="preset-btn" data-task="translation">
+            <span>🌐</span> Translate Text
+          </button>
+        </div>
+      </div>
+
+      <!-- Chat Thread Container -->
+      <div class="chat-viewport">
+        <div id="chat-messages" class="chat-messages">
+          
+          <!-- System Welcome Message -->
+          <div class="chat-message bot-message">
+            <div class="message-avatar">⚡</div>
+            <div class="message-body">
+              <div class="message-meta">
+                <span class="bot-name">Dynamic Model Router Bot</span>
+                <span class="task-badge system">System Online</span>
+              </div>
+              <div class="message-text">
+                Welcome! Enter any prompt below. The <strong>Rule-Based Model Router Framework</strong> will analyze your prompt's syntax, keyword triggers, and structural patterns to <strong>dynamically route your request to the optimal Hugging Face LLM model</strong> based on empirical benchmark results.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Chat Input Controls Bar -->
+      <div class="chat-input-wrapper">
+        <form id="chat-form" class="chat-form">
+          <div class="input-container">
+            <textarea id="prompt-input" placeholder="Type your prompt or click a sample preset above (e.g. 'Summarize...', 'Translate to French...', 'What is...')" rows="2" required></textarea>
+            <button type="submit" id="send-btn" class="send-btn">
+              <span>Send Prompt</span>
+              <span class="send-icon">➔</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </section>
+
+
+    <!-- TAB 2: RULE INSPECTOR -->
+    <section id="rules-tab" class="tab-content">
+      <div class="tab-header-card">
+        <h2>⚙️ Rule Engine Inspection & Heuristic Configuration</h2>
+        <p>Explore prioritized regex rules, intent keyword matchers, structural heuristics, and candidate model dispatch targets.</p>
+      </div>
+
+      <div class="rules-table-wrapper">
+        <table class="rules-table">
+          <thead>
+            <tr>
+              <th>Priority</th>
+              <th>Rule Identifier</th>
+              <th>Target Task</th>
+              <th>Pattern / Heuristic Regex</th>
+              <th>Primary Dispatch Model</th>
+              <th>HF Architecture</th>
+              <th>Benchmark Quality</th>
+            </tr>
+          </thead>
+          <tbody id="rules-table-body">
+            <!-- Rules dynamically populated by app.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+
+    <!-- TAB 3: BENCHMARK EVALUATION MATRIX -->
+    <section id="matrix-tab" class="tab-content">
+      <div class="tab-header-card">
+        <h2>📊 Head-to-Head Candidate Model Evaluation Matrix</h2>
+        <p>Empirical benchmarking results across 60 standardized test cases evaluating candidate models head-to-head on identical task datasets.</p>
+      </div>
+
+      <div class="matrix-grid">
+        
+        <div class="matrix-card">
+          <div class="card-header">
+            <h3>📝 Summarization</h3>
+            <span class="hf-badge bart">BART vs T5</span>
+          </div>
+          <div class="comparison-row primary">
+            <span class="role">Primary</span>
+            <span class="model">distilbart-cnn-12-6</span>
+            <span class="metric">ROUGE-L: 0.4410</span>
+            <span class="speed">1423.5 ms</span>
+          </div>
+          <div class="comparison-row fallback">
+            <span class="role">Fallback</span>
+            <span class="model">t5-small</span>
+            <span class="metric">ROUGE-L: 0.3850</span>
+            <span class="speed">1261.7 ms</span>
+          </div>
+        </div>
+
+        <div class="matrix-card">
+          <div class="card-header">
+            <h3>😃 Sentiment Analysis</h3>
+            <span class="hf-badge roberta">RoBERTa vs DistilBERT</span>
+          </div>
+          <div class="comparison-row primary">
+            <span class="role">Primary</span>
+            <span class="model">twitter-roberta-base</span>
+            <span class="metric">3-Class Sentiment</span>
+            <span class="speed">36.9 ms</span>
+          </div>
+          <div class="comparison-row fallback">
+            <span class="role">Fallback</span>
+            <span class="model">distilbert-base-sst2</span>
+            <span class="metric">Sub-17ms Speed</span>
+            <span class="speed">16.6 ms</span>
+          </div>
+        </div>
+
+        <div class="matrix-card">
+          <div class="card-header">
+            <h3>❓ Question Answering</h3>
+            <span class="hf-badge t5">T5 Architecture</span>
+          </div>
+          <div class="comparison-row primary">
+            <span class="role">Primary</span>
+            <span class="model">flan-t5-base</span>
+            <span class="metric">ROUGE-L: 0.6120</span>
+            <span class="speed">259.8 ms</span>
+          </div>
+          <div class="comparison-row fallback">
+            <span class="role">Fallback</span>
+            <span class="model">flan-t5-small</span>
+            <span class="metric">ROUGE-L: 0.5210</span>
+            <span class="speed">1279.6 ms</span>
+          </div>
+        </div>
+
+        <div class="matrix-card">
+          <div class="card-header">
+            <h3>🎨 Creative Text Gen</h3>
+            <span class="hf-badge gpt">GPT-2 vs GPT-Neo</span>
+          </div>
+          <div class="comparison-row primary">
+            <span class="role">Primary</span>
+            <span class="model">gpt2-medium</span>
+            <span class="metric">ROUGE-L: 0.3150</span>
+            <span class="speed">4732.9 ms</span>
+          </div>
+          <div class="comparison-row fallback">
+            <span class="role">Fallback</span>
+            <span class="model">gpt-neo-125M</span>
+            <span class="metric">ROUGE-L: 0.2840</span>
+            <span class="speed">5546.1 ms</span>
+          </div>
+        </div>
+
+        <div class="matrix-card">
+          <div class="card-header">
+            <h3>🔍 Named Entity Recognition</h3>
+            <span class="hf-badge distilbert">DistilBERT vs RoBERTa</span>
+          </div>
+          <div class="comparison-row primary">
+            <span class="role">Primary</span>
+            <span class="model">distilbert-conll03</span>
+            <span class="metric">2,946 t/s Speed</span>
+            <span class="speed">22.3 ms</span>
+          </div>
+          <div class="comparison-row fallback">
+            <span class="role">Fallback</span>
+            <span class="model">roberta-large-ner</span>
+            <span class="metric">ROUGE-L: 0.8420</span>
+            <span class="speed">55.6 ms</span>
+          </div>
+        </div>
+
+        <div class="matrix-card">
+          <div class="card-header">
+            <h3>🌐 Translation</h3>
+            <span class="hf-badge t5">T5 Architecture</span>
+          </div>
+          <div class="comparison-row primary">
+            <span class="role">Primary</span>
+            <span class="model">t5-base</span>
+            <span class="metric">ROUGE-L: 0.4850</span>
+            <span class="speed">782.6 ms</span>
+          </div>
+          <div class="comparison-row fallback">
+            <span class="role">Fallback</span>
+            <span class="model">t5-small</span>
+            <span class="metric">ROUGE-L: 0.4120</span>
+            <span class="speed">776.8 ms</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

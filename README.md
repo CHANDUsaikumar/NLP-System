@@ -59,7 +59,9 @@ The **LLM Model Evaluation & Scoring System** provides a standardized, scientifi
 
 ## ✨ Key Features
 
-- **📊 Custom Dataset Evaluation**: Benchmark candidate LLMs on any user-provided dataset file (`--dataset custom_data.json`). Comes pre-loaded with an expanded **60-sample evaluation dataset** (`assets/evaluation_dataset.json`) with ground-truth reference texts.
+- **🔀 Rule-Based Model-Routing Framework**: Evaluates syntactic regex patterns, interrogative starters, keyword triggers, and document size heuristics to dynamically route prompts to the optimal Hugging Face LLM model based on evaluation benchmark metrics.
+- **💬 Dynamic Chatbot Web Application (`server.py`)**: Modern dark-mode web application running locally at `http://localhost:8000` with 1-click sample prompt presets, dynamic task & model badges, metrics cards, expandable XAI rationale accordions, an interactive **Rule Inspector**, and a **Benchmark Matrix**.
+- **📊 Custom Dataset Evaluation**: Benchmark candidate LLMs on any user-provided dataset file (`--dataset custom_data.json`). Includes an expanded **60-sample evaluation dataset** (`assets/evaluation_dataset.json`) with ground-truth reference texts.
 - **📈 Quantitative Quality Scoring**: Computes ROUGE-1, ROUGE-2, ROUGE-L, BLEU, and Exact Match similarity scores comparing generated LLM outputs against ground-truth reference texts.
 - **⚡ Performance & Memory Profiling**: Measures exact inference latency (ms), token throughput (tokens/sec), and process RSS memory footprint (RAM in MB) per model.
 - **🛡️ 6 Allowed Hugging Face Model Families**: Constrained strictly to `GPT-2`, `GPT-Neo`, `T5`, `BART`, `DistilBERT`, and `RoBERTa` for clean, reliable evaluation.
@@ -156,22 +158,28 @@ pip install -r requirements.txt
 
 ## 🚀 Usage Guide
 
-### 1. Evaluate Models on Default Custom Dataset (60 Samples)
+### 1. Launch Dynamic Chatbot Web Application
+```bash
+python server.py
+```
+> Opens the interactive Web App at `http://localhost:8000`. Features real-time rule-based model routing, sample presets, dynamic task & model badges, rule inspector, and evaluation matrix.
+
+### 2. Evaluate Models on Default Custom Dataset (60 Samples)
 ```bash
 python evaluate.py --save-report
 ```
 
-### 2. Evaluate Models on a User-Provided Custom Dataset JSON
+### 3. Evaluate Models on a User-Provided Custom Dataset JSON
 ```bash
 python evaluate.py --dataset path/to/my_custom_data.json --save-report
 ```
 
-### 3. Filter Evaluation by Specific Task Category
+### 4. Filter Evaluation by Specific Task Category
 ```bash
 python evaluate.py --task summarization
 ```
 
-### 4. Execute Pytest Test Suite
+### 5. Execute Pytest Test Suite
 ```bash
 pytest tests/unit/ -v
 ```
