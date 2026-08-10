@@ -1,36 +1,34 @@
-"""Standardized benchmarking suite testing model routing latency and token throughput."""
+"""Standardized benchmarking suite testing model inference latency and token throughput."""
 
 from typing import List, Dict, Any
-from src.router.dynamic_router import DynamicRouter
-from src.utils.validators import UserRequestPayload
+from src.models.model_manager import ModelManager
 from src.utils.logger import logger
-
 
 BENCHMARK_PROMPTS = [
     {
         "prompt": "Artificial intelligence has transformed modern software engineering by introducing dynamic model routing, automated code generation, and intelligent testing workflows. Companies deploy transformer models to optimize compute cost.",
-        "expected_task": "summarization"
+        "task_key": "summarization"
     },
     {
         "prompt": "I absolutely love using this new software! The user experience is incredibly smooth and responsive.",
-        "expected_task": "sentiment"
+        "task_key": "sentiment"
     },
     {
         "prompt": "What is the capital of France and what is its primary historical significance?",
-        "expected_task": "question_answering"
+        "task_key": "question_answering"
     },
     {
         "prompt": "Once upon a time in a distant galaxy powered by neural networks, a lonely satellite started broadcasting mysterious quantum signals.",
-        "expected_task": "text_generation"
+        "task_key": "text_generation"
     }
 ]
 
 
 class SystemBenchmark:
-    """Runs a batch evaluation suite over standard benchmark prompts."""
+    """Runs a batch evaluation suite over standard benchmark prompts using ModelManager."""
 
-    def __init__(self, router: DynamicRouter = None):
-        self.router = router or DynamicRouter()
+    def __init__(self, model_manager: ModelManager = None):
+        self.model_manager = model_manager or ModelManager()
 
     def run_suite(self, prompts: List[Dict[str, str]] = None) -> List[Dict[str, Any]]:
         test_prompts = prompts or BENCHMARK_PROMPTS
@@ -39,24 +37,22 @@ class SystemBenchmark:
 
         for idx, item in enumerate(test_prompts, 1):
             prompt = item["prompt"]
-            expected = item.get("expected_task", "unknown")
+            task_key = item.get("task_key", "text_generation")
             
-            payload = UserRequestPayload(prompt=prompt)
-            res = self.router.process_request(payload)
-            
-            is_match = (res.task == expected)
-            results.append({
-                "id": idx,
-                "prompt_preview": prompt[:60] + "...",
-                "expected_task": expected,
-                "actual_task": res.task,
-                "task_matched": is_match,
-                "model_used": res.selected_model,
-                "confidence": res.confidence_score,
-                "latency_ms": res.latency_ms,
-                "tokens_per_sec": res.token_throughput,
-                "device": res.device_used
-            })
+            try:
+                pipeline = self.model_manager.get_pipeline(task_key)
+                output_text, latency_ms, throughput = pipeline.run(prompt)
+                results.append({
+                    "id": idx,
+                    "prompt_preview": prompt[:60] + "...",
+                    "task_key": task_key,
+                    "model_used": pipeline.model_name,
+                    "latency_ms": latency_ms,
+                    "tokens_per_sec": throughput,
+                    "device": pipeline.device
+                })
+            except Exception as err:
+                logger.error(f"Benchmark error for prompt #{idx}: {err}")
             
         logger.info("System Benchmark Suite completed successfully.")
         return results
