@@ -59,7 +59,7 @@ class DynamicRouter:
         try:
             logger.info(f"Attempting PRIMARY model '{primary_model}' for task '{task_name}'...")
             pipeline = self.model_manager.get_pipeline_by_name(task_key, primary_model)
-            output_text, latency_ms, _ = pipeline.run(prompt)
+            output_text, latency_ms = pipeline.run(prompt)
             
             return RouterResponse(
                 prompt=prompt,
@@ -78,7 +78,7 @@ class DynamicRouter:
             # 2. Invoke Fallback Model Execution
             try:
                 pipeline_fallback = self.model_manager.get_pipeline_by_name(task_key, fallback_model)
-                output_text, latency_ms, _ = pipeline_fallback.run(prompt)
+                output_text, latency_ms = pipeline_fallback.run(prompt)
                 
                 return RouterResponse(
                     prompt=prompt,

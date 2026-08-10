@@ -50,15 +50,15 @@ class BaseNLPPipeline(ABC):
         """Core task execution logic to be implemented by child classes."""
         pass
 
-    def run(self, prompt: str, **kwargs) -> Tuple[str, float, float]:
-        """Runs inference with timing, throughput computation, and OOM protection.
+    def run(self, prompt: str, **kwargs) -> Tuple[str, float]:
+        """Runs inference with timing and error protection.
 
         Args:
             prompt (str): Input text prompt.
             **kwargs: Additional generation parameters (max_length, temperature, etc.).
 
         Returns:
-            Tuple[str, float, float]: Output text, latency in ms, and tokens per second throughput.
+            Tuple[str, float]: Output text and latency in ms.
 
         Raises:
             InferenceError: If model execution fails or GPU memory is exhausted.
@@ -72,12 +72,7 @@ class BaseNLPPipeline(ABC):
             end_time = time.perf_counter()
             
             latency_ms = (end_time - start_time) * 1000.0
-            
-            token_count = len(prompt.split()) + len(output_text.split())
-            duration_s = max(end_time - start_time, 0.001)
-            tokens_per_sec = token_count / duration_s
-            
-            return output_text, round(latency_ms, 2), round(tokens_per_sec, 2)
+            return output_text, round(latency_ms, 2)
 
         except torch.cuda.OutOfMemoryError as e:
             logger.error(f"CUDA OOM Exception in pipeline {self.model_name}: {e}")

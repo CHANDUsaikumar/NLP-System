@@ -15,7 +15,7 @@ def test_model_evaluator_dataset_loading():
 @patch("src.evaluation.model_evaluator.ModelManager")
 def test_evaluate_candidate_mock(mock_model_mgr_cls):
     mock_pipeline = MagicMock()
-    mock_pipeline.run.return_value = ("Test summary response", 25.0, 40.0)
+    mock_pipeline.run.return_value = ("Test summary response", 25.0)
 
     mock_mgr_instance = MagicMock()
     mock_mgr_instance.get_pipeline_by_name.return_value = mock_pipeline

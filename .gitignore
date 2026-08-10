@@ -1,0 +1,15 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Caching and testing
+.pytest_cache/
+.coverage
+.env
+.model_cache/
+
+# Logs and generated data
+logs/*.json
+logs/*.log

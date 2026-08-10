@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (response.ok) {
         data = await response.json();
       } else {
-        data = fallbackClientRouter(promptText);
+        data = fallbackOfflineRouter(promptText);
       }
 
       removeElement(loadingId);
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     } catch (err) {
       removeElement(loadingId);
-      const fallbackData = fallbackClientRouter(promptText);
+      const fallbackData = fallbackOfflineRouter(promptText);
       appendBotCard(fallbackData);
     }
   });
@@ -137,50 +137,11 @@ document.addEventListener("DOMContentLoaded", () => {
     scrollToBottom();
   }
 
-  // Client-Side Fallback Router (if backend is offline)
-  function fallbackClientRouter(promptText) {
-    const lower = promptText.toLowerCase();
-
-    if (/translate|translation|convert to|in hindi|in french|in spanish|in telugu/.test(lower)) {
-      let response = "L'orientation des modèles d'apprentissage automatique améliore la précision.";
-      if (lower.includes("hindi")) response = "मेरा नाम साईं कुमार है।";
-      else if (lower.includes("spanish")) response = "Hola mundo, bienvenido a nuestro sistema de enrutamiento de modelos.";
-
-      return {
-        intent_detected: true,
-        detected_task: "Translation",
-        selected_model: "t5-base",
-        model_type: "Primary",
-        latency_ms: 782,
-        response_text: response
-      };
-    }
-
-    if (/sentiment|positive|negative|neutral|emotion/.test(lower)) {
-      return {
-        intent_detected: true,
-        detected_task: "Sentiment Analysis",
-        selected_model: "cardiffnlp/twitter-roberta-base-sentiment-latest",
-        model_type: "Primary",
-        latency_ms: 37,
-        response_text: "Sentiment: Negative (Confidence: 98.5%)"
-      };
-    }
-
-    if (/summarize|summary|shorten|key points/.test(lower) || promptText.split(" ").length > 50) {
-      return {
-        intent_detected: true,
-        detected_task: "Summarization",
-        selected_model: "sshleifer/distilbart-cnn-12-6",
-        model_type: "Primary",
-        latency_ms: 1423,
-        response_text: "Artificial intelligence and model routing streamline software engineering by combining zero-shot classifiers and specialized transformers to reduce compute costs while keeping throughput high."
-      };
-    }
-
+  // Offline Router Handler (in case connection to server.py fails)
+  function fallbackOfflineRouter(promptText) {
     return {
       intent_detected: false,
-      response_text: "Could not detect task intent. Please specify whether you want Summarization, Sentiment Analysis, or Translation."
+      response_text: "Connection to server.py backend lost. Please ensure 'python server.py' is running."
     };
   }
 

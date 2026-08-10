@@ -17,9 +17,6 @@ class TaskCategory(str, Enum):
     """Enumeration of supported NLP task categories."""
     SUMMARIZATION = "summarization"
     SENTIMENT = "sentiment"
-    QUESTION_ANSWERING = "question_answering"
-    TEXT_GENERATION = "text_generation"
-    NAMED_ENTITY_RECOGNITION = "named_entity_recognition"
     TRANSLATION = "translation"
 
 
@@ -36,7 +33,7 @@ def _load_yaml_file(file_path: Path) -> Dict[str, Any]:
 class AppSettings(BaseSettings):
     """Application Settings Schema enforcing environment overrides and YAML loading."""
 
-    app_name: str = "Adaptive NLP Multi-Model System"
+    app_name: str = "Dynamic NLP Model Router"
     app_version: str = "1.0.0"
     environment: str = Field(default="development", validation_alias="APP_ENV")
     

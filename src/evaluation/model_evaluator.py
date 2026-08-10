@@ -72,7 +72,7 @@ class ModelEvaluator:
             for sample in test_samples:
                 prompt = sample["prompt"]
                 try:
-                    out_text, lat, _ = pipeline.run(prompt)
+                    out_text, lat = pipeline.run(prompt)
                     latencies.append(lat)
                     y_pred.append(out_text)
                 except Exception as err:
@@ -88,7 +88,7 @@ class ModelEvaluator:
                 prompt = sample["prompt"]
                 ref = sample.get("reference_text", "")
                 try:
-                    out_text, lat, _ = pipeline.run(prompt)
+                    out_text, lat = pipeline.run(prompt)
                     latencies.append(lat)
                     if ref:
                         score = EvaluationMetrics.compute_rouge_l(out_text, ref)
@@ -102,7 +102,7 @@ class ModelEvaluator:
                 prompt = sample["prompt"]
                 ref = sample.get("reference_text", "")
                 try:
-                    out_text, lat, _ = pipeline.run(prompt)
+                    out_text, lat = pipeline.run(prompt)
                     latencies.append(lat)
                     if ref:
                         score = EvaluationMetrics.compute_bleu(out_text, ref)
