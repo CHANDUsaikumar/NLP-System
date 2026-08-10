@@ -1,4 +1,4 @@
-"""Model Manager handling dynamic pipeline loading, warm caching, device allocation, and memory cleanup."""
+"""Model Manager handling pipeline loading, warm caching, device allocation, and memory cleanup."""
 
 import gc
 import threading
@@ -8,7 +8,7 @@ import torch
 from src.utils.logger import logger
 from src.utils.exceptions import ModelLoadError
 from src.models.base_pipeline import BaseNLPPipeline
-from config.settings import settings, TaskCategory
+from config.settings import settings
 
 
 def resolve_device(configured_device: str = "auto") -> str:
@@ -54,78 +54,55 @@ class ModelManager:
         self._initialized = True
         logger.info(f"ModelManager initialized on target device: {self.device}")
 
-    def get_pipeline(self, task_key: str) -> BaseNLPPipeline:
-        """Retrieves cached pipeline or loads new pipeline for a specific task key.
+    def get_pipeline_by_name(self, task_key: str, model_name: str) -> BaseNLPPipeline:
+        """Loads and retrieves a specific model checkpoint pipeline by task key and model name.
 
         Args:
-            task_key (str): Candidate NLP task category key.
+            task_key (str): Task identifier ('summarization', 'sentiment', 'translation').
+            model_name (str): Specific Hugging Face model checkpoint name.
 
         Returns:
-            BaseNLPPipeline: Instantiated and loaded transformer pipeline object.
-
-        Raises:
-            ModelLoadError: If task key is invalid or model loading fails.
+            BaseNLPPipeline: Instantiated pipeline.
         """
-        if task_key not in self.model_registry["models"]:
-            raise ModelLoadError(f"Task key '{task_key}' not configured in model_registry.yaml")
-
-        model_config = self.model_registry["models"][task_key]
-        model_name = model_config["model_name"]
         cache_key = f"{task_key}:{model_name}"
-
         if cache_key in self.pipeline_cache:
-            logger.info(f"Retrieving cached pipeline for {cache_key}")
             return self.pipeline_cache[cache_key]
 
-        logger.info(f"Loading pipeline '{model_name}' for task '{task_key}' onto {self.device}...")
-        
-        try:
-            pipeline_instance = self._instantiate_pipeline(task_key, model_config)
-            pipeline_instance.load_pipeline()
-            self.pipeline_cache[cache_key] = pipeline_instance
-            return pipeline_instance
+        model_config = self.model_registry.get("models", {}).get(task_key, {})
+        cfg = dict(model_config)
+        cfg["model_name"] = model_name
 
-        except Exception as e:
-            logger.warning(f"Failed to load primary model '{model_name}': {e}. Attempting fallback model...")
-            fallback_model = model_config.get("fallback_model")
-            if not fallback_model:
-                raise ModelLoadError(f"Primary model '{model_name}' failed and no fallback specified.") from e
-            
-            fallback_config = dict(model_config)
-            fallback_config["model_name"] = fallback_model
-            fallback_cache_key = f"{task_key}:{fallback_model}"
+        pipeline_instance = self._instantiate_pipeline(task_key, cfg)
+        pipeline_instance.load_pipeline()
+        self.pipeline_cache[cache_key] = pipeline_instance
+        return pipeline_instance
 
-            try:
-                pipeline_instance = self._instantiate_pipeline(task_key, fallback_config)
-                pipeline_instance.load_pipeline()
-                self.pipeline_cache[fallback_cache_key] = pipeline_instance
-                return pipeline_instance
-            except Exception as fb_err:
-                raise ModelLoadError(f"Both primary and fallback models failed for {task_key}: {fb_err}") from fb_err
+    def get_pipeline(self, task_key: str) -> BaseNLPPipeline:
+        """Retrieves default cached pipeline or loads primary model pipeline for task_key."""
+        models_cfg = self.model_registry.get("models", {})
+        if task_key not in models_cfg:
+            raise ModelLoadError(f"Task key '{task_key}' not configured in model_registry.yaml")
+
+        model_config = models_cfg[task_key]
+        primary_model = model_config["model_name"]
+        return self.get_pipeline_by_name(task_key, primary_model)
 
     def _instantiate_pipeline(self, task_key: str, model_config: Dict[str, Any]) -> BaseNLPPipeline:
-        """Factory method instantiating the specialized pipeline class based on task."""
-        from src.models.summarizer import SummarizationPipeline
+        """Factory method instantiating specialized pipeline class based on task."""
+        from src.models.summarization import SummarizationPipeline
         from src.models.sentiment import SentimentPipeline
-        from src.models.text_gen import TextGenerationPipeline, QuestionAnsweringPipeline
-        from src.models.extra_pipelines import NERPipeline, TranslationPipeline
+        from src.models.translation import TranslationPipeline
 
         model_name = model_config["model_name"]
         
-        if task_key == TaskCategory.SUMMARIZATION.value:
-            return SummarizationPipeline(model_name=model_name, task_type="summarization", device=self.device, config=model_config)
-        elif task_key == TaskCategory.SENTIMENT.value:
-            return SentimentPipeline(model_name=model_name, task_type="sentiment-analysis", device=self.device, config=model_config)
-        elif task_key == TaskCategory.QUESTION_ANSWERING.value:
-            return QuestionAnsweringPipeline(model_name=model_name, task_type="text2text-generation", device=self.device, config=model_config)
-        elif task_key == TaskCategory.TEXT_GENERATION.value:
-            return TextGenerationPipeline(model_name=model_name, task_type="text-generation", device=self.device, config=model_config)
-        elif task_key == TaskCategory.NAMED_ENTITY_RECOGNITION.value:
-            return NERPipeline(model_name=model_name, task_type="token-classification", device=self.device, config=model_config)
-        elif task_key == TaskCategory.TRANSLATION.value:
-            return TranslationPipeline(model_name=model_name, task_type="translation", device=self.device, config=model_config)
+        if task_key == "summarization":
+            return SummarizationPipeline(model_name=model_name, device=self.device, config=model_config)
+        elif task_key == "sentiment":
+            return SentimentPipeline(model_name=model_name, device=self.device, config=model_config)
+        elif task_key == "translation":
+            return TranslationPipeline(model_name=model_name, device=self.device, config=model_config)
         else:
-            raise ModelLoadError(f"Unknown task key '{task_key}'")
+            raise ModelLoadError(f"Unknown or unsupported task key '{task_key}'")
 
     def clear_cache(self) -> None:
         """Clears pipeline cache and releases hardware accelerator memory."""

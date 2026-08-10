@@ -1,76 +1,5 @@
 [
   {
-    "id": "qa_01",
-    "prompt": "What is the capital of France and what is its population?",
-    "target_task": "question_answering",
-    "description": "Direct question starting with What",
-    "reference_text": "Paris is the capital of France with a population of approximately 2.1 million residents in the city proper."
-  },
-  {
-    "id": "qa_02",
-    "prompt": "Why do leaves change color in autumn?",
-    "target_task": "question_answering",
-    "description": "Direct question starting with Why",
-    "reference_text": "Leaves change color in autumn because chlorophyll breaks down as daylight decreases, revealing orange and yellow pigments."
-  },
-  {
-    "id": "qa_03",
-    "prompt": "How does a transformer neural network handle attention?",
-    "target_task": "question_answering",
-    "description": "Technical question starting with How",
-    "reference_text": "Transformer neural networks use self-attention mechanisms to compute contextual relationship weights across token sequences."
-  },
-  {
-    "id": "qa_04",
-    "prompt": "Who discovered penicillin and in what year was it discovered?",
-    "target_task": "question_answering",
-    "description": "Historical science Q&A query",
-    "reference_text": "Alexander Fleming discovered penicillin in 1928 at St. Mary's Hospital in London."
-  },
-  {
-    "id": "qa_05",
-    "prompt": "What is the distance between the Earth and the Moon?",
-    "target_task": "question_answering",
-    "description": "Astronomy distance question",
-    "reference_text": "The average distance between the Earth and the Moon is approximately 384,400 kilometers (238,855 miles)."
-  },
-  {
-    "id": "qa_06",
-    "prompt": "How does photosynthesis convert sunlight into chemical energy?",
-    "target_task": "question_answering",
-    "description": "Biological process explanation query",
-    "reference_text": "Photosynthesis uses chlorophyll to absorb sunlight, converting carbon dioxide and water into glucose sugar and oxygen."
-  },
-  {
-    "id": "qa_07",
-    "prompt": "What is the difference between supervised and unsupervised machine learning?",
-    "target_task": "question_answering",
-    "description": "Machine learning conceptual query",
-    "reference_text": "Supervised learning trains models on labeled data with known targets, whereas unsupervised learning discovers patterns in unlabeled data."
-  },
-  {
-    "id": "qa_08",
-    "prompt": "Where is the Great Barrier Reef located?",
-    "target_task": "question_answering",
-    "description": "Geographical location query",
-    "reference_text": "The Great Barrier Reef is located off the northeastern coast of Queensland, Australia, in the Coral Sea."
-  },
-  {
-    "id": "qa_09",
-    "prompt": "What causes ocean tides on Earth?",
-    "target_task": "question_answering",
-    "description": "Geophysics oceanography query",
-    "reference_text": "Ocean tides are caused by gravitational forces exerted by the Moon and the Sun combined with the Earth's rotation."
-  },
-  {
-    "id": "qa_10",
-    "prompt": "Who wrote the play Hamlet?",
-    "target_task": "question_answering",
-    "description": "Literature trivia query",
-    "reference_text": "William Shakespeare wrote the tragedy Hamlet around 1600."
-  },
-
-  {
     "id": "sum_01",
     "prompt": "Artificial intelligence has transformed modern software engineering by introducing dynamic model routing, automated code generation, and intelligent testing workflows. Companies deploy transformer models to optimize compute cost. By leveraging lightweight zero-shot classifiers alongside specialized generation models, organizations significantly reduce inference latency while keeping throughput high. Recent advances in hardware acceleration further streamline enterprise deployments.",
     "target_task": "summarization",
@@ -100,328 +29,81 @@
   },
   {
     "id": "sum_05",
-    "prompt": "Central banks worldwide are continuing their efforts to manage inflation through interest rate adjustments and monetary policy tightening. Consumer prices have shown signs of stabilizing, but housing costs and labor market tightness remain stubborn challenges. Financial advisors recommend maintaining diversified investment portfolios to hedge against persistent market volatility.",
-    "target_task": "summarization",
-    "description": "Macroeconomic policy summary prompt",
-    "reference_text": "Central banks are adjusting interest rates to curb inflation amid high housing and labor costs, prompting advisors to recommend diversified investment strategies."
-  },
-  {
-    "id": "sum_06",
-    "prompt": "Space exploration achieved major milestones this decade with robotic rovers collecting soil samples on Mars and space telescopes capturing unprecedented infrared images of distant galaxies. International space agencies are collaborating on planned human missions to the Moon under the Artemis program, laying groundwork for future deep space travel.",
-    "target_task": "summarization",
-    "description": "Space exploration overview summary",
-    "reference_text": "Space exploration advanced with Mars sample collection and galaxy imaging, alongside international collaborations planning human lunar missions under the Artemis program."
-  },
-  {
-    "id": "sum_07",
     "prompt": "Cybersecurity threats have evolved rapidly with attackers deploying automated phishing scripts and zero-day exploit techniques against corporate networks. Security teams are adopting Zero Trust architectures, multi-factor authentication, and automated endpoint monitoring to protect sensitive corporate assets.",
     "target_task": "summarization",
     "description": "Cybersecurity threat brief summary",
     "reference_text": "Evolving automated cyber threats have prompted organizations to implement Zero Trust security models, multi-factor authentication, and active endpoint monitoring."
-  },
-  {
-    "id": "sum_08",
-    "prompt": "Advances in messenger RNA vaccine technology have opened new avenues for treating cardiovascular diseases, autoimmune disorders, and various forms of cancer. Clinical trials demonstrate promising immune responses with minimal side effects, paving the way for personalized genomic medicine.",
-    "target_task": "summarization",
-    "description": "Biomedical research article summary",
-    "reference_text": "mRNA technology advances show promising clinical trial results for treating heart disease, autoimmune conditions, and cancer through genomic medicine."
-  },
-  {
-    "id": "sum_09",
-    "prompt": "Modern cloud computing infrastructure relies on microservice containerization, Kubernetes orchestration, and serverless compute paradigms. By decoupling monolithic applications into independent services, engineering teams accelerate deployment velocity and scale individual components dynamically.",
-    "target_task": "summarization",
-    "description": "Cloud architecture overview summary",
-    "reference_text": "Decoupling monoliths into containerized microservices managed by Kubernetes improves cloud application scalability and deployment velocity."
-  },
-  {
-    "id": "sum_10",
-    "prompt": "Autonomous mobile robots are increasingly deployed across logistics warehouses and manufacturing plants to handle material transport and inventory sorting. Equipped with LiDAR sensors and computer vision models, these robots safely navigate complex indoor environments alongside human workers.",
-    "target_task": "summarization",
-    "description": "Robotics and automation article summary",
-    "reference_text": "Autonomous mobile robots using computer vision and LiDAR navigate indoor facilities to automate material transport and inventory sorting in logistics."
   },
 
   {
     "id": "sent_01",
     "prompt": "This new smartphone has an amazing camera and exceptional battery life, but the software is terrible and constantly crashes.",
     "target_task": "sentiment",
-    "description": "Review text containing positive and negative sentiment adjectives",
-    "reference_text": "Sentiment: Negative / Mixed (software crashes but hardware is good)."
+    "description": "Negative / mixed smartphone feedback",
+    "reference_text": "negative"
   },
   {
     "id": "sent_02",
     "prompt": "I love the customer service at this store! They were friendly, helpful, and resolved my issue immediately. Highly recommend!",
     "target_task": "sentiment",
     "description": "Positive customer review",
-    "reference_text": "Sentiment: Positive (Friendly and helpful service)."
+    "reference_text": "positive"
   },
   {
     "id": "sent_03",
     "prompt": "The flight was delayed by four hours without any explanation, the cabin crew was rude, and my luggage was lost upon arrival.",
     "target_task": "sentiment",
     "description": "Negative airline service feedback",
-    "reference_text": "Sentiment: Negative (Flight delay and lost luggage)."
+    "reference_text": "negative"
   },
   {
     "id": "sent_04",
     "prompt": "The package arrived on time in perfect condition. The build quality exceeds my expectations for the price.",
     "target_task": "sentiment",
     "description": "Positive product purchase review",
-    "reference_text": "Sentiment: Positive (On-time arrival and great quality)."
+    "reference_text": "positive"
   },
   {
     "id": "sent_05",
-    "prompt": "The movie started with great potential, but the second half had terrible pacing and an unsatisfactory ending.",
+    "prompt": "The item arrived as described. Standard packaging, nothing special.",
     "target_task": "sentiment",
-    "description": "Critical movie review",
-    "reference_text": "Sentiment: Negative (Disappointing ending and pacing)."
-  },
-  {
-    "id": "sent_06",
-    "prompt": "Food was decent, service was average, nothing special but nothing terrible either.",
-    "target_task": "sentiment",
-    "description": "Neutral restaurant review",
-    "reference_text": "Sentiment: Neutral (Average dining experience)."
-  },
-  {
-    "id": "sent_07",
-    "prompt": "Extremely frustrated with the latest software update! It broke half my features and drained my phone battery overnight.",
-    "target_task": "sentiment",
-    "description": "Angry app update feedback",
-    "reference_text": "Sentiment: Negative (Broken software and battery drain)."
-  },
-  {
-    "id": "sent_08",
-    "prompt": "Outstanding dining experience! The chef's tasting menu was innovative, delicious, and paired perfectly with wine.",
-    "target_task": "sentiment",
-    "description": "Enthusiastic restaurant review",
-    "reference_text": "Sentiment: Positive (Excellent food and dining)."
-  },
-  {
-    "id": "sent_09",
-    "prompt": "The laptop keyboard feels stiff and the screen brightness is subpar compared to competitors in this price range.",
-    "target_task": "sentiment",
-    "description": "Hardware gadget critique",
-    "reference_text": "Sentiment: Negative (Stiff keyboard and poor screen)."
-  },
-  {
-    "id": "sent_10",
-    "prompt": "The customer support agent listened attentively, guided me step-by-step, and fixed the configuration error in under ten minutes.",
-    "target_task": "sentiment",
-    "description": "Praising support interaction",
-    "reference_text": "Sentiment: Positive (Efficient and helpful support)."
-  },
-
-  {
-    "id": "gen_01",
-    "prompt": "Write a short creative story about an astronaut discovering an abandoned alien city on Mars.",
-    "target_task": "text_generation",
-    "description": "Creative writing sci-fi story prompt",
-    "reference_text": "The astronaut stepped onto the red dust of Mars, gazing at the silent crystalline spires of an ancient abandoned alien city."
-  },
-  {
-    "id": "gen_02",
-    "prompt": "Generate a poem celebrating the beauty of high-performance parallel computing.",
-    "target_task": "text_generation",
-    "description": "Creative poem generation prompt",
-    "reference_text": "Threads synchronize in rhythmic grace, across parallel cores in digital space."
-  },
-  {
-    "id": "gen_03",
-    "prompt": "Write the opening paragraph of a detective novel set in futuristic cyber-punk Tokyo.",
-    "target_task": "text_generation",
-    "description": "Cyberpunk mystery fiction prompt",
-    "reference_text": "Neon rain reflected off the wet asphalt of Shinjuku as Detective Sato adjusted his cybernetic optic overlay."
-  },
-  {
-    "id": "gen_04",
-    "prompt": "Draft an inspirational speech opening for a university commencement ceremony.",
-    "target_task": "text_generation",
-    "description": "Formal speech opening prompt",
-    "reference_text": "Graduates of the Class of 2026, today marks the culmination of years of hard work, discipline, and relentless curiosity."
-  },
-  {
-    "id": "gen_05",
-    "prompt": "Compose a short fantasy fable about a wise dragon living beneath a snowy mountain peak.",
-    "target_task": "text_generation",
-    "description": "Fantasy fiction fable prompt",
-    "reference_text": "High above the frosted pine forests, beneath the craggy peaks of Mount Eldor, slept Ignis the ancient silver dragon."
-  },
-  {
-    "id": "gen_06",
-    "prompt": "Write an engaging introductory blog post about quantum cryptography and unbreakable encryption.",
-    "target_task": "text_generation",
-    "description": "Technical blog post intro prompt",
-    "reference_text": "In an era of relentless cyber attacks, quantum key distribution promises data security protected by the fundamental laws of physics."
-  },
-  {
-    "id": "gen_07",
-    "prompt": "Draft a persuasive pitch for an eco-friendly solar-powered smart home battery startup.",
-    "target_task": "text_generation",
-    "description": "Startup business pitch prompt",
-    "reference_text": "Imagine a home battery system that not only cuts your electric bill to zero but also powers your neighborhood during severe grid outages."
-  },
-  {
-    "id": "gen_08",
-    "prompt": "Write a dramatic monologue of a sea captain navigating a historic storm.",
-    "target_task": "text_generation",
-    "description": "Dramatic theatrical monologue prompt",
-    "reference_text": "Hold fast to the wheel, boys! The Atlantic may rage, but this vessel was built to weather the ocean's fury!"
-  },
-  {
-    "id": "gen_09",
-    "prompt": "Generate a descriptive paragraph about a serene autumn morning in the Appalachian mountains.",
-    "target_task": "text_generation",
-    "description": "Nature descriptive prose prompt",
-    "reference_text": "Golden morning mist drifted through the vibrant crimson maples of the Appalachian Ridge, carrying the crisp scent of pine."
-  },
-  {
-    "id": "gen_10",
-    "prompt": "Write a technical explanation of how garbage collection works in modern managed runtimes.",
-    "target_task": "text_generation",
-    "description": "Computer science technical prose prompt",
-    "reference_text": "Automatic garbage collection reclaims unreferenced heap memory through generational scanning and mark-and-sweep mark passes."
-  },
-
-  {
-    "id": "ner_01",
-    "prompt": "Extract names of organizations, people, and locations: Tim Cook announced Apple's new product launch in Cupertino, California.",
-    "target_task": "named_entity_recognition",
-    "description": "Explicit NER entity extraction request",
-    "reference_text": "Tim Cook (PER), Apple (ORG), Cupertino (LOC), California (LOC)"
-  },
-  {
-    "id": "ner_02",
-    "prompt": "Find entities in the text: Google operates major data centers in Oregon, Frankfurt, and Tokyo under Sundar Pichai's leadership.",
-    "target_task": "named_entity_recognition",
-    "description": "NER directive with company executive and global locations",
-    "reference_text": "Google (ORG), Oregon (LOC), Frankfurt (LOC), Tokyo (LOC), Sundar Pichai (PER)"
-  },
-  {
-    "id": "ner_03",
-    "prompt": "Identify entities: Satya Nadella visited Microsoft headquarters in Redmond, Washington to discuss AI cloud partnerships with OpenAI.",
-    "target_task": "named_entity_recognition",
-    "description": "Tech corporate NER extraction prompt",
-    "reference_text": "Satya Nadella (PER), Microsoft (ORG), Redmond (LOC), Washington (LOC), OpenAI (ORG)"
-  },
-  {
-    "id": "ner_04",
-    "prompt": "Extract entities: Elon Musk unveiled the new Cybertruck at Tesla's Gigafactory in Austin, Texas.",
-    "target_task": "named_entity_recognition",
-    "description": "Automotive tech executive NER prompt",
-    "reference_text": "Elon Musk (PER), Tesla (ORG), Austin (LOC), Texas (LOC)"
-  },
-  {
-    "id": "ner_05",
-    "prompt": "Find entities: The United Nations General Assembly convened in New York City with representatives from France and Japan.",
-    "target_task": "named_entity_recognition",
-    "description": "International diplomatic organization NER prompt",
-    "reference_text": "United Nations General Assembly (ORG), New York City (LOC), France (LOC), Japan (LOC)"
-  },
-  {
-    "id": "ner_06",
-    "prompt": "Extract named entities: Mark Zuckerberg presented Meta's annual virtual reality strategy in Menlo Park.",
-    "target_task": "named_entity_recognition",
-    "description": "Social network tech leadership NER prompt",
-    "reference_text": "Mark Zuckerberg (PER), Meta (ORG), Menlo Park (LOC)"
-  },
-  {
-    "id": "ner_07",
-    "prompt": "Identify locations and organizations: Amazon opened a major logistics hub near London Heathrow Airport in the United Kingdom.",
-    "target_task": "named_entity_recognition",
-    "description": "E-commerce infrastructure NER prompt",
-    "reference_text": "Amazon (ORG), London Heathrow Airport (LOC), United Kingdom (LOC)"
-  },
-  {
-    "id": "ner_08",
-    "prompt": "Find people and institutions: Dr. Anthony Fauci addressed researchers at Harvard University in Cambridge, Massachusetts.",
-    "target_task": "named_entity_recognition",
-    "description": "Academic medical institution NER prompt",
-    "reference_text": "Anthony Fauci (PER), Harvard University (ORG), Cambridge (LOC), Massachusetts (LOC)"
-  },
-  {
-    "id": "ner_09",
-    "prompt": "Extract entities: Jensen Huang revealed Nvidia's latest GPU architecture during the GPU Technology Conference in San Jose.",
-    "target_task": "named_entity_recognition",
-    "description": "Semiconductor tech executive NER prompt",
-    "reference_text": "Jensen Huang (PER), Nvidia (ORG), San Jose (LOC)"
-  },
-  {
-    "id": "ner_10",
-    "prompt": "Identify named entities: The European Central Bank located in Frankfurt adjusted euro interest rates following advice from Christine Lagarde.",
-    "target_task": "named_entity_recognition",
-    "description": "Financial regulatory leadership NER prompt",
-    "reference_text": "European Central Bank (ORG), Frankfurt (LOC), Christine Lagarde (PER)"
+    "description": "Neutral product review",
+    "reference_text": "neutral"
   },
 
   {
     "id": "trans_01",
-    "prompt": "Translate this sentence into French: Machine learning model routing improves accuracy and latency.",
+    "prompt": "Translate this to French: Machine learning model routing improves accuracy.",
     "target_task": "translation",
     "description": "Technical machine learning translation to French",
-    "reference_text": "L'orientement des modèles d'apprentissage automatique améliore la précision et la latence."
+    "reference_text": "L'orientation des modèles d'apprentissage automatique améliore la précision."
   },
   {
     "id": "trans_02",
-    "prompt": "Convert to Spanish: Hello world, welcome to our interactive NLP system demonstration.",
+    "prompt": "Translate to Spanish: Hello world, welcome to our dynamic model routing system.",
     "target_task": "translation",
     "description": "Conversational greeting translation to Spanish",
-    "reference_text": "Hola mundo, bienvenido a la demostración de nuestro sistema de PLN."
+    "reference_text": "Hola mundo, bienvenido a nuestro sistema de enrutamiento dinámico de modelos."
   },
   {
     "id": "trans_03",
-    "prompt": "Translate into French: Solar energy is clean, abundant, and essential for combating climate change.",
+    "prompt": "Translate into German: Artificial intelligence will redefine the future of healthcare.",
     "target_task": "translation",
-    "description": "Environmental science translation to French",
-    "reference_text": "L'énergie solaire est propre, abondante et essentielle pour lutter contre le changement climatique."
+    "description": "Healthcare AI translation to German",
+    "reference_text": "Künstliche Intelligenz wird die Zukunft des Gesundheitswesens neu definieren."
   },
   {
     "id": "trans_04",
-    "prompt": "Convert to Spanish: The software architecture uses microservices to improve system scalability.",
+    "prompt": "Translate this to Hindi: My name is Sai Kumar.",
     "target_task": "translation",
-    "description": "Software architecture translation to Spanish",
-    "reference_text": "La arquitectura de software utiliza microservicios para mejorar la escalabilidad del sistema."
+    "description": "Personal name translation to Hindi",
+    "reference_text": "मेरा नाम साईं कुमार है।"
   },
   {
     "id": "trans_05",
-    "prompt": "Translate to French: Artificial intelligence will redefine the future of human healthcare and medicine.",
+    "prompt": "Translate into French: Solar energy is clean, abundant, and essential for combating climate change.",
     "target_task": "translation",
-    "description": "Healthcare tech translation to French",
-    "reference_text": "L'intelligence artificielle redéfinira l'avenir de la santé humaine et de la médecine."
-  },
-  {
-    "id": "trans_06",
-    "prompt": "Convert to Spanish: Please make sure to save your work before logging off the server.",
-    "target_task": "translation",
-    "description": "System admin prompt translation to Spanish",
-    "reference_text": "Por favor, asegúrese de guardar su trabajo antes de cerrar sesión en el servidor."
-  },
-  {
-    "id": "trans_07",
-    "prompt": "Translate to French: Quantum computers process complex information faster than classical machines.",
-    "target_task": "translation",
-    "description": "Quantum physics translation to French",
-    "reference_text": "Les ordinateurs quantiques traitent les informations complexes plus rapidement que les machines classiques."
-  },
-  {
-    "id": "trans_08",
-    "prompt": "Convert to Spanish: High-performance parallel computing enables real-time scientific simulation.",
-    "target_task": "translation",
-    "description": "Parallel computing translation to Spanish",
-    "reference_text": "La computación paralela de alto rendimiento permite la simulación científica en tiempo real."
-  },
-  {
-    "id": "trans_09",
-    "prompt": "Translate to French: Good morning, I would like to reserve a hotel room for three nights.",
-    "target_task": "translation",
-    "description": "Travel and hospitality translation to French",
-    "reference_text": "Bonjour, je voudrais réserver une chambre d'hôtel pour trois nuits."
-  },
-  {
-    "id": "trans_10",
-    "prompt": "Convert to Spanish: Open source software encourages global collaboration and rapid innovation.",
-    "target_task": "translation",
-    "description": "Open source community translation to Spanish",
-    "reference_text": "El software de código abierto fomenta la colaboración global y la innovación rápida."
+    "description": "Clean energy translation to French",
+    "reference_text": "L'énergie solaire est propre, abondante et essentielle pour lutter contre le changement climatique."
   }
 ]

@@ -7,7 +7,10 @@ from src.utils.logger import logger
 
 
 class SummarizationPipeline(BaseNLPPipeline):
-    """Pipeline wrapping Hugging Face summarization models (BART, DistilBART, T5)."""
+    """Pipeline wrapping Hugging Face summarization models (DistilBART, T5-small)."""
+
+    def __init__(self, model_name: str, device: str = "cpu", config: Dict[str, Any] = None):
+        super().__init__(model_name=model_name, task_type="summarization", device=device, config=config)
 
     def load_pipeline(self) -> None:
         """Loads the summarization pipeline onto the configured target device."""
@@ -22,26 +25,31 @@ class SummarizationPipeline(BaseNLPPipeline):
         """Executes abstractive text summarization.
 
         Args:
-            prompt (str): Input paragraph text.
-            **kwargs: Additional parameters (max_length, num_beams).
+            prompt (str): Input text paragraph.
 
         Returns:
-            str: Generated summary text.
+            str: Generated summary text output.
         """
-        max_len = kwargs.get("max_length", self.config.get("max_output_length", 150))
-        min_len = self.config.get("min_output_length", 30)
-        
-        if min_len >= max_len:
-            min_len = max(10, max_len - 20)
+        # Remove explicit "summarize" command prefixes if present
+        clean_text = prompt
+        if clean_text.lower().startswith("summarize"):
+            clean_text = clean_text[9:].strip(" :")
 
-        num_b = kwargs.get("num_beams", 4)
+        max_len = kwargs.get("max_length", self.config.get("max_output_length", 150))
+        min_len = self.config.get("min_output_length", 20)
+        
+        word_count = len(clean_text.split())
+        if word_count < 40:
+            max_len = min(max_len, max(25, word_count))
+            min_len = min(min_len, 10)
 
         result = self.pipeline_instance(
-            prompt,
+            clean_text,
             max_length=max_len,
             min_length=min_len,
-            num_beams=num_b,
-            early_stopping=True,
             truncation=True
         )
-        return result[0]["summary_text"].strip()
+        
+        if isinstance(result, list) and len(result) > 0:
+            return result[0].get("summary_text", "").strip()
+        return ""

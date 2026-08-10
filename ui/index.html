@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic NLP Model Router</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">
+          <h1>Dynamic NLP Model Router</h1>
+          <p>Task Classification & Benchmark-Driven Model Selection</p>
+        </div>
+      </div>
+      
+      <nav class="nav-tabs">
+        <button class="tab-btn active" data-tab="chat-tab">💬 Chatbot</button>
+        <button class="tab-btn" data-tab="benchmark-tab">📊 Model Benchmark</button>
+        <button class="tab-btn" data-tab="rules-tab">⚙️ Routing Rules</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-container">
+
+    <!-- TAB 1: CHATBOT -->
+    <section id="chat-tab" class="tab-content active">
+      
+      <!-- Preset Sample Prompts -->
+      <div class="preset-bar">
+        <span class="preset-label">Sample Presets:</span>
+        <button class="preset-btn" data-preset="translation">Translate to Hindi</button>
+        <button class="preset-btn" data-preset="french">Translate to French</button>
+        <button class="preset-btn" data-preset="sentiment">Sentiment Analysis</button>
+        <button class="preset-btn" data-preset="summarization">Summarize Text</button>
+      </div>
+
+      <!-- Chat Thread -->
+      <div id="chat-thread" class="chat-thread">
+        <div class="chat-card welcome-card">
+          <div class="card-header-badge">System Ready</div>
+          <div class="welcome-text">
+            Enter a prompt below. The router will detect the task intent (<strong>Translation</strong>, <strong>Sentiment Analysis</strong>, or <strong>Summarization</strong>), select the optimal Hugging Face transformer model, and execute inference.
+          </div>
+        </div>
+      </div>
+
+      <!-- Input Form -->
+      <form id="chat-form" class="chat-form">
+        <div class="input-row">
+          <textarea id="prompt-input" placeholder="Type your prompt (e.g. 'Translate this to Hindi: My name is Sai Kumar.', 'Summarize...', 'Sentiment...')" rows="2" required></textarea>
+          <button type="submit" id="send-btn" class="send-btn">Send Prompt ➔</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- TAB 2: MODEL BENCHMARK -->
+    <section id="benchmark-tab" class="tab-content">
+      <div class="section-card">
+        <h2>📊 Model Benchmark Comparison</h2>
+        <p>Head-to-head comparison of Primary vs Fallback models on real task datasets.</p>
+        
+        <div class="table-wrapper">
+          <table class="benchmark-table">
+            <thead>
+              <tr>
+                <th>Task</th>
+                <th>Primary Model</th>
+                <th>Primary Quality</th>
+                <th>Primary Latency</th>
+                <th>Fallback Model</th>
+                <th>Fallback Quality</th>
+                <th>Fallback Latency</th>
+              </tr>
+            </thead>
+            <tbody id="benchmark-tbody">
+              <!-- Dynamically populated or static baseline -->
+              <tr>
+                <td><strong>Summarization</strong></td>
+                <td><code>sshleifer/distilbart-cnn-12-6</code></td>
+                <td><span class="quality-tag">ROUGE-L: 0.4146</span></td>
+                <td>1,649.4 ms</td>
+                <td><code>t5-small</code></td>
+                <td><span class="quality-tag">ROUGE-L: 0.4054</span></td>
+                <td>1,264.9 ms</td>
+              </tr>
+              <tr>
+                <td><strong>Sentiment Analysis</strong></td>
+                <td><code>cardiffnlp/twitter-roberta-base-sentiment-latest</code></td>
+                <td><span class="quality-tag">Accuracy: 100.0%</span></td>
+                <td>245.9 ms</td>
+                <td><code>distilbert-base-uncased-finetuned-sst-2-english</code></td>
+                <td><span class="quality-tag">Accuracy: 80.0%</span></td>
+                <td>18.5 ms</td>
+              </tr>
+              <tr>
+                <td><strong>Translation</strong></td>
+                <td><code>t5-base</code></td>
+                <td><span class="quality-tag">BLEU: 0.4685</span></td>
+                <td>823.8 ms</td>
+                <td><code>t5-small</code></td>
+                <td><span class="quality-tag">BLEU: 0.3720</span></td>
+                <td>556.6 ms</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: ROUTING RULES -->
+    <section id="rules-tab" class="tab-content">
+      <div class="section-card">
+        <h2>⚙️ Keyword Routing Rules</h2>
+        <p>Keyword triggers used for intent classification and model dispatching.</p>
+
+        <div class="table-wrapper">
+          <table class="rules-table">
+            <thead>
+              <tr>
+                <th>Supported Task</th>
+                <th>Keyword Rules</th>
+                <th>Primary Model</th>
+                <th>Fallback Model</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Translation</strong></td>
+                <td><code>translate</code>, <code>translation</code>, <code>translate to</code>, <code>translate into</code>, <code>in hindi</code>, <code>in french</code>, <code>in spanish</code>, <code>in telugu</code></td>
+                <td><code>t5-base</code></td>
+                <td><code>t5-small</code></td>
+              </tr>
+              <tr>
+                <td><strong>Sentiment Analysis</strong></td>
+                <td><code>sentiment</code>, <code>sentiment analysis</code>, <code>positive</code>, <code>negative</code>, <code>neutral</code>, <code>emotion</code></td>
+                <td><code>cardiffnlp/twitter-roberta-base-sentiment-latest</code></td>
+                <td><code>distilbert-base-uncased-finetuned-sst-2-english</code></td>
+              </tr>
+              <tr>
+                <td><strong>Summarization</strong></td>
+                <td><code>summarize</code>, <code>summary</code>, <code>summarize this</code>, <code>shorten this</code>, <code>give me a summary</code>, <code>key points</code></td>
+                <td><code>sshleifer/distilbart-cnn-12-6</code></td>
+                <td><code>t5-small</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-"""Fair Model Evaluator evaluating candidate models head-to-head on identical task datasets."""
+"""Model Evaluator comparing Primary and Fallback models on real evaluation datasets."""
 
 import json
 from pathlib import Path
@@ -8,35 +8,24 @@ from typing import List, Dict, Any, Optional
 from config.settings import settings
 from src.models.model_manager import ModelManager
 from src.evaluation.metrics import EvaluationMetrics
-from src.utils.logger import logger, get_memory_usage_mb
+from src.utils.logger import logger
 
 DATASET_PATH = Path(__file__).resolve().parent.parent.parent / "assets" / "evaluation_dataset.json"
 
 
 @dataclass
-class CandidateModelResult:
-    """Evaluation result for a single candidate model on a task dataset."""
-    task_key: str
-    model_name: str
-    role: str  # "primary" or "fallback"
-    sample_count: int
-    avg_latency_ms: float
-    avg_throughput_tps: float
-    ram_usage_mb: float
-    avg_rouge1: float
-    avg_rouge2: float
-    avg_rougel: float
-    sample_outputs: List[Dict[str, Any]]
-
-
-@dataclass
-class FairModelEvaluationReport:
-    """Comparative report containing head-to-head metrics for candidate models across all tasks."""
-    task_comparisons: Dict[str, Dict[str, CandidateModelResult]]
+class ModelBenchmarkResult:
+    """Benchmark result for a single candidate model on a task."""
+    task: str
+    model: str
+    quality_metric_name: str
+    quality_score: float
+    latency_ms: float
+    status: str  # "Primary" or "Fallback"
 
 
 class ModelEvaluator:
-    """Evaluates primary and fallback candidate models on identical test datasets per task."""
+    """Evaluates primary and fallback models for Summarization, Sentiment Analysis, and Translation."""
 
     def __init__(self, dataset_path: Optional[Path] = None):
         self.dataset_path = dataset_path or DATASET_PATH
@@ -44,157 +33,121 @@ class ModelEvaluator:
         self.registry = settings.load_model_registry().get("models", {})
 
     def load_dataset(self) -> List[Dict[str, Any]]:
-        """Loads test dataset with ground-truth reference texts."""
+        """Loads test dataset JSON."""
         if not self.dataset_path.exists():
             raise FileNotFoundError(f"Evaluation dataset not found at {self.dataset_path}")
-
         with open(self.dataset_path, "r", encoding="utf-8") as f:
             return json.load(f)
 
-    def evaluate_candidate(
+    def evaluate_model(
         self,
         task_key: str,
         model_name: str,
-        role: str,
-        test_samples: List[Dict[str, Any]],
-        task_config: Dict[str, Any]
-    ) -> CandidateModelResult:
-        """Evaluates a single model candidate on a specified list of test samples.
-
-        Args:
-            task_key (str): Task category identifier.
-            model_name (str): Hugging Face checkpoint identifier.
-            role (str): Model role ('primary' or 'fallback').
-            test_samples (List[Dict[str, Any]]): Test samples for this task.
-            task_config (Dict[str, Any]): Task configuration dictionary.
-
-        Returns:
-            CandidateModelResult: Aggregated evaluation result.
-        """
-        logger.info(f"Evaluating {role.upper()} model candidate '{model_name}' for task '{task_key}' on {len(test_samples)} samples...")
-
-        # Instantiate pipeline directly via ModelManager instantiation logic
-        pipeline_cfg = dict(task_config)
-        pipeline_cfg["model_name"] = model_name
-
+        status: str,
+        test_samples: List[Dict[str, Any]]
+    ) -> ModelBenchmarkResult:
+        """Evaluates a single model candidate on test samples and calculates real benchmark values."""
+        logger.info(f"Evaluating {status.upper()} model '{model_name}' for task '{task_key}' on {len(test_samples)} samples...")
+        
         try:
-            pipeline_instance = self.model_manager._instantiate_pipeline(task_key, pipeline_cfg)
-            pipeline_instance.load_pipeline()
+            pipeline = self.model_manager.get_pipeline_by_name(task_key, model_name)
         except Exception as e:
-            logger.error(f"Failed to load candidate model '{model_name}': {e}")
-            return CandidateModelResult(
-                task_key=task_key,
-                model_name=model_name,
-                role=role,
-                sample_count=len(test_samples),
-                avg_latency_ms=0.0,
-                avg_throughput_tps=0.0,
-                ram_usage_mb=get_memory_usage_mb(),
-                avg_rouge1=0.0,
-                avg_rouge2=0.0,
-                avg_rougel=0.0,
-                sample_outputs=[]
+            logger.error(f"Failed to load model '{model_name}': {e}")
+            metric_name = "ROUGE-L" if task_key == "summarization" else ("Accuracy" if task_key == "sentiment" else "BLEU")
+            return ModelBenchmarkResult(
+                task=task_key,
+                model=model_name,
+                quality_metric_name=metric_name,
+                quality_score=0.0,
+                latency_ms=0.0,
+                status=status
             )
 
         latencies = []
-        throughputs = []
-        rouge1_scores = []
-        rouge2_scores = []
-        rougel_scores = []
-        sample_outputs = []
+        quality_scores = []
 
-        for sample in test_samples:
-            prompt = sample["prompt"]
-            reference = sample.get("reference_text")
+        if task_key == "sentiment":
+            y_true = [s.get("reference_text", "") for s in test_samples]
+            y_pred = []
+            for sample in test_samples:
+                prompt = sample["prompt"]
+                try:
+                    out_text, lat, _ = pipeline.run(prompt)
+                    latencies.append(lat)
+                    y_pred.append(out_text)
+                except Exception as err:
+                    logger.warning(f"Inference error on sample for '{model_name}': {err}")
 
-            try:
-                output_text, latency_ms, throughput = pipeline_instance.run(prompt)
-                latencies.append(latency_ms)
-                throughputs.append(throughput)
+            accuracy = EvaluationMetrics.compute_accuracy(y_true, y_pred)
+            quality_scores.append(accuracy)
+            metric_name = "Accuracy"
 
-                rouge1, rouge2, rougel = 0.0, 0.0, 0.0
-                if reference:
-                    metrics = EvaluationMetrics.compute_all(output_text, reference)
-                    rouge1 = metrics.get("rouge1", 0.0)
-                    rouge2 = metrics.get("rouge2", 0.0)
-                    rougel = metrics.get("rougeL", 0.0)
+        elif task_key == "summarization":
+            metric_name = "ROUGE-L"
+            for sample in test_samples:
+                prompt = sample["prompt"]
+                ref = sample.get("reference_text", "")
+                try:
+                    out_text, lat, _ = pipeline.run(prompt)
+                    latencies.append(lat)
+                    if ref:
+                        score = EvaluationMetrics.compute_rouge_l(out_text, ref)
+                        quality_scores.append(score)
+                except Exception as err:
+                    logger.warning(f"Inference error on sample for '{model_name}': {err}")
 
-                rouge1_scores.append(rouge1)
-                rouge2_scores.append(rouge2)
-                rougel_scores.append(rougel)
-
-                sample_outputs.append({
-                    "id": sample.get("id", ""),
-                    "prompt": prompt[:50] + "...",
-                    "output": output_text,
-                    "latency_ms": latency_ms,
-                    "throughput": throughput,
-                    "rougeL": rougel
-                })
-
-            except Exception as err:
-                logger.warning(f"Inference error on sample for model '{model_name}': {err}")
+        elif task_key == "translation":
+            metric_name = "BLEU"
+            for sample in test_samples:
+                prompt = sample["prompt"]
+                ref = sample.get("reference_text", "")
+                try:
+                    out_text, lat, _ = pipeline.run(prompt)
+                    latencies.append(lat)
+                    if ref:
+                        score = EvaluationMetrics.compute_bleu(out_text, ref)
+                        quality_scores.append(score)
+                except Exception as err:
+                    logger.warning(f"Inference error on sample for '{model_name}': {err}")
+        else:
+            metric_name = "Score"
 
         n = max(len(latencies), 1)
-        avg_lat = sum(latencies) / n
-        avg_tps = sum(throughputs) / n
-        avg_r1 = sum(rouge1_scores) / n
-        avg_r2 = sum(rouge2_scores) / n
-        avg_rl = sum(rougel_scores) / n
-        mem_mb = get_memory_usage_mb()
+        avg_latency = sum(latencies) / n
+        avg_quality = (sum(quality_scores) / max(len(quality_scores), 1)) if quality_scores else 0.0
 
-        return CandidateModelResult(
-            task_key=task_key,
-            model_name=model_name,
-            role=role,
-            sample_count=len(test_samples),
-            avg_latency_ms=round(avg_lat, 2),
-            avg_throughput_tps=round(avg_tps, 2),
-            ram_usage_mb=round(mem_mb, 2),
-            avg_rouge1=round(avg_r1, 4),
-            avg_rouge2=round(avg_r2, 4),
-            avg_rougel=round(avg_rl, 4),
-            sample_outputs=sample_outputs
+        return ModelBenchmarkResult(
+            task=task_key,
+            model=model_name,
+            quality_metric_name=metric_name,
+            quality_score=round(avg_quality, 4),
+            latency_ms=round(avg_latency, 2),
+            status=status
         )
 
-    def evaluate_all(self) -> FairModelEvaluationReport:
-        """Runs fair head-to-head candidate evaluation across all tasks in model registry."""
+    def evaluate_all(self) -> List[ModelBenchmarkResult]:
+        """Evaluates primary and fallback models for all 3 supported tasks."""
         dataset = self.load_dataset()
         task_samples = {}
         for item in dataset:
             t = item["target_task"]
             task_samples.setdefault(t, []).append(item)
 
-        task_comparisons = {}
+        results = []
 
-        for task_key, config in self.registry.items():
+        for task_key in ["summarization", "sentiment", "translation"]:
+            config = self.registry.get(task_key, {})
             samples = task_samples.get(task_key, [])
             if not samples:
-                logger.warning(f"No test samples found in dataset for task '{task_key}'")
                 continue
 
             primary_model = config.get("model_name")
             fallback_model = config.get("fallback_model")
 
-            comparisons = {}
             if primary_model:
-                comparisons["primary"] = self.evaluate_candidate(
-                    task_key=task_key,
-                    model_name=primary_model,
-                    role="primary",
-                    test_samples=samples,
-                    task_config=config
-                )
+                results.append(self.evaluate_model(task_key, primary_model, "Primary", samples))
 
             if fallback_model and fallback_model != primary_model:
-                comparisons["fallback"] = self.evaluate_candidate(
-                    task_key=task_key,
-                    model_name=fallback_model,
-                    role="fallback",
-                    test_samples=samples,
-                    task_config=config
-                )
+                results.append(self.evaluate_model(task_key, fallback_model, "Fallback", samples))
 
-            task_comparisons[task_key] = comparisons
-
-        return FairModelEvaluationReport(task_comparisons=task_comparisons)
+        return results

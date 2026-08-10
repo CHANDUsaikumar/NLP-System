@@ -3,24 +3,28 @@
 from src.evaluation.metrics import EvaluationMetrics
 
 
-def test_rouge_metrics_identical_text():
+def test_rouge_l_identical_text():
     text = "The quick brown fox jumps over the lazy dog."
-    scores = EvaluationMetrics.compute_rouge(candidate=text, reference=text)
-    
-    assert scores["rouge1_f1"] == 1.0
-    assert scores["rouge2_f1"] == 1.0
-    assert scores["rougeL_f1"] == 1.0
+    score = EvaluationMetrics.compute_rouge_l(candidate=text, reference=text)
+    assert score == 1.0
 
 
-def test_rouge_metrics_different_text():
+def test_rouge_l_different_text():
     candidate = "The quick brown fox jumps over the lazy dog."
     reference = "A swift auburn fox leaps over an inactive hound."
-    scores = EvaluationMetrics.compute_rouge(candidate=candidate, reference=reference)
-    
-    assert 0.0 <= scores["rouge1_f1"] <= 1.0
-    assert "rougeL_f1" in scores
+    score = EvaluationMetrics.compute_rouge_l(candidate=candidate, reference=reference)
+    assert 0.0 <= score <= 1.0
 
 
-def test_compute_all_empty_reference():
-    results = EvaluationMetrics.compute_all(candidate="Hello world", reference="")
-    assert results == {}
+def test_accuracy_metric():
+    y_true = ["positive", "negative", "neutral"]
+    y_pred = ["Sentiment: Positive", "Sentiment: Negative", "Sentiment: Neutral"]
+    acc = EvaluationMetrics.compute_accuracy(y_true, y_pred)
+    assert acc == 1.0
+
+
+def test_bleu_metric():
+    cand = "Hello world welcome"
+    ref = "Hello world welcome to python"
+    score = EvaluationMetrics.compute_bleu(cand, ref)
+    assert 0.0 <= score <= 1.0

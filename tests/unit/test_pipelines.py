@@ -9,8 +9,7 @@ def test_config_registry_loading():
     assert "models" in registry
     assert "summarization" in registry["models"]
     assert "sentiment" in registry["models"]
-    assert "question_answering" in registry["models"]
-    assert "text_generation" in registry["models"]
+    assert "translation" in registry["models"]
 
 
 def test_device_resolution():
@@ -35,8 +34,3 @@ def test_model_registry_restricted_families():
         assert any(kw in primary for kw in allowed_keywords), f"Primary model {primary} for {task} is not in allowed HF families"
         if fallback:
             assert any(kw in fallback for kw in allowed_keywords), f"Fallback model {fallback} for {task} is not in allowed HF families"
-
-    router_cfg = registry.get("router", {})
-    zs_model = router_cfg.get("zero_shot_model", "").lower()
-    assert any(kw in zs_model for kw in allowed_keywords), f"Zero-shot model {zs_model} is not in allowed HF families"
-

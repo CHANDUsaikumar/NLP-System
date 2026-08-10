@@ -2,8 +2,8 @@ models:
   summarization:
     model_name: "sshleifer/distilbart-cnn-12-6"
     fallback_model: "t5-small"
-    task_type: "summarization"
-    description: "DistilBART CNN model fine-tuned for abstractive text summarization."
+    quality_metric: "ROUGE-L"
+    description: "DistilBART CNN fine-tuned for abstractive summarization (Fallback: T5-small)."
     max_input_length: 1024
     max_output_length: 150
     min_output_length: 30
@@ -11,49 +11,14 @@ models:
   sentiment:
     model_name: "cardiffnlp/twitter-roberta-base-sentiment-latest"
     fallback_model: "distilbert-base-uncased-finetuned-sst-2-english"
-    task_type: "sentiment-analysis"
-    description: "RoBERTa fine-tuned for multi-class sentiment classification (Negative, Neutral, Positive)."
-    max_input_length: 512
-
-  question_answering:
-    model_name: "google/flan-t5-base"
-    fallback_model: "google/flan-t5-small"
-    task_type: "text2text-generation"
-    description: "FLAN-T5 model for instruction-following, zero-shot Q&A, and general reasoning."
-    max_input_length: 512
-    max_output_length: 256
-
-  text_generation:
-    model_name: "gpt2-medium"
-    fallback_model: "EleutherAI/gpt-neo-125M"
-    task_type: "text-generation"
-    description: "GPT-2 / GPT-Neo causal LMs for creative text generation and story completion."
-    max_input_length: 512
-    max_output_length: 200
-
-  named_entity_recognition:
-    model_name: "elastic/distilbert-base-uncased-finetuned-conll03-english"
-    fallback_model: "Jean-Baptiste/roberta-large-ner-english"
-    task_type: "token-classification"
-    description: "DistilBERT / RoBERTa fine-tuned on CoNLL-2003 for PER, ORG, LOC, and MISC entity extraction."
+    quality_metric: "Accuracy"
+    description: "RoBERTa fine-tuned for sentiment analysis (Fallback: DistilBERT-SST2)."
     max_input_length: 512
 
   translation:
     model_name: "t5-base"
     fallback_model: "t5-small"
-    task_type: "translation"
-    description: "T5 sequence-to-sequence transformer model for multi-lingual translation."
+    quality_metric: "BLEU"
+    description: "T5 sequence-to-sequence transformer model for multi-lingual translation (Fallback: T5-small)."
     max_input_length: 512
     max_output_length: 256
-
-router:
-  zero_shot_model: "valhalla/distilbart-mnli-12-3"
-  confidence_threshold: 0.55
-  fallback_task: "question_answering"
-  candidate_labels:
-    - "summarization"
-    - "sentiment analysis"
-    - "question answering"
-    - "creative text generation"
-    - "named entity recognition"
-    - "language translation"

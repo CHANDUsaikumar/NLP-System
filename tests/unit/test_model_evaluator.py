@@ -1,7 +1,7 @@
-"""Unit tests for ModelEvaluator fair comparative evaluation suite."""
+"""Unit tests for ModelEvaluator benchmarking suite."""
 
 from unittest.mock import MagicMock, patch
-from src.evaluation.model_evaluator import ModelEvaluator, CandidateModelResult
+from src.evaluation.model_evaluator import ModelEvaluator, ModelBenchmarkResult
 
 
 def test_model_evaluator_dataset_loading():
@@ -18,27 +18,25 @@ def test_evaluate_candidate_mock(mock_model_mgr_cls):
     mock_pipeline.run.return_value = ("Test summary response", 25.0, 40.0)
 
     mock_mgr_instance = MagicMock()
-    mock_mgr_instance._instantiate_pipeline.return_value = mock_pipeline
+    mock_mgr_instance.get_pipeline_by_name.return_value = mock_pipeline
     mock_model_mgr_cls.return_value = mock_mgr_instance
 
     evaluator = ModelEvaluator()
     samples = [
         {"id": "s1", "prompt": "Summarize this text", "reference_text": "Summary response"}
     ]
-    cfg = {"model_name": "sshleifer/distilbart-cnn-12-6"}
 
-    result = evaluator.evaluate_candidate(
+    result = evaluator.evaluate_model(
         task_key="summarization",
         model_name="sshleifer/distilbart-cnn-12-6",
-        role="primary",
-        test_samples=samples,
-        task_config=cfg
+        status="Primary",
+        test_samples=samples
     )
 
-    assert isinstance(result, CandidateModelResult)
-    assert result.task_key == "summarization"
-    assert result.model_name == "sshleifer/distilbart-cnn-12-6"
-    assert result.role == "primary"
-    assert result.avg_latency_ms == 25.0
-    assert result.avg_throughput_tps == 40.0
-    assert result.avg_rougel >= 0.0
+    assert isinstance(result, ModelBenchmarkResult)
+    assert result.task == "summarization"
+    assert result.model == "sshleifer/distilbart-cnn-12-6"
+    assert result.status == "Primary"
+    assert result.quality_metric_name == "ROUGE-L"
+    assert result.latency_ms == 25.0
+    assert result.quality_score >= 0.0
