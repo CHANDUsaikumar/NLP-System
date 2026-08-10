@@ -1,7 +1,7 @@
 """Model and Router Evaluation Suite CLI for Adaptive NLP System.
 
-Executes quantitative evaluations of the hybrid router (accuracy, precision, recall, F1,
-confusion matrix) and runs system performance benchmarks (latency, throughput, memory).
+Executes quantitative evaluations of candidate models (fair head-to-head evaluation on identical test datasets),
+hybrid router classification accuracy, precision, recall, F1, and system benchmarks.
 """
 
 import sys
@@ -16,14 +16,61 @@ if str(ROOT_DIR) not in sys.path:
 
 from src.evaluation.router_evaluator import RouterEvaluator
 from src.evaluation.benchmark import SystemBenchmark
+from src.evaluation.model_evaluator import ModelEvaluator
 from src.utils.logger import logger
+
+
+def run_fair_model_evaluation():
+    """Runs head-to-head comparative evaluation of primary and fallback models on identical task datasets."""
+    print("\n" + "=" * 80)
+    print(" ⚖️ FAIR CANDIDATE MODEL EVALUATION (IDENTICAL TEST DATASETS PER TASK)")
+    print("=" * 80)
+
+    evaluator = ModelEvaluator()
+    report = evaluator.evaluate_all()
+
+    print(f"{'Task':<25} | {'Candidate Role':<10} | {'Model Checkpoint':<45} | {'Avg Latency':<12} | {'Throughput':<12} | {'ROUGE-L':<10} | {'RAM (MB)':<10}")
+    print("-" * 135)
+
+    serializable_report = {}
+
+    for task_key, candidates in report.task_comparisons.items():
+        serializable_report[task_key] = {}
+        for role, res in candidates.items():
+            model_short = res.model_name
+            if len(model_short) > 43:
+                model_short = model_short[:40] + "..."
+
+            print(
+                f"{task_key:<25} | "
+                f"{role.upper():<10} | "
+                f"{model_short:<45} | "
+                f"{res.avg_latency_ms:>8.1f} ms | "
+                f"{res.avg_throughput_tps:>8.1f} t/s | "
+                f"{res.avg_rougel:>8.4f}   | "
+                f"{res.ram_usage_mb:>8.1f}"
+            )
+
+            serializable_report[task_key][role] = {
+                "model_name": res.model_name,
+                "role": res.role,
+                "sample_count": res.sample_count,
+                "avg_latency_ms": res.avg_latency_ms,
+                "avg_throughput_tps": res.avg_throughput_tps,
+                "ram_usage_mb": res.ram_usage_mb,
+                "avg_rouge1": res.avg_rouge1,
+                "avg_rouge2": res.avg_rouge2,
+                "avg_rougel": res.avg_rougel
+            }
+
+    return serializable_report
 
 
 def run_router_evaluation():
     """Runs router accuracy evaluation on labeled benchmark dataset."""
-    print("\n" + "=" * 70)
+    print("\n" + "=" * 80)
     print(" 🎯 HYBRID INTENT ROUTER EVALUATION")
-    print("=" * 70)
+    print("=" * 80)
 
     evaluator = RouterEvaluator()
     report = evaluator.evaluate()
@@ -74,9 +121,9 @@ def run_router_evaluation():
 
 def run_system_benchmark():
     """Runs system performance benchmark suite over candidate models."""
-    print("\n" + "=" * 70)
+    print("\n" + "=" * 80)
     print(" 🚀 SYSTEM BENCHMARK SUITE")
-    print("=" * 70)
+    print("=" * 80)
 
     benchmark = SystemBenchmark()
     results = benchmark.run_suite()
@@ -102,9 +149,9 @@ def main():
     parser = argparse.ArgumentParser(description="Adaptive NLP System Model & Router Evaluation CLI")
     parser.add_argument(
         "--mode",
-        choices=["router", "benchmark", "all"],
+        choices=["models", "router", "benchmark", "all"],
         default="all",
-        help="Evaluation mode to execute: 'router' (intent classification accuracy), 'benchmark' (model performance), or 'all'."
+        help="Evaluation mode to execute: 'models' (fair candidate model comparison), 'router' (intent classification accuracy), 'benchmark' (model performance), or 'all'."
     )
     parser.add_argument(
         "--save-report",
@@ -115,6 +162,10 @@ def main():
     args = parser.parse_args()
 
     report_data = {}
+
+    if args.mode in ["models", "all"]:
+        models_report = run_fair_model_evaluation()
+        report_data["fair_model_evaluation"] = models_report
 
     if args.mode in ["router", "all"]:
         router_report = run_router_evaluation()

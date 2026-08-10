@@ -183,3 +183,43 @@
 [2026-08-10 22:42:39] [INFO] [nlp_system:dynamic_router.py:44] - Routing Decision: Task='question_answering', Strategy='Rule-Based Heuristic', Confidence=0.98, Reason='Rule-Based Heuristic (Weighted Score Match): Weighted Rules: Question Mark [+4], Interrogative Word ('What') [+3] -> Total Score: 7. Selected Question Answering model.'
 [2026-08-10 22:42:39] [INFO] [nlp_system:logger.py:83] - PREDICTION_EVENT: {"timestamp": "2026-08-10T17:12:39.473261+00:00", "task": "question_answering", "selected_model": "google/flan-t5-base", "execution_time_ms": 15.23, "status": "SUCCESS"}
 [2026-08-10 22:42:39] [INFO] [nlp_system:logger.py:130] - REQUEST_LOGGED: Task='question_answering' | Strategy='Rule-Based Heuristic' | Model='google/flan-t5-base' | Conf=98.0% | Latency=15.2ms | RAM=455.8MB
+[2026-08-10 22:48:08] [INFO] [nlp_system:model_manager.py:55] - ModelManager initialized on target device: mps
+[2026-08-10 22:48:08] [INFO] [nlp_system:model_evaluator.py:74] - Evaluating PRIMARY model candidate 'sshleifer/distilbart-cnn-12-6' for task 'summarization' on 1 samples...
+[2026-08-10 22:48:09] [WARNING] [nlp_system:metrics.py:88] - BERTScore computation skipped or unavailable (No module named 'bert_score'). Returning 0.0.
+[2026-08-10 22:48:09] [INFO] [nlp_system:dynamic_router.py:21] - Processing request with prompt length 39 chars
+[2026-08-10 22:48:09] [INFO] [nlp_system:dynamic_router.py:44] - Routing Decision: Task='question_answering', Strategy='Rule-Based Heuristic', Confidence=0.98, Reason='Rule-Based Heuristic (Weighted Score Match): Weighted Rules: Question Mark [+4], Interrogative Word ('What') [+3] -> Total Score: 7. Selected Question Answering model.'
+[2026-08-10 22:48:09] [INFO] [nlp_system:logger.py:83] - PREDICTION_EVENT: {"timestamp": "2026-08-10T17:18:09.405189+00:00", "task": "question_answering", "selected_model": "google/flan-t5-base", "execution_time_ms": 15.23, "status": "SUCCESS"}
+[2026-08-10 22:48:09] [INFO] [nlp_system:logger.py:130] - REQUEST_LOGGED: Task='question_answering' | Strategy='Rule-Based Heuristic' | Model='google/flan-t5-base' | Conf=98.0% | Latency=15.2ms | RAM=482.3MB
+[2026-08-10 22:48:16] [INFO] [nlp_system:model_manager.py:55] - ModelManager initialized on target device: mps
+[2026-08-10 22:48:16] [INFO] [nlp_system:model_evaluator.py:74] - Evaluating PRIMARY model candidate 'sshleifer/distilbart-cnn-12-6' for task 'summarization' on 2 samples...
+[2026-08-10 22:48:16] [INFO] [nlp_system:summarizer.py:14] - Instantiating summarization pipeline with model 'sshleifer/distilbart-cnn-12-6' on device 'mps'
+[2026-08-10 22:48:22] [WARNING] [nlp_system:metrics.py:88] - BERTScore computation skipped or unavailable (No module named 'bert_score'). Returning 0.0.
+[2026-08-10 22:48:24] [WARNING] [nlp_system:metrics.py:88] - BERTScore computation skipped or unavailable (No module named 'bert_score'). Returning 0.0.
+[2026-08-10 22:48:24] [INFO] [nlp_system:model_evaluator.py:74] - Evaluating FALLBACK model candidate 't5-small' for task 'summarization' on 2 samples...
+[2026-08-10 22:48:24] [INFO] [nlp_system:summarizer.py:14] - Instantiating summarization pipeline with model 't5-small' on device 'mps'
+[2026-08-10 22:48:28] [WARNING] [nlp_system:metrics.py:88] - BERTScore computation skipped or unavailable (No module named 'bert_score'). Returning 0.0.
+[2026-08-10 22:48:30] [WARNING] [nlp_system:metrics.py:88] - BERTScore computation skipped or unavailable (No module named 'bert_score'). Returning 0.0.
+[2026-08-10 22:48:30] [INFO] [nlp_system:model_evaluator.py:74] - Evaluating PRIMARY model candidate 'cardiffnlp/twitter-roberta-base-sentiment-latest' for task 'sentiment' on 2 samples...
+[2026-08-10 22:48:30] [INFO] [nlp_system:sentiment.py:27] - Instantiating sentiment analysis pipeline with model 'cardiffnlp/twitter-roberta-base-sentiment-latest' on device 'mps'
+[2026-08-10 22:48:32] [WARNING] [nlp_system:metrics.py:88] - BERTScore computation skipped or unavailable (No module named 'bert_score'). Returning 0.0.
+[2026-08-10 22:48:32] [WARNING] [nlp_system:metrics.py:88] - BERTScore computation skipped or unavailable (No module named 'bert_score'). Returning 0.0.
+[2026-08-10 22:48:32] [INFO] [nlp_system:model_evaluator.py:74] - Evaluating FALLBACK model candidate 'distilbert-base-uncased-finetuned-sst-2-english' for task 'sentiment' on 2 samples...
+[2026-08-10 22:48:32] [INFO] [nlp_system:sentiment.py:27] - Instantiating sentiment analysis pipeline with model 'distilbert-base-uncased-finetuned-sst-2-english' on device 'mps'
+[2026-08-10 22:48:34] [WARNING] [nlp_system:metrics.py:88] - BERTScore computation skipped or unavailable (No module named 'bert_score'). Returning 0.0.
+[2026-08-10 22:48:34] [WARNING] [nlp_system:metrics.py:88] - BERTScore computation skipped or unavailable (No module named 'bert_score'). Returning 0.0.
+[2026-08-10 22:48:34] [INFO] [nlp_system:model_evaluator.py:74] - Evaluating PRIMARY model candidate 'google/flan-t5-base' for task 'question_answering' on 3 samples...
+[2026-08-10 22:48:34] [INFO] [nlp_system:text_gen.py:16] - Instantiating Q&A pipeline with model 'google/flan-t5-base' on device 'mps'
+[2026-08-10 22:48:37] [WARNING] [nlp_system:metrics.py:88] - BERTScore computation skipped or unavailable (No module named 'bert_score'). Returning 0.0.
+[2026-08-10 22:48:37] [WARNING] [nlp_system:metrics.py:88] - BERTScore computation skipped or unavailable (No module named 'bert_score'). Returning 0.0.
+[2026-08-10 22:48:37] [WARNING] [nlp_system:metrics.py:88] - BERTScore computation skipped or unavailable (No module named 'bert_score'). Returning 0.0.
+[2026-08-10 22:48:37] [INFO] [nlp_system:model_evaluator.py:74] - Evaluating FALLBACK model candidate 'google/flan-t5-small' for task 'question_answering' on 3 samples...
+[2026-08-10 22:48:37] [INFO] [nlp_system:text_gen.py:16] - Instantiating Q&A pipeline with model 'google/flan-t5-small' on device 'mps'
+[2026-08-10 22:49:04] [WARNING] [nlp_system:metrics.py:88] - BERTScore computation skipped or unavailable (No module named 'bert_score'). Returning 0.0.
+[2026-08-10 22:49:05] [WARNING] [nlp_system:metrics.py:88] - BERTScore computation skipped or unavailable (No module named 'bert_score'). Returning 0.0.
+[2026-08-10 22:49:05] [WARNING] [nlp_system:metrics.py:88] - BERTScore computation skipped or unavailable (No module named 'bert_score'). Returning 0.0.
+[2026-08-10 22:49:05] [INFO] [nlp_system:model_evaluator.py:74] - Evaluating PRIMARY model candidate 'gpt2-medium' for task 'text_generation' on 2 samples...
+[2026-08-10 22:49:05] [INFO] [nlp_system:text_gen.py:49] - Instantiating Text Generation pipeline with model 'gpt2-medium' on device 'mps'
+[2026-08-10 22:49:17] [WARNING] [nlp_system:metrics.py:88] - BERTScore computation skipped or unavailable (No module named 'bert_score'). Returning 0.0.
+[2026-08-10 22:49:22] [WARNING] [nlp_system:metrics.py:88] - BERTScore computation skipped or unavailable (No module named 'bert_score'). Returning 0.0.
+[2026-08-10 22:49:22] [INFO] [nlp_system:model_evaluator.py:74] - Evaluating FALLBACK model candidate 'EleutherAI/gpt-neo-125M' for task 'text_generation' on 2 samples...
+[2026-08-10 22:49:22] [INFO] [nlp_system:text_gen.py:49] - Instantiating Text Generation pipeline with model 'EleutherAI/gpt-neo-125M' on device 'mps'

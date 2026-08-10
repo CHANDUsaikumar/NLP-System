@@ -3,78 +3,91 @@
     "id": "qa_01",
     "prompt": "What is the capital of France and what is its population?",
     "target_task": "question_answering",
-    "description": "Direct question starting with What"
+    "description": "Direct question starting with What",
+    "reference_text": "Paris is the capital of France with a population of approximately 2.1 million."
   },
   {
     "id": "qa_02",
     "prompt": "Why do leaves change color in autumn?",
     "target_task": "question_answering",
-    "description": "Direct question starting with Why"
+    "description": "Direct question starting with Why",
+    "reference_text": "Leaves change color in autumn because chlorophyll breaks down as daylight decreases, revealing orange and yellow pigments."
   },
   {
     "id": "qa_03",
     "prompt": "How does a transformer neural network handle attention?",
     "target_task": "question_answering",
-    "description": "Technical question starting with How"
+    "description": "Technical question starting with How",
+    "reference_text": "Transformer neural networks use self-attention mechanisms to compute contextual relationship weights across token sequences."
   },
   {
     "id": "sum_01",
     "prompt": "Artificial intelligence has transformed modern software engineering by introducing dynamic model routing, automated code generation, and intelligent testing workflows. Companies deploy transformer models to optimize compute cost. By leveraging lightweight zero-shot classifiers alongside specialized generation models, organizations significantly reduce inference latency while keeping throughput high. Recent advances in hardware acceleration further streamline enterprise deployments.",
     "target_task": "summarization",
-    "description": "Long multi-sentence paragraph (>150 words / 4 sentences) without question marks"
+    "description": "Long multi-sentence paragraph (>150 words / 4 sentences) without question marks",
+    "reference_text": "Artificial intelligence and model routing streamline software engineering by combining zero-shot classifiers and specialized transformers to reduce compute costs and inference latency while keeping throughput high."
   },
   {
     "id": "sum_02",
     "prompt": "Please summarize the following research paper on deep learning optimization and gradient accumulation strategies in multi-node clusters.",
     "target_task": "summarization",
-    "description": "Explicit summarization command"
+    "description": "Explicit summarization command",
+    "reference_text": "This paper analyzes gradient accumulation and optimization strategies to improve deep learning scalability across multi-node distributed clusters."
   },
   {
     "id": "sent_01",
     "prompt": "This new smartphone has an amazing camera and exceptional battery life, but the software is terrible and constantly crashes.",
     "target_task": "sentiment",
-    "description": "Review text containing positive and negative sentiment adjectives"
+    "description": "Review text containing positive and negative sentiment adjectives",
+    "reference_text": "Sentiment: Negative / Mixed (software crashes but hardware is good)."
   },
   {
     "id": "sent_02",
     "prompt": "I love the customer service at this store! They were friendly, helpful, and resolved my issue immediately. Highly recommend!",
     "target_task": "sentiment",
-    "description": "Positive customer review"
+    "description": "Positive customer review",
+    "reference_text": "Sentiment: Positive (Friendly and helpful service)."
   },
   {
     "id": "gen_01",
     "prompt": "Write a short creative story about an astronaut discovering an abandoned alien city on Mars.",
     "target_task": "text_generation",
-    "description": "Creative writing prompt starting with Write"
+    "description": "Creative writing prompt starting with Write",
+    "reference_text": "The astronaut stepped onto the red dust of Mars, gazing at the silent crystalline spires of an ancient abandoned alien city."
   },
   {
     "id": "gen_02",
     "prompt": "Generate a poem celebrating the beauty of high-performance parallel computing.",
     "target_task": "text_generation",
-    "description": "Creative generation prompt starting with Generate"
+    "description": "Creative generation prompt starting with Generate",
+    "reference_text": "Threads synchronize in rhythmic grace, across parallel cores in digital space."
   },
   {
     "id": "ner_01",
     "prompt": "Extract names of organizations and people mentioned in this sentence: Tim Cook announced Apple's new product launch in Cupertino.",
     "target_task": "named_entity_recognition",
-    "description": "Explicit NER entity extraction request"
+    "description": "Explicit NER entity extraction request",
+    "reference_text": "Tim Cook (PER), Apple (ORG), Cupertino (LOC)"
   },
   {
     "id": "ner_02",
     "prompt": "Find entities and locations in the text: Google operates major data centers in Oregon, Frankfurt, and Tokyo.",
     "target_task": "named_entity_recognition",
-    "description": "Explicit entity extraction directive"
+    "description": "Explicit entity extraction directive",
+    "reference_text": "Google (ORG), Oregon (LOC), Frankfurt (LOC), Tokyo (LOC)"
   },
   {
     "id": "trans_01",
     "prompt": "Translate this sentence into French: Machine learning model routing improves accuracy and latency.",
     "target_task": "translation",
-    "description": "Explicit translation directive to French"
+    "description": "Explicit translation directive to French",
+    "reference_text": "L'orientement des modèles d'apprentissage automatique améliore la précision et la latence."
   },
   {
     "id": "trans_02",
     "prompt": "Convert to Spanish: Hello world, welcome to our interactive NLP system demonstration.",
     "target_task": "translation",
-    "description": "Translation request with Convert to Spanish"
+    "description": "Translation request with Convert to Spanish",
+    "reference_text": "Hola mundo, bienvenido a la demostración de nuestro sistema de PLN."
   }
 ]
