@@ -8,6 +8,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import uvicorn
+import asyncio
 
 # Ensure workspace root directory is on sys.path
 ROOT_DIR = Path(__file__).resolve().parent
@@ -46,6 +47,7 @@ evaluator = ModelEvaluator()
 @app.get("/health", response_model=Dict[str, str])
 async def health_check() -> Dict[str, str]:
     """Health check endpoint returning system status."""
+    await asyncio.sleep(0.5)
     return {"status": "ok"}
 
 
