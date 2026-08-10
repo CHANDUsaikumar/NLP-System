@@ -107,6 +107,21 @@ If no intent is detected, the router cleanly returns:
 
 ---
 
+## Model Selection & Evaluation
+
+A concise overview of why multiple models are evaluated, the metrics used, and how Primary/Fallback models are selected.
+
+| Task | Primary | Fallback | Quality Metric |
+|---|---|---|---|
+| Summarization | `sshleifer/distilbart-cnn-12-6` | `t5-small` | ROUGE-L |
+| Sentiment Analysis | `cardiffnlp/twitter-roberta-base-sentiment-latest` | `distilbert-base-uncased-finetuned-sst-2-english` | Accuracy |
+| Translation | `t5-base` | `t5-small` | BLEU |
+
+For detailed documentation see:
+- [Model Selection](docs/model-selection.md)
+- [Evaluation Methodology](docs/evaluation-methodology.md)
+- [Benchmark Results](docs/benchmark-results.md)
+
 ## 📁 Project Structure
 
 ```
